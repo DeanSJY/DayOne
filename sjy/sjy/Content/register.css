@@ -1,0 +1,75 @@
+#upbanner{
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	background-color: #722b72 ;
+	z-index: 100;
+	
+}
+body{
+	background-color:#333333;
+	
+}
+input,
+input:focus{
+	width: 240px;
+	height: 40px;
+	border: 0px;
+	font-size: 16px;
+	border-bottom: 1px solid #722b72;
+	outline: 0;
+	padding-left: 10px;	
+}
+
+#forget{
+	float: left;
+	width: 120px;
+}
+#register{
+	float: right;
+	width: 240px;
+}
+.ok{
+	width: 240px;
+	height: 40px;
+	background-color: #722b72;
+	border: 0px;
+	font-size: 18px;	
+	color: white;
+	outline: 0;
+	margin-top: 10px;
+}
+#right{
+	float: right;
+	margin-right: 100px;
+	margin-top:170px ;
+}
+#left{
+	float: left;
+	margin-left: 100px;
+	margin-top: 170px;
+}
+#down{
+	position: fixed;
+	bottom: 0px;
+	height: 40px;
+	background-color: #722b72;
+	width: 100%;
+	z-index: 100;
+}
+.stand{
+	color: white;
+}
+.clearfix:before {
+display: table;
+content: " ";	
+}
+.clearfix:after{
+	clear: both;
+}
+
+.radius{
+border-radius:4px;}
+.letter-space{
+	letter-spacing: 6px;
+}

@@ -1,0 +1,16 @@
+/Users/admin/Projects/sjy/sjy/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/admin/Projects/sjy/sjy/bin/sjy.dll.mdb
+/Users/admin/Projects/sjy/sjy/bin/sjy.dll
+/Users/admin/Projects/sjy/sjy/obj/Debug/sjy.dll
+/Users/admin/Projects/sjy/sjy/obj/Debug/sjy.dll.mdb
+/Users/admin/Projects/sjy/sjy/bin/System.Web.Razor.dll
+/Users/admin/Projects/sjy/sjy/bin/Microsoft.Web.Infrastructure.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.Helpers.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.WebPages.Deployment.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.WebPages.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.WebPages.Razor.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.Mvc.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Net.Http.Formatting.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.Http.dll
+/Users/admin/Projects/sjy/sjy/bin/System.Web.Http.WebHost.dll
+/Users/admin/Projects/sjy/sjy/bin/Newtonsoft.Json.dll

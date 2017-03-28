@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title>DayOne</title>
+		<link rel="stylesheet" href="../css/bootstrap.css" />
+		<link rel="stylesheet" href="../css/dayplan.css"  />
+    <script src="../js/angular.js"></script>
+    <script src="../js/notebook.js"></script>
+	</head>
+	<body ng-controller="mainCtrl">
+		
+	<div id="upbanner">
+    <!-- <h2 class="stand letter-space" align="center">Day One</h2> -->
+    
+    <div class='container'>
+      Day One
+      <div class='navbar-header'>
+        <div class='pull-right'>
+          <ul class='nav navbar-nav'>
+            <li>
+                        <a href="index.html">
+              首页
+              </a>
+            <li class="active">
+                        <a href="dayplan.html"><i class='fa fa-cloud-download'></i>
+              日计划
+              </a>
+    
+            </li>
+            <li>
+                        <a href="notebook.html">
+              笔记本
+              </a>
+    
+            </li>
+            <li>
+                        <a href="bug-reports">
+              分享
+              </a>
+    
+            </li>
+            <li>
+                        <a href="login.html">
+              登录
+              </a>
+    
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  	
+  	<div id="left">
+  		<div class="icon" ng-class="{'active':nav===1}">
+  		<span class="glyphicon glyphicon-pencil  " ng-click="nav=1"></span>
+  		</div>
+  		
+  	  	<div class="icon" ng-class="{'active':nav===2}">
+  	  	<span class="glyphicon glyphicon-heart-empty " ng-click="nav=2"></span>		
+  	  	</div>
+  	  	
+  	    <div class="icon" ng-class="{'active':nav===3}">
+  		<span class="glyphicon glyphicon-check" ng-click="nav=3"></span>
+  	    </div>  
+  	    <div class="icon" ng-class="{'active':nav===4}">
+  	    <span class="glyphicon glyphicon-time  " ng-click="nav=4"></span>	
+  	    </div> 
+  	    
+  	</div>
+  	
+  	<div id="right">
+ 
+  		
+    <!-- <div class="plan">
+    	<input  type="text" name="plan1" id="plan1" placeholder="开始记录" />	</div>	
+    <div class="plan" >
+    	<input  type="text" name="plan2" id="plan2" placeholder="开始记录" />	</div>	
+    <div class="plan">
+    	<input  type="text" name="plan3" id="plan3" placeholder="开始记录" />	</div>	
+    <div class="plan">
+    	<input  type="text" name="plan4" id="plan4" placeholder="开始记录" />	</div>	
+    <div class="plan">
+    	<input  type="text" name="plan5" id="plan5" placeholder="开始记录" />	</div> -->	
+
+      <div ng-show="nav===1">
+        <form action="" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">名称：</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">截止时间：</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="expireAt">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-6">
+              <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-success" style="margin-right:15px;">添加</button>
+            <button class="btn btn-default">重填</button>
+          </div>
+        </form>
+      </div>
+
+      <div ng-show="nav===2">
+        <table class="table">
+        <thead>
+          <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>备注</td>
+            <td>截止时间</td>
+          </tr> 
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Express</td>
+            <td>熟悉Node JS的Express框架</td>
+            <td>2016-03-17</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Angular2</td>
+            <td>Angular2入门</td>
+            <td>2016-03-18</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>项目</td>
+            <td>了解项目的各个环节</td>
+            <td>2016-03-18</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>搭建环境</td>
+            <td>搭建项目的环境</td>
+            <td>2016-03-19</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div ng-show="nav===3">
+        <table class="table">
+        <thead>
+          <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>备注</td>
+            <td>截止时间</td>
+          </tr> 
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>HTML</td>
+            <td>熟悉HTML各类标签</td>
+            <td>2016-02-10</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>CSS</td>
+            <td>熟悉CSS选择器和熟悉</td>
+            <td>2016-02-12</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>JavaScript</td>
+            <td>JavaScript入门</td>
+            <td>2016-02-13</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>DOM</td>
+            <td>熟悉DOM的使用</td>
+            <td>2016-02-15</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>jQuery</td>
+            <td>熟悉jQuery API</td>
+            <td>2016-02-18</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Git</td>
+            <td>熟悉Git的使用</td>
+            <td>2016-02-20</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Node JS</td>
+            <td>Node JS 入门</td>
+            <td>2016-02-26</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>VS Code</td>
+            <td>安装配置VS Code</td>
+            <td>2016-03-01</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div ng-show="nav===4">
+        <table class="table">
+        <thead>
+          <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>备注</td>
+            <td>截止时间</td>
+          </tr> 
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Express</td>
+            <td>熟悉Node JS的Express框架</td>
+            <td>2016-03-17</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Angular2</td>
+            <td>Angular2入门</td>
+            <td>2016-03-18</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>项目</td>
+            <td>了解项目的各个环节</td>
+            <td>2016-03-18</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>搭建环境</td>
+            <td>搭建项目的环境</td>
+            <td>2016-03-19</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  	
+  	
+  	</div>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+	</body>
+</html>

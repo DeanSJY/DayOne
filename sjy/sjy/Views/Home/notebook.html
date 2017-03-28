@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title>DayOne</title>
+		<link rel="stylesheet" href="../css/bootstrap.css" />
+		<link rel="stylesheet" href="../css/notebook.css"  />
+		<script src="../js/angular.js"></script>
+		<script src="../js/notebook.js"></script>
+	</head>
+	<body>
+		
+<div id="upbanner">
+  	<!-- <h2 class="stand letter-space" align="center">Day One</h2> -->
+    
+    <div class='container'>
+      Day One
+      <div class='navbar-header'>
+        <div class='pull-right'>
+          <ul class='nav navbar-nav'>
+            <li>
+                        <a href="index.html">
+              首页
+              </a>
+            <li>
+                        <a href="dayplan.html"><i class='fa fa-cloud-download'></i>
+              日计划
+              </a>
+    
+            </li>
+            <li class="active">
+                        <a href="notebook.html">
+              笔记本
+              </a>
+    
+            </li>
+            <li>
+                        <a href="bug-reports">
+              分享
+              </a>
+    
+            </li>
+            <li>
+                        <a href="login.html">
+              登录
+              </a>
+    
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <div id="container"  ng-controller="mainCtrl">
+	<div id="left">
+		
+		<div class="logo" ng-class="{'active':nav===1}">
+		<span class="glyphicon glyphicon-book" ng-click="nav=1"></span>
+		<a href=""></a>
+			
+		</div>
+		<div class="logo" ng-class="{'active':nav===2}">
+		<span class="glyphicon glyphicon-heart" ng-click="nav=2"></span>
+		<a href=""></a>
+			
+		</div>
+		<div class="logo" ng-class="{'active':nav===3}">
+		<span class="glyphicon glyphicon-paperclip "  ng-click="nav=3"	></span>
+		<a href=""></a>
+			
+		</div>
+		<div class="logo" ng-class="{'active':nav===4}">
+		<span class="glyphicon glyphicon-trash "  ng-click="nav=4"	></span>
+		<a href=""></a>	
+		</div>
+		
+	</div>	
+	<div id="right">
+		<div ng-show="nav==1">
+			<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>生活</h4>
+					</div>
+			</div>
+			<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>学习</h4>
+					</div>
+			</div>
+			<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>工作</h4>
+					</div>
+			</div>
+				<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>爱情</h4>
+				</div>
+			</div>
+		</div>
+
+		<div ng-show="nav==2">
+			<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>学习</h4>
+					</div>
+			</div>
+				<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>爱情</h4>
+				</div>
+			</div>
+		</div>
+
+		<div ng-show="nav==3" class="text-center">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>编号</td>
+						<td>名称</td>
+						<td>备注</td>
+						<td>创建时间</td>
+					</tr> 
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>HTML+css</td>
+						<td>HEAD FIRST HTML + CSS</td>
+						<td>2016-02-10</td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+						<td>《界面设计模式》</td>
+						<td>《界面设计模式》</td>
+						<td>2016-02-12</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>《JavaScript DOM编程艺术》</td>
+						<td>《JavaScript DOM编程艺术》</td>
+						<td>2016-02-13</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>《JavaScript启示录》</td>
+						<td>《JavaScript启示录》</td>
+						<td>2016-02-15</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>《JavaScript标准参考教程》</td>
+						<td>《JavaScript标准参考教程》</td>
+						<td>2016-02-18</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>《JavaScript权威指南第六版》</td>
+						<td>《JavaScript权威指南第六版》</td>
+						<td>2016-02-20</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>《深入理解JavaScript系列》</td>
+						<td>《深入理解JavaScript系列》</td>
+						<td>2016-02-26</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>《七天学会NodeJS》</td>
+						<td>《七天学会NodeJS》</td>
+						<td>2016-03-01</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div ng-show="nav==4">
+			<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>动漫</h4>
+					</div>
+			</div>
+				<div class="note">
+					<div class="note-left"></div>
+					<div class="note-body">
+						<h4>电影</h4>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	</body>
+</html>
