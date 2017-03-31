@@ -1,0 +1,24 @@
+
+.navbar-header
+{
+	float: right;
+}
+.navbar{
+	/* background-color:#722b72 ; */
+	margin-bottom: 0px;
+}
+.navbar-nav {
+    float: right;
+    margin: 0;
+}
+.navbar-nav>li>a{
+    color:#fff;
+}
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus{
+    background-color: #8c628c;
+}
+.navbar-nav>li.active>a,
+.navbar-nav>li.active>a:hover{
+    background-color: #986898;
+}

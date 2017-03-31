@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn" ng-app="usercp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/DayOne.css")
+</head>
+
+@functions{
+    public string activeCss(string paths)
+    {
+        bool flg = false;
+        foreach (string path in paths.Split('|'))
+        {
+            if (path == "~")
+            {
+                if (Request.Path.ToLower() == Url.Content(path).ToLower())
+                    flg = true;
+            }
+            else
+            {
+                if (Request.Path.ToLower().StartsWith(Url.Content(path).ToLower()))
+                    flg = true;
+            }
+
+        }
+        return flg ? "active" : string.Empty;
+    }
+}
+<body class="index">
+    <section>
+        <div class='navbar ' role='navigation'>
+            <div class="head">
+                <div class='container'>
+
+                    <div class='navbar-header'>
+                        <div class='pull-right'>
+                            <ul class='nav navbar-nav'>
+                                <li class="@activeCss("~|~/Home/Index")"><a href="~/Home/Index">首页</a></li>
+                                <li class="@activeCss("~|~/Home/Index")"><a href="~/Home/dayplan">日计划</a></li>
+                                <li class="@activeCss("~|~/Home/Index")"><a href="~/Home/notebook">笔记本</a></li>
+                                <li class="@activeCss("~|~/Home/Index")"><a href="~/Home/share">分享</a></li>
+                                <li class="@activeCss("~|~/Home/Index")"><a href="~/Home/login">登录</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+    </section>
+
+</body>
+</html>
