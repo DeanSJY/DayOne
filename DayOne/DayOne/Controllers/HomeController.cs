@@ -44,6 +44,13 @@ namespace DayOne.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+        public ActionResult Forget()
+        {
+            ViewBag.Message = "Your contact page.";
+            return View();
+        }
+
+
 
    
         [HttpPost]

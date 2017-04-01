@@ -17,8 +17,9 @@
                 <h3 class="letter-space" align="center">DayOne注册</h3>
                 @Html.ValidationSummary()
                 @Html.TextBoxFor(o => o.UserName, new { name = "username", placeholder = "用户名" })
+                @Html.TextBoxFor(o => o.PhoneNumber, new { name = "phone", placeholder = "手机号" })
                 @Html.PasswordFor(o => o.PassWord, new { name = "pwd", placeholder = "密码" })
-                @Html.PasswordFor(o => o.PassWord2, new { name = "pwd", placeholder = "再次密码" })
+                @Html.PasswordFor(o => o.PassWord2, new { name = "pwd", placeholder = "确认密码" })
                     <button class="ok" type="submit">注 册</button>
             </div>
   }

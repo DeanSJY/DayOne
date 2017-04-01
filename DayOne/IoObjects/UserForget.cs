@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace IoObjects
 {
-   public class UserRegister
+     public class UserForget
     {
-        public string UserName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PassWord { get; set; }
+        public int PhoneNumber { get; set; }
+        public string Vertification { get; set; }
+        public string PassWord { get;set;}
+
         public string PassWord2 { get; set; }
     }
 }

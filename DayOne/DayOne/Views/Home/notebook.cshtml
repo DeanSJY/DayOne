@@ -2,31 +2,21 @@
 <link rel="stylesheet" href="~/Content/notebook.css"  />
 
 
-<div id="upbanner">
-    <div id="container" ng-controller="mainCtrl">
-        <div id="left">
+<div id="left">
+    <ul class="nav nav-pills nav-stacked">添加笔记本</ul>
+    <ul class="nav nav-pills nav-stacked">搜索笔记本</ul>
+    <ul class="nav nav-pills nav-stacked">笔记本</ul>
+    <ul class="nav nav-pills nav-stacked">修改笔记本</ul>
 
-            <div class="logo" ng-class="{'active':nav===1}">
-                <span class="glyphicon glyphicon-book" ng-click="nav=1"></span>
-                <a href=""></a>
 
-            </div>
-            <div class="logo" ng-class="{'active':nav===2}">
-                <span class="glyphicon glyphicon-heart" ng-click="nav=2"></span>
-                <a href=""></a>
+</div>
 
-            </div>
-            <div class="logo" ng-class="{'active':nav===3}">
-                <span class="glyphicon glyphicon-paperclip " ng-click="nav=3"></span>
-                <a href=""></a>
 
-            </div>
-            <div class="logo" ng-class="{'active':nav===4}">
-                <span class="glyphicon glyphicon-trash " ng-click="nav=4"></span>
-                <a href=""></a>
-            </div>
 
-        </div>
+
+
+
+
         <div id="right">
             <div ng-show="nav==1">
                 <div class="note">
@@ -55,23 +45,4 @@
                 </div>
             </div>
 
-            <div ng-show="nav==2">
-                <div class="note">
-                    <div class="note-left"></div>
-                    <div class="note-body">
-                        <h4>学习</h4>
-                    </div>
-                </div>
-                <div class="note">
-                    <div class="note-left"></div>
-                    <div class="note-body">
-                        <h4>爱情</h4>
-                    </div>
-                </div>
-            </div>
 
-
-
-        </div>
-    </div>
-</div>

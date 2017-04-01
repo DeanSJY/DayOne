@@ -1,0 +1,35 @@
+﻿@model IoObjects.UserForget
+@{ViewBag.Title = "找回密码";}
+<link rel="stylesheet" href="~/Content/login.css"  />		
+  <div class="container">
+  <div id="middle" class="row">
+  <div class="col-sm-6 text-right">
+  <img class="radius" src="~/Image/123.jpg" width="600px" height="500px"/> 
+      </div>
+      
+      
+        <div class="col-sm-6 text-center">
+        <h3 class="letter-space" align="center">找回密码</h3>
+            @Html.BeginForm("Forget","Home","FormMethod.post"){
+            
+                @Html.ValidationSummary()
+                @Html.TextBoxFor(o => o.PhoneNumber, new { name = "phonenumber", placeholder = "手机号" })
+                <button class="ok" type="submit" name="getcode">点击获取验证码</button>
+                @Html.TextBoxFor(o =>o.Vertification,new {name ="vertification",placeholder="验证码"})
+                @Html.PasswordFor(o => o.PassWord, new { name = "pwd", placeholder = "密码" })
+                @Html.PasswordFor(o => o.PassWord2, new { name = "pwd", placeholder = "确认密码" })
+
+
+            <div>
+                <button class="ok" type="submit">确认修改</button>
+                <h5>未收到验证码 重新发送</h5>
+                }
+
+            </div>
+        </div>
+    </div>
+  </div> 
+   
+    <footer class="text-center">
+      遇见更好的自己---DayOne
+    </footer>
