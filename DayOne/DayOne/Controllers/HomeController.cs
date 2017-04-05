@@ -1,10 +1,10 @@
-﻿using IoObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Service;
+using DayOne.Services;
+using DayOne.IoObjects;
 
 namespace DayOne.Controllers
 {

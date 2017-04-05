@@ -1,5 +1,0 @@
-D:\documents\Visual Studio 2013\Projects\DayOne\IoObjects\bin\Debug\IoObjects.dll
-D:\documents\Visual Studio 2013\Projects\DayOne\IoObjects\bin\Debug\IoObjects.pdb
-D:\documents\Visual Studio 2013\Projects\DayOne\IoObjects\obj\Debug\IoObjects.dll
-D:\documents\Visual Studio 2013\Projects\DayOne\IoObjects\obj\Debug\IoObjects.pdb
-D:\documents\Visual Studio 2013\Projects\DayOne\IoObjects\obj\Debug\IoObjects.csprojResolveAssemblyReference.cache
