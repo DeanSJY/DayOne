@@ -20,10 +20,14 @@ namespace DayOne.Services
             return user;
         }
 
-        public bool Certify(string username, string password)
+        public UserInfo Certify(string username, string password)
         {
             var user = GetUserByName(username);
-            return user != null && user.PassWord == password;
+            if (user != null && user.PassWord == password)
+            {
+                return user;
+            }
+            return null;
         }
 
         public DayOne.Entities.UserInfo Register(DayOne.Entities.UserInfo user)
