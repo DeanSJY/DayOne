@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace DayOne.Entities
 {
-    public class UserInfo
+    public class Attachment
     {
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
-        public string CellPhone { get; set; }
         public int Id { get; set; }
+        public int NoteId { get; set; }
+
+        public string Title { get; set; }
+        public string Path { get; set; }
+        public string Icon { get; set; }
     }
 }

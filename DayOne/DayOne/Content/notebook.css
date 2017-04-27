@@ -1,3 +1,16 @@
+#upbanner{
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	background-color: #722b72 ;
+	z-index: 100;
+	color: #fff;
+    line-height:50px;
+}
+body{
+	background-color:#f3f3f3;
+	font-family:"微软雅黑";
+}
 .navbar-header
 {
 	float: right;
@@ -33,26 +46,33 @@
 #left{
 	position: fixed;
 	bottom: 0;
-	top: 50px;
-	width: 150px;}
+	top: 0;
+	background-color: #722b72;
+	width: 80px;}
 	
+.logo{
+	width: 60px;
+	height: 60px;
+	margin-top: 80px;
+	margin-left: 20px;
+	font-size: 40px;
+	cursor: pointer;
 
+}
+.logo:hover,
+.logo.active{
+	color: white;
+}
 #right{
 	position: fixed;
 	right: 0;
+    background-color: #ccc;;
     top: 50px;
     bottom: 0;
-    left: 100px;
-    right: 0;
-}
+    left: 80px;
+    right: 0;	
 
-.nav-stacked {
-    background-color:#986898;
-    margin-top:50px;
-    width:130px;
-    height:10px;
 }
-
 
 
 

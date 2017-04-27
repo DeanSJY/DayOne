@@ -80,6 +80,8 @@
     <Compile Include="AuthorizationSynchronizationModule.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="AuthorizationContext.cs" />
+    <Compile Include="DayPlanService.cs" />
+    <Compile Include="NoteBookService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

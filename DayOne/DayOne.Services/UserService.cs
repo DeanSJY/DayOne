@@ -30,6 +30,8 @@ namespace DayOne.Services
             return null;
         }
 
+       
+
         public DayOne.Entities.UserInfo Register(DayOne.Entities.UserInfo user)
         {
             user = CurrentDB.UserTable.Add(user);

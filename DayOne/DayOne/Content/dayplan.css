@@ -1,25 +1,24 @@
-li {
-    color:#333333;
-    font-size:large;
+
+.navbar-header
+{
+	float: right;
 }
-input{
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    width: 500px;
-    border-left: 0px;
-    border-top: 0px;
-    border-right: 0px;
-    border-bottom-color: #999999;
-    padding-left: 10px;
-    margin-left: 88px;
-    height: 50px;
-    font-size: 20px;
-    margin-top: 30px;
-    
+.navbar{
+	/* background-color:#722b72 ; */
+	margin-bottom: 0px;
 }
-
-
-
-
-
+.navbar-nav {
+    float: right;
+    margin: 0;
+}
+.navbar-nav>li>a{
+    color:#fff;
+}
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus{
+    background-color: #8c628c;
+}
+.navbar-nav>li.active>a,
+.navbar-nav>li.active>a:hover{
+    background-color: #986898;
+}

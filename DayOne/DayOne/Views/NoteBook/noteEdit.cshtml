@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "笔记本";
+ }
+<link rel="stylesheet" href="~/Content/noteEdit.css" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/angular.js"></script>
+
+<script>
+    var Title, Overview, StartAt, EndAt;
+    var Time = new Date();
+    var StartAt = new Date(year, month, day, hours, minutes);
+    var EndAt = new Date(year, month, day, hours, minutes);
+    document.getElementById("time").innerHTML=Time
+
+</script>
+
+
+<div id=" left">
+    <div class="Overview">
+        <div class="overview-font">标题</div>
+        <div class="content">概述</div>
+        <div class="time"></div>
+        <br />       
+    </div>
+</div>
+
+<div id="right">
+    <div >
+        <div id=" startAt"></div>
+        <div id=" endAt"></div>
+        <div class="up" onlick="attachment">附件笔记</div>
+        <div class="up" onclick=" add">增加笔记</div>
+        <div class="up" onclick="del">删除笔记</div>
+        <div class="up" onclick="love">爱心笔记</div>
+        <div class="up" onclick="save">保存笔记</div>
+    </div>
+
+
+    <div id="noteEdit">
+        <input id=" noteContent"type="text" placeholder="" />
+    </div>
+
+</div>
+

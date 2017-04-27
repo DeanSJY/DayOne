@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Service
+namespace DayOne.Controllers
 {
-    class dbContent
-    {
-    }
-    class Add
+    class NoteEdit
     {
     }
 }

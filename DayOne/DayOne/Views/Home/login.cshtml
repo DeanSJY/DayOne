@@ -1,4 +1,4 @@
-﻿@model IoObjects.UserInfo
+﻿@model DayOne.IoObjects.UserPrincipal
 @{ViewBag.Title = "登录";}
 
 <link rel="stylesheet" href="~/Content/login.css"  />
@@ -21,8 +21,12 @@
                 </div>
 
                 <div class="clearfix">
-                    @Html.ActionLink("忘记密码", "forget", "Home")
+                    @Html.ActionLink("忘记密码", "forget", "Forget")
+                    <br />
+                    <br />
                     @Html.ActionLink("立即注册", "register","Register")
+                   
+
                 </div>
             </div>
         }

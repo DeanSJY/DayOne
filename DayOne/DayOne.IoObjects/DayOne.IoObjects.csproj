@@ -41,19 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:DayOne/IoObjects/IoObjects.csproj
-    <Compile Include="UserDayPlan.cs" />
-    <Compile Include="UserForget.cs" />
-    <Compile Include="UserInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserNoteBook.cs" />
-=======
     <Compile Include="LoginRequest.cs" />
+    <Compile Include="UserDayPlan.cs" />
+    <Compile Include="UserNoteBook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserPrincipal.cs" />
->>>>>>> 415c754b5d70e375d899b469a5449500c8d81a16:DayOne/DayOne.IoObjects/DayOne.IoObjects.csproj
     <Compile Include="UserRegister.cs" />
-    <Compile Include="UserShare.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DayOne.Entities\DayOne.Entities.csproj">
