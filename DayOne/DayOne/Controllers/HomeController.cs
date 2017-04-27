@@ -1,10 +1,10 @@
-﻿using IoObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Service;
+using DayOne.Services;
+using DayOne.IoObjects;
 
 namespace DayOne.Controllers
 {
@@ -52,31 +52,37 @@ namespace DayOne.Controllers
 
 
 
-   
+
         [HttpPost]
-        public ActionResult Login(UserInfo userInfo)
+        public ActionResult Login(LoginRequest userInfo)
         {
-            if (string.IsNullOrWhiteSpace(userInfo.UserName)) {
-                this.ModelState.AddModelError("error", "Username can not be empty!");
+            if (!this.ModelState.IsValid)
+            {
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(userInfo.PassWord))
-            {
-                this.ModelState.AddModelError("error", "PassWord can not be empty!");
-                return View();
-            } 
+            //if (string.IsNullOrWhiteSpace(userInfo.UserName)) {
+            //    this.ModelState.AddModelError("error", "Username can not be empty!");
+            //    return View();
+            //}
+
+            //if (string.IsNullOrWhiteSpace(userInfo.PassWord))
+            //{
+            //    this.ModelState.AddModelError("error", "PassWord can not be empty!");
+            //    return View();
+            //} 
 
             var userService = new UserService();
             var result = userService.Certify(userInfo.UserName, userInfo.PassWord);
-            if (!result) {
+            if (result != null)
+            {
                 this.ModelState.AddModelError("error", "PassWord is not match with the Username!");
                 return View();
             }
             return RedirectToAction("Index");
         }
 
-       
+
 
     }
 }

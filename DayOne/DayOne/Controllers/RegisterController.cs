@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using IoObjects;
-using Service;
+using DayOne.IoObjects;
+using DayOne.Services;
 
 namespace DayOne.Controllers
 {
@@ -43,7 +43,7 @@ namespace DayOne.Controllers
                 return View();
             }
 
-            var user = new Entity.UserInfo
+            var user = new DayOne.Entities.UserInfo
             {
                 UserName = userRegister.UserName,
                 PassWord = userRegister.PassWord
