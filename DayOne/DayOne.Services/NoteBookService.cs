@@ -9,22 +9,34 @@ using System.Web.Mvc;
 namespace DayOne.Services
 {
     public class NoteBookService : BaseService
-    {  //笔记本的数据结构
-
-        public NoteBookService()
-        {
-
-        }
-
+    {
+        /// <summary>
+        /// 增加笔记本
+        /// </summary>
+        /// <param name="bookName"></param>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         public NoteBook AddNoteBook(string bookName, int bookId)
         {
-            NoteBook notebook = new NoteBook();
-            notebook.BookName = bookName;
+            NoteBook notebook = new NoteBook()
+            {
+                UserId = CurrentPrincipal.UserId,
+                CreateAt = DateTime.Now,
+                BookName = bookName,
+                ShareOrNot = false
+            };
+            //notebook.BookName = bookName;
             CurrentDB.NoteBookTable.Add(notebook);
             CurrentDB.SaveChanges();
             return notebook;
         }
 
+        /// <summary>
+        /// 更新笔记本
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <param name="bookName"></param>
+        /// <returns></returns>
         public NoteBook UpdateNoteBook(int bookId, string bookName)
         {
             var notebook = CurrentDB.NoteBookTable.Find(bookId);
@@ -39,7 +51,6 @@ namespace DayOne.Services
         public void RemoveNoteBook(int bookId)
         {
             var notebook = CurrentDB.NoteBookTable.Find(bookId);
-            //CurrentDB.NoteBookTable.Find(bookId);
             CurrentDB.NoteBookTable.Remove(notebook);
             var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId);
             CurrentDB.OneNoteTable.RemoveRange(notes);
@@ -47,7 +58,12 @@ namespace DayOne.Services
         }
 
 
-        //添加1条笔记
+        /// <summary>
+        /// 增加一条笔记
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
+
         public OneNote CreateNote(OneNote note)
         {
             note.CreateAt = DateTime.Now;
@@ -59,11 +75,9 @@ namespace DayOne.Services
         }
 
 
-        //修改笔记
-
 
         /// <summary>
-        /// 修改笔记
+        /// 修改1条笔记
         /// </summary>
         /// <param name="noteId"></param>
         /// <param name="oneNote"></param>
@@ -114,46 +128,102 @@ namespace DayOne.Services
             onenote.IsDeleted = false;
             UpdateNote(noteId, onenote);
         }
-
+        /// <summary>
+        /// 回收站的笔记列表
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         public List<OneNote> GetRecycleList(int bookId)
         {
-            var notes = CurrentDB.OneNoteTable.Where(o=>o.BookId==bookId && o.IsDeleted).ToList();
+            var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId && o.IsDeleted).ToList();
             return notes;
-            
+
         }
+        /// <summary>
+        /// 笔记本的列表
+        /// </summary>
+        /// <returns></returns>
         public List<NoteBook> GetNoteBooks()
         {
             return CurrentDB.NoteBookTable.OrderBy(o => o.BookName).ToList();
 
         }
-
+        /// <summary>
+        /// 笔记列表
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         public List<OneNote> GetNotes(int bookId)
         {
             var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId && !o.IsDeleted).ToList();
-            return notes;       
+            return notes;
         }
-
-        public Attachment GetAttachmentList(int noteId)
+        /// <summary>
+        /// 附件笔记罗列的页面
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
+        public List<OneNote> GetAttachmentList(int noteId)
         {
-            throw new NotImplementedException();
+            var attachnotes = CurrentDB.OneNoteTable.Where(o => o.NoteId == noteId && o.WithAttach).ToList();
+            return attachnotes;
         }
-        public OneNote GetLoveList()
+        /// <summary>
+        /// 爱心笔记罗列的页面
+        /// </summary>
+        /// <returns></returns>
+        public List<OneNote> GetLoveList(int noteId)
         {
-            throw new NotImplementedException();
+            var loveNotes = CurrentDB.OneNoteTable.Where(o => o.NoteId == noteId && o.LoveOrNot).ToList();
+            return loveNotes;
         }
-
+        /// <summary>
+        /// 是否将笔记设置为爱心笔记
+        /// </summary>
+        /// <param name="noteId"></param>
         public void LoveIt(int noteId)
         {
-            throw new NotImplementedException();
-        }
+            var note = CurrentDB.OneNoteTable.Find(noteId);
+            note.LoveOrNot = true;
+            UpdateNote(noteId, note);
 
+        }
+        /// <summary>
+        /// 是否将上传了附件笔记
+        /// </summary>
+        /// <param name="noteId"></param>
         public void CreateAttachment(int noteId)
         {
-            throw new NotImplementedException();
+            var note = CurrentDB.OneNoteTable.Find(noteId);
+            note.WithAttach = true;
+            UpdateNote(noteId, note);
         }
-        public void RemoveAttachment(int attachmentId)
+
+        /// <summary>
+        /// 删除上传的附件笔记
+        /// </summary>
+        /// <param name="noteId"></param>
+        public void RemoveAttachment(int noteId)
         {
-            throw new NotImplementedException();
+            var attachNote = CurrentDB.OneNoteTable.Find(noteId);
+            attachNote.WithAttach = true;
+            CurrentDB.OneNoteTable.Remove(attachNote);
+
+        }
+        /// <summary>
+        /// 搜索功能
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="content"></param>
+        /// <param name="keyword"></param>
+        /// <param name="CreateAt"></param>
+        /// <returns></returns>
+        public List<OneNote> Search(int noteId, string content, string keyword,DateTime CreateAt)
+        {
+            var notes = CurrentDB.OneNoteTable.Where(o => o.Title.Contains(keyword) || o.Content.Contains(keyword))
+                .OrderByDescending(o => o.UpdateAt).ThenBy(o => o.CreateAt).ToList();
+            return notes;
+
         }
 
     }

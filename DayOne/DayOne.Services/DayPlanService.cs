@@ -9,39 +9,53 @@ using System.Web.Mvc;
 
 namespace DayOne.Services
 {
-    class DayPlanService
-    {
-        PlanType type;
-        string content;
-        DateTime startAt;
-        DateTime endAt;
-        Boolean showCompleted;
-        int planId;
 
-        [HttpPost]
-        public DayPlan Create(PlanType type,string content,DateTime startAt,DateTime endAt) 
+
+        public class NoteBookService : BaseService{
+        public DayPlan Create(PlanType type,long UserId,DateTime StartAt,)
+            {
+                DayPlan dayplan = new DayPlan();
+                {
+                    UserId = CurrentPrincipal.UserId;
+                    StartAt = DateTime.Now;
+                };
+                CurrentDB.DayPlanTable.Add(dayplan);
+                CurrentDB.SaveChanges();
+                return dayplan;
+            }
+
+        public void Delete(int planId)
         {
-            throw new NotImplementedException();
+            var plan = CurrentDB.DayPlanTable.Find(planId);
+            CurrentDB.DayPlanTable.Remove(plan);
+            CurrentDB.SaveChanges();
         }
 
-        public void Delete(int PlanId)
+        public DayPlan Update(int planId, string content, DateTime endAt)
         {
-            throw new NotImplementedException();
+            var plan = CurrentDB.DayPlanTable.Find(planId);
+            plan.Content = content;
+            plan.StartAt = endAt;
+            CurrentDB.SaveChanges();
+            return plan;
         }
 
-        public DayPlan Update(int planId, string content, DateTime startAt, DateTime endAt)
+        public List<DayPlan> Query(PlanType type,Boolean showCompleted,int planId) 
         {
-            throw new NotImplementedException();
-        }
+            var plan = CurrentDB.DayPlanTable.Where(o=>o.PlanId == planId && o.IsCompleted).ToList();
+            return plan;
 
-        public DayPlan Query(PlanType type,Boolean showCompleted) 
-        {
-            throw new NotImplementedException();
+            
         }
 
         public void Complete(int planId)
         {
-            throw new NotImplementedException();
+            var plan = CurrentDB.DayPlanTable.Find(planId);
+            plan.IsCompleted = true;
+
+
         }
-    }
+
+        
+        }
     }

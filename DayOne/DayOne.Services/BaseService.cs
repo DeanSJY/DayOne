@@ -1,4 +1,5 @@
 ﻿using DayOne.Entities;
+using DayOne.IoObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace DayOne.Services
                     _dbContext = DbUtils.CurrentDB;
                 }
                 return _dbContext;
+            }
+        }
+
+
+        public UserPrincipal CurrentPrincipal
+        {
+            get
+            {
+                return AuthorizationContext.CurrentPrincipal;
             }
         }
     }

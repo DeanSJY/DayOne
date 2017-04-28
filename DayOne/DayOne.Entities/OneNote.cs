@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,9 @@ namespace DayOne.Entities
 {
     public class OneNote
     {
-        public int Id { get; set; }
+        [Key]
+        public int NoteId { get; set; }
+
         public DateTime CreateAt { get; set; }
 
         public DateTime UpdateAt { get; set; }
@@ -20,13 +24,19 @@ namespace DayOne.Entities
         public Boolean LoveOrNot { get; set; }
 
         public int BookId { get; set; }
+
+        [ForeignKey("BookId")]
+        public NoteBook Book { get; set; }
+
         public Boolean IsDeleted { get; set; }
+
         public int LoveCount { get; set; }
+
+        public bool WithAttach { get; set; }
+
+        public string KeyWords { get; set; }
        
 
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

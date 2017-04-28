@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DayOne.Entities;
+using DayOne.Services;
 
 
 namespace DayOne.Controllers
@@ -12,18 +13,15 @@ namespace DayOne.Controllers
     {
         //笔记本
 
-        public ActionResult AddNoteBook(NoteBook notebook) {
-     
-        
+        public ActionResult AddNoteBook(NoteBook notebook)
+        {
+            return null;
         }
 
         [HttpPost]
         // 增加笔记
         public ActionResult AddNote(OneNote onenote) {        
-         DayOne.Entities.DayOneContext db = new DayOne.Entities.DayOneContext();         
-         //var onenote = new DayOne.Entities.OneNote();
-         
-         onenote.SaveChanges();
+        
          return View(noteEdit);      
         }
        //修改笔记
@@ -48,7 +46,7 @@ namespace DayOne.Controllers
         //删除笔记
          public ActionResult DeleteNote(int noteId) {
              DayOneContext db = new DayOneContext();
-             var onenote = db.OneNoteTable.FirstOrDefault(a => a.Id == noteId);
+             var onenote = db.OneNoteTable.FirstOrDefault(a => a.NoteId == noteId);
              ViewData.Model = onenote;
              db.OneNoteTable.Remove(onenote);
              db.SaveChanges();
@@ -87,8 +85,7 @@ namespace DayOne.Controllers
         public ViewResult Details(int bookId, string title, string desciption, Boolean loveOrNot)
         {
             throw new NotImplementedException();
-            //DayOneContext db = new DayOneContext();
-            //return View(noteEdit);
+
         }
 
 

@@ -21,15 +21,20 @@ namespace DayOne.Entities
         }
 
         public DbSet<UserInfo> UserTable { get; set; }
+
+
         public DbSet<NoteBook> NoteBookTable { get; set; }
+
+
         public DbSet<OneNote> OneNoteTable { get; set; }
+
+
         public DbSet<DayPlan> DayPlanTable { get; set; }
+
+
         public DbSet<ShareList> ShareTable { get; set; }
 
 
-        public void EndTime()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
