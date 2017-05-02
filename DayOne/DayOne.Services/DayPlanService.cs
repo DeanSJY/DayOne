@@ -11,18 +11,20 @@ namespace DayOne.Services
 {
 
 
-        public class NoteBookService : BaseService{
-        public DayPlan Create(PlanType type,long UserId,DateTime StartAt,)
+    public partial class NoteBookService : BaseService
+    {
+        public DayPlan Create(PlanType type, long UserId, DateTime StartAt)
+        {
+            DayPlan dayplan = new DayPlan();
             {
-                DayPlan dayplan = new DayPlan();
-                {
-                    UserId = CurrentPrincipal.UserId;
-                    StartAt = DateTime.Now;
-                };
-                CurrentDB.DayPlanTable.Add(dayplan);
-                CurrentDB.SaveChanges();
-                return dayplan;
+                UserId = CurrentPrincipal.UserId;
+                StartAt = DateTime.Now;
             }
+            ;
+            CurrentDB.DayPlanTable.Add(dayplan);
+            CurrentDB.SaveChanges();
+            return dayplan;
+        }
 
         public void Delete(int planId)
         {
@@ -40,12 +42,12 @@ namespace DayOne.Services
             return plan;
         }
 
-        public List<DayPlan> Query(PlanType type,Boolean showCompleted,int planId) 
+        public List<DayPlan> Query(PlanType type, Boolean showCompleted, int planId)
         {
-            var plan = CurrentDB.DayPlanTable.Where(o=>o.PlanId == planId && o.IsCompleted).ToList();
+            var plan = CurrentDB.DayPlanTable.Where(o => o.PlanId == planId && o.IsCompleted).ToList();
             return plan;
 
-            
+
         }
 
         public void Complete(int planId)
@@ -55,7 +57,5 @@ namespace DayOne.Services
 
 
         }
-
-        
-        }
     }
+}

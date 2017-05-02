@@ -13,7 +13,7 @@ namespace DayOne.IoObjects
     [Serializable]
     public class UserPrincipal : System.Security.Principal.IIdentity, System.Security.Principal.IPrincipal
     {
-        private long userId;
+        private int userId;
 
         private string userName;
 
@@ -26,7 +26,7 @@ namespace DayOne.IoObjects
         /// <summary>
         /// 用户编号
         /// </summary>
-        public long UserId
+        public int UserId
         {
             get { return userId; }
             set { userId = value; }

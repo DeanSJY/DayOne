@@ -82,6 +82,7 @@
     <Compile Include="AuthorizationContext.cs" />
     <Compile Include="DayPlanService.cs" />
     <Compile Include="NoteBookService.cs" />
+    <Compile Include="ShareService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

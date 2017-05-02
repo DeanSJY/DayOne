@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -84,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="DbTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -92,6 +101,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DayOne.Entities\DayOne.Entities.csproj">
+      <Project>{141d19b2-f76b-4d69-8716-dc4208eba0f3}</Project>
+      <Name>DayOne.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DayOne.IoObjects\DayOne.IoObjects.csproj">
+      <Project>{ad2d4048-0d23-4356-b7fb-f128cf6c44f7}</Project>
+      <Name>DayOne.IoObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DayOne.Services\DayOne.Services.csproj">
+      <Project>{c4cd05d7-5944-4834-bb8b-4c7cae67d16d}</Project>
+      <Name>DayOne.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DayOne\DayOne.csproj">
       <Project>{4431A5E2-A870-4BEE-AF67-240D4FA25E29}</Project>
       <Name>DayOne</Name>

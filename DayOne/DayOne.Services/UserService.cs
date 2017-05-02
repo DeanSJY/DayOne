@@ -14,6 +14,7 @@ namespace DayOne.Services
         {
             //dbContext = new DayOneContext();
         }
+
         public UserInfo GetUserByName(string name)
         {
             var user = CurrentDB.UserTable.FirstOrDefault(o => o.UserName == name);
@@ -29,8 +30,6 @@ namespace DayOne.Services
             }
             return null;
         }
-
-       
 
         public DayOne.Entities.UserInfo Register(DayOne.Entities.UserInfo user)
         {

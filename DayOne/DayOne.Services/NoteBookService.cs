@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace DayOne.Services
 {
-    public class NoteBookService : BaseService
+    public partial class NoteBookService : BaseService
     {
         /// <summary>
         /// 增加笔记本
