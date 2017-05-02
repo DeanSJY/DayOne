@@ -15,30 +15,6 @@ namespace DayOne.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult NoteBook()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
-
-        public ActionResult Share()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
-
-        public ActionResult DayPlan()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
         public ActionResult Login()
         {
             ViewBag.Message = "Your contact page.";

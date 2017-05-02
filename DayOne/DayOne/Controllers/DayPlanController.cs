@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DayOne.Entities;
+using DayOne.Services;
+
 
 namespace DayOne.Controllers
 {

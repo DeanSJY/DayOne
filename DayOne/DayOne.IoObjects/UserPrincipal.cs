@@ -15,6 +15,8 @@ namespace DayOne.IoObjects
     {
         private int userId;
 
+        private string pwd;
+
         private string userName;
 
         public UserPrincipal(UserInfo userInfo)
@@ -35,10 +37,16 @@ namespace DayOne.IoObjects
         /// <summary>
         /// 用户名称
         /// </summary>
-        public string Name
+        public string UserName
         {
             get { return userName; }
             set { userName = value; }
+        }
+
+        public string PassWord
+        {
+            get { return pwd; }
+            set { pwd = value; }
         }
 
         public string AuthenticationType

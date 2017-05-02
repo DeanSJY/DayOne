@@ -13,25 +13,38 @@ namespace DayOne.Controllers
     {
         //笔记本
 
-        public ActionResult AddNoteBook(NoteBook notebook)
-        {
-            return null;
+
+        public bool AddNoteBook(NoteBook notebook) {
+            var notebookservice = new NoteBookService();
+            notebookservice.AddNoteBook(notebook.BookName);         
+            return true;
         }
 
+        public bool AddNote(int bookId,string content,string title )
+        {
+            var oneNote = new OneNote();
+            oneNote.BookId = bookId;
+            oneNote.Content = content;
+            oneNote.CreateAt = DateTime.Now;
+            oneNote.UpdateAt = DateTime.Now;
+            oneNote.Title = title;
+            return true;
+        }
         [HttpPost]
         // 增加笔记
-        public ActionResult AddNote(OneNote onenote) {        
-        
-         return View(noteEdit);      
+        public ActionResult AddNote(OneNote onenote) 
+        {                
+         return View("noteEdit");      
         }
+
        //修改笔记
-        public ActionResult NoteEdit( int noteId )
+        public ActionResult NoteEdit( int noteId )                                                                                                        
         {
             ViewBag.Message = "Your contact page.";
             DayOneContext db = new DayOneContext();
             var onenote = new DayOne.Entities.OneNote();
             ViewData.Model = onenote;
-            return View(noteEdit);  
+            return View();  
         }
 
 
@@ -50,7 +63,7 @@ namespace DayOne.Controllers
              ViewData.Model = onenote;
              db.OneNoteTable.Remove(onenote);
              db.SaveChanges();
-             return View(noteEdit);
+             return View();
          }
 
          [HttpPost]
@@ -61,25 +74,25 @@ namespace DayOne.Controllers
              db.OneNoteTable.Remove(onenote);
              //db.ObjectStateManager.ChangeObjectState(onenote, Entities.Deleted);
              db.SaveChanges();
-             return View(noteEdit, db.OneNoteTable);
+             return View("noteEdit", db.OneNoteTable);
 
          
          }
         //回收笔记
         public ActionResult RecycleNote() {
             ViewBag.Message = "Your contact page.";
-            return View(recycleNote);
+            return View("recycleNote");
         
         }
         //爱心笔记
         public ActionResult LoveNote() {
             ViewBag.Message = "Your contact page.";
-            return View(loveNote);
+            return View("loveNote");
         }
         //附件笔记
         public ActionResult AttachmentNote() {
             ViewBag.Message = "Your contact page.";
-            return View(attachmentNote);
+            return View("attachmentNote");
         }
 
         public ViewResult Details(int bookId, string title, string desciption, Boolean loveOrNot)
@@ -88,14 +101,7 @@ namespace DayOne.Controllers
 
         }
 
-
-        public IView noteEdit { get; set; }
-        public IView recycleNote { get; set; }
-        public IView loveNote { get; set; }
-        public IView attachmentNote { get; set; }
-
-
-
+       
     }
 
 

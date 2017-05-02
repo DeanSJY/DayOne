@@ -16,14 +16,15 @@ namespace DayOne.Services
         /// <param name="bookName"></param>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        public NoteBook AddNoteBook(string bookName, int bookId)
+        public NoteBook AddNoteBook(string bookName)
         {
             NoteBook notebook = new NoteBook()
             {
                 UserId = CurrentPrincipal.UserId,
                 CreateAt = DateTime.Now,
                 BookName = bookName,
-                ShareOrNot = false
+                ShareOrNot = false,
+               
             };
             //notebook.BookName = bookName;
             CurrentDB.NoteBookTable.Add(notebook);
@@ -223,7 +224,6 @@ namespace DayOne.Services
             var notes = CurrentDB.OneNoteTable.Where(o => o.Title.Contains(keyword) || o.Content.Contains(keyword))
                 .OrderByDescending(o => o.UpdateAt).ThenBy(o => o.CreateAt).ToList();
             return notes;
-
         }
 
     }

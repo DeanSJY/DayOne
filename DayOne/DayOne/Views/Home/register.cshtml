@@ -33,9 +33,9 @@
         {
             <div class="col-sm-6 text-center">
                 <h3 class="letter-space" align="center">DayOne注册</h3>
-                <input type="text" id="username" placeholder="用户名" />
-                <input type="text" id="pwd" placeholder="密码" />
-                <input type="text" id="pwd2" placeholder="再次输入密码" />
+                @Html.TextBoxFor(x => x.UserName, new { name = "username",placeholder="用户名"})
+                @Html.TextBoxFor(x => x.PassWord, new {name = "pwd" ,placeholder="密码"})
+                @Html.TextBoxFor(x => x.PassWord2, new { name ="pwd2",placeholder="再次输入密码"})
                 <button class="ok" type="submit" onclick="register">注 册</button>
                 <p id="notice"></p>
             </div>
