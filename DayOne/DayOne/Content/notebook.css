@@ -37,11 +37,9 @@ body{
 	color: white;
 }
 #up{
-	position: fixed;
 	top: 0px;
 	width: 100%;
-	background-color: #722b72 ;
-	
+	background-color: #722b72 ;	
 }
 #left{
 	position: fixed;

@@ -13,7 +13,11 @@ namespace DayOne.Controllers
     {
         //笔记本
 
-
+        public ActionResult NoteBook()
+        {
+            ViewBag.Message = "Your contact page.";
+            return View();
+        }
         public bool AddNoteBook(NoteBook notebook) {
             var notebookservice = new NoteBookService();
             notebookservice.AddNoteBook(notebook.BookName);         
@@ -22,12 +26,6 @@ namespace DayOne.Controllers
 
         public bool AddNote(int bookId,string content,string title )
         {
-            var oneNote = new OneNote();
-            oneNote.BookId = bookId;
-            oneNote.Content = content;
-            oneNote.CreateAt = DateTime.Now;
-            oneNote.UpdateAt = DateTime.Now;
-            oneNote.Title = title;
             return true;
         }
         [HttpPost]

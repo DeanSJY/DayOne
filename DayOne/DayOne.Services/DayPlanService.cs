@@ -20,7 +20,7 @@ namespace DayOne.Services
                 UserId = CurrentPrincipal.UserId;
                 StartAt = DateTime.Now;
             }
-            ;
+            
             CurrentDB.DayPlanTable.Add(dayplan);
             CurrentDB.SaveChanges();
             return dayplan;

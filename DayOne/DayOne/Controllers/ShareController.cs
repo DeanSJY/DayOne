@@ -12,41 +12,11 @@ namespace DayOne.Controllers
     public class ShareController : Controller
     {
         // GET: Share
-        public void PublishNote()
+        public ActionResult Share()
         {
-            
+            ViewBag.Message = "Your contact page.";
+            return View();
         }
-
-        public void PublishPlan() 
-        { 
-        
-        }
-
-        public void UnpublishPlan()
-        { 
-        
-        }
-
-        public void UnpublishNote()
-        { 
-
-        }
-
-        //public ShareableContent GetShareList()
-        //{ 
-
-        //}
-        public void LikeIt()
-        { 
-        
-        }
-
-        public void KillIt()
-        { 
-        
-        }
-
-
 
     }
 }

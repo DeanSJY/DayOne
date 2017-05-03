@@ -230,7 +230,7 @@
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
     <None Include="Views\NoteBook\notebook.cshtml" />
-    <None Include="Views\Home\register.cshtml" />
+    <None Include="Views\Register\register.cshtml" />
     <None Include="Views\Home\share.cshtml" />
     <None Include="Views\NoteBook\noteEdit.cshtml" />
     <None Include="Views\Home\UserInfo.cshtml" />
@@ -269,7 +269,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Filter\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Register\" />
     <Folder Include="Views\Share\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

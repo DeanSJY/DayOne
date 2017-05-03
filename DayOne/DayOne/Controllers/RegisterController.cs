@@ -19,6 +19,13 @@ namespace DayOne.Controllers
         [HttpPost]
         public ActionResult Register(UserRegister userRegister)
         {
+
+            if (ModelState.IsValid)
+            {
+                this.ModelState.AddModelError("error", "Username can not be empty!");
+                return View();
+            }
+
             if (string.IsNullOrWhiteSpace(userRegister.UserName))
             {
                 this.ModelState.AddModelError("error", "Username can not be empty!");

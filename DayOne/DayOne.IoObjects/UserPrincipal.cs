@@ -37,7 +37,7 @@ namespace DayOne.IoObjects
         /// <summary>
         /// 用户名称
         /// </summary>
-        public string UserName
+        public string Name
         {
             get { return userName; }
             set { userName = value; }

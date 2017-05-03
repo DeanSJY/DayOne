@@ -1,13 +1,11 @@
 ﻿@{ViewBag.Title = "笔记本";}
+
 <link rel="stylesheet" href="~/Content/notebook.css" />
-<script language="JavaScript" type="text/javascript" src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/angular.js"></script>
 <script>
-    $(function () {
-        $('#myModal').modal()
-    })
+
+
     function newNotebook() {
         var name = $("#inputBookname").val();
         $.get(
@@ -24,9 +22,11 @@
             }
             )
     }
+
     $(function () {
         $('#myModal').modal()
     })
+
 
 </script>
 
@@ -61,7 +61,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                             <h4 class="modal-title" id="myModalLabel">添加笔记本</h4>
                         </div>
                         <input id="inputBookname" type="text" name="bookname" placeholder="请输入笔记本名称" />
