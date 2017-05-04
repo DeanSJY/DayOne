@@ -35,7 +35,8 @@ namespace DayOne.App_Start
             {
                 HttpContext.Current.Items[_TRANSACION_SCOPE_KEY] = new TransactionScope(
                     TransactionScopeOption.Required,
-                    new TransactionOptions() { IsolationLevel = IsolationLevel.ReadCommitted });
+                    new TransactionOptions() {IsolationLevel = IsolationLevel.ReadCommitted},
+                    TransactionScopeAsyncFlowOption.Enabled);
             }
         }
 
