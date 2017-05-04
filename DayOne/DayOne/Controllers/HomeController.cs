@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using DayOne.Services;
@@ -17,7 +18,6 @@ namespace DayOne.Controllers
 
         public ActionResult Login()
         {
-            ViewBag.Message = "Your contact page.";
             return View("login");
         }
 
@@ -25,33 +25,29 @@ namespace DayOne.Controllers
         [HttpPost]
         public ActionResult Login(LoginRequest userInfo)
         {
-            if (!this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View();
+                try
+                {
+                    DayOne.Services.AuthorizationContext.Login(userInfo);
+
+                    return RedirectToAction("Index");
+                }
+                catch (SecurityException e)
+                {
+                    ModelState.AddModelError("UserName", "账号名或密码错误");
+                }
             }
 
-            //if (string.IsNullOrWhiteSpace(userInfo.UserName)) {
-            //    this.ModelState.AddModelError("error", "Username can not be empty!");
-            //    return View();
-            //}
-
-            //if (string.IsNullOrWhiteSpace(userInfo.PassWord))
-            //{
-            //    this.ModelState.AddModelError("error", "PassWord can not be empty!");
-            //    return View();
-            //} 
-
-            var userService = new UserService();
-            var result = userService.Certify(userInfo.UserName, userInfo.PassWord);
-            if (result != null)
-            {
-                this.ModelState.AddModelError("error", "PassWord is not match with the Username!");
-                return View();
-            }
-            return RedirectToAction("Index");
+            return View();
         }
 
 
+        public ActionResult Logout()
+        {
+            DayOne.Services.AuthorizationContext.Logout();
 
+            return Redirect("/");
+        }
     }
 }

@@ -19,7 +19,6 @@ namespace DayOne.IoObjects
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "请输入密码")]
         [StringLength(32, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
-        
         public string PassWord { get; set; }
 
     }
@@ -33,13 +32,16 @@ namespace DayOne.IoObjects
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "请输入注册的密码")]
         [StringLength(64, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
-        
         public string PassWord { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "请输入密码")]
         [StringLength(64, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
-       
         public string PassWord2 { get; set; }
 
+
+        //[StringLength(11, ErrorMessage = "请正确输入手机号")]
+        //public string CellPhone { get; set; }
+
+        //public int VerifyCode { get; set; }
     }
 }

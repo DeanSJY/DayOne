@@ -1,8 +1,9 @@
-﻿@model DayOne.IoObjects.UserPrincipal
+﻿@model DayOne.IoObjects.LoginRequest
+
 @{ViewBag.Title = "登录";}
 
-<link rel="stylesheet" href="~/Content/login.css"  />
-    <div class="container">
+<link rel="stylesheet" href="~/Content/login.css" />
+<div class="container">
     <div id="middle" class="row">
         <div class="col-sm-6 text-right">
             <img class="radius" src="~/Image/123.jpg" width="500" />
@@ -12,30 +13,31 @@
         {
             <div class="col-sm-6 text-center">
                 <h3 class="letter-space" align="center">DayOne登录</h3>
-        @Html.ValidationSummary()
-        @Html.TextBoxFor(o => o.Name, new { name = "name", placeholder = "用户名" })
-        @Html.PasswordFor(o => o.PassWord, new { name = "pwd", placeholder = "密码" })
-       
+
+                @Html.ValidationSummary(null, new { @class = "validation-summary-errors2" })
+
+                @Html.TextBoxFor(o => o.UserName, new {name = "UserName", placeholder = "用户名"})
+
+                @Html.PasswordFor(o => o.PassWord, new {name = "PassWord", placeholder = "密码"})
+
                 <div>
                     <button class="ok" type="submit">确 认</button>
                 </div>
 
-                <div class="clearfix">
-                    @Html.ActionLink("忘记密码", "forget", "Forget")
-                    <br />
-                    <br />
-                    @Html.ActionLink("立即注册", "register","Register")
+                <div class="clearfix text-right">
+                    <br/>
+                    @Html.ActionLink("忘记密码", "forget", "Forget") &nbsp;&nbsp;
+                    @Html.ActionLink("立即注册", "index", "Register")
                 </div>
             </div>
         }
+    </div>
 
-        </div>
-
-            <footer class="text-center">
-                遇见更好的自己---DayOne
-            </footer>
-
+    <footer class="text-center">
+        遇见更好的自己---DayOne
+    </footer>
 
 
-        </div>
+
+</div>
 

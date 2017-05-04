@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DayOne.Entities;
+using DayOne.IoObjects;
 
 namespace DayOne.Services
 {
@@ -31,6 +32,32 @@ namespace DayOne.Services
             return null;
         }
 
+        public UserInfo RegisterV1(RegisterRequest userRegister)
+        {
+            if (!string.Equals(userRegister.PassWord, userRegister.PassWord2))
+            {
+                throw new ArgumentException("密码不匹配", "PassWord");
+            }
+
+            var dbContext = CurrentDB;
+
+            if (dbContext.UserTable.Any(o => o.UserName == userRegister.UserName))
+            {
+                throw new ArgumentException("用户名已经存在", "UserName");
+            }
+
+            var user = CurrentDB.UserTable.Add(new DayOne.Entities.UserInfo
+            {
+                UserName = userRegister.UserName,
+                PassWord = userRegister.PassWord
+            });
+
+            CurrentDB.SaveChanges();
+
+            return user;
+        }
+
+        [Obsolete("使用RegisterV1")]
         public DayOne.Entities.UserInfo Register(DayOne.Entities.UserInfo user)
         {
             user = CurrentDB.UserTable.Add(user);

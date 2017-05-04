@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DayOne.IoObjects;
 using DayOne.Services;
@@ -11,59 +8,40 @@ namespace DayOne.Controllers
     public class RegisterController : Controller
     {
         private readonly UserService _userService;
+
         public RegisterController()
         {
             _userService = new UserService();
         }
 
         [HttpPost]
-        public ActionResult Register(UserRegister userRegister)
+        public ActionResult Index(RegisterRequest userRegister)
         {
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                this.ModelState.AddModelError("error", "Username can not be empty!");
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(userRegister.UserName))
+            try
             {
-                this.ModelState.AddModelError("error", "Username can not be empty!");
-                return View();
-            }
+                var userInfo =  _userService.RegisterV1(userRegister);
 
-            if (string.IsNullOrWhiteSpace(userRegister.PassWord))
-            {
-                this.ModelState.AddModelError("error", "PassWord can not be empty!");
-                return View();
-            }
+                Services.AuthorizationContext.Login(new LoginRequest()
+                {
+                    UserName = userInfo.UserName,
+                    PassWord = userRegister.PassWord
+                });
 
-            if (string.IsNullOrWhiteSpace(userRegister.PassWord2))
-            {
-                this.ModelState.AddModelError("error", "Please enter the password again!");
-                return View();
+                return RedirectToAction("Index", "Home");
             }
-
-            if (!string.Equals(userRegister.PassWord, userRegister.PassWord2))
+            catch (ArgumentException e)
             {
-                this.ModelState.AddModelError("error", "the password is not match!");
-                return View();
+                ModelState.AddModelError(e.ParamName, e.Message);
             }
-
-            var user = new DayOne.Entities.UserInfo
-            {
-                UserName = userRegister.UserName,
-                PassWord = userRegister.PassWord
-            };
-            var entry = _userService.Register(user);
-            if(entry == null)
-            {
-                ModelState.AddModelError("error", "Register Failed!");
-            }
-            return RedirectToAction("Login","Home");
+            return View();
         }
 
-        public ActionResult Register()
+        public ActionResult Index()
         {
             return View();
         }
