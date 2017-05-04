@@ -1,15 +1,96 @@
-﻿.left {
-    width:200px;
-    background-color:#878787;
-
-
-}
-.right{
-
-    }
-#overview-font {
-    color:#878787;
-    font-size:21px;
-    letter-spacing:0.5px;
-}
+﻿  #navi{
+            background-color:#722b72;
+            margin-bottom:0;
+            width:100%;
+        } 
+		#ul1{
+			font-size:14px;
+			font-family:Microsoft YaHei;
+			font-weight:bold;
+		}        
+		#d1{
+			height:45px;
+			border-bottom-style:solid;
+			border-bottom-width:thin;
+			border-bottom-color:#722b72;
+			width:100%;
+			position:fixed;
+			margin-left:-7px;
+			font-weight:bold;
+			font-family:'Microsoft YaHei';			
+		}
+		#d2{
+			margin-top:60px;
+			height:65%;
+		}
+        .Div1{
+            height:100%;
+            width:100%;
+            position:fixed;
+        }
+        .Div2{
+            height:100%;
+            background-color:#f5f5f5;
+            
+        }
+        .b1txt {
+            font-weight:bold;
+            margin-top:2px;
+            font-size:x-large;
+        }
+        .b2txt {
+            font-weight:600;
+            font-size:medium;
+        }
+        .Lab {
+            font-size:medium;
+        }
+		a:link {
+			text-decoration:none;
+		}
+        .a-txt{
+            margin-right:25px;
+            color:#722b72;
+        }
+		.context{
+			width:88%;
+			height :90%;
+			padding-left:10px;
+			color:#7A7A7A;
+		}
+		.Cont{
+			height:20%;
+			width:120%;
+			margin-left:-15px
+		}
+		.modal-title {
+			font-size:x-large;
+			font-weight:bold;
+			text-align:center;
+			color:#722b72;
+		}
+		.modal-body {
+			font-size:large;
+			text-align:center;
+			color:#722b72;          
+		}
+        #TextBox1{
+            width:100%;background-color:transparent;
+            border-style:none;
+            font-size:x-large;
+            font-family:'Microsoft YaHei';
+        }
+        #TextBox2{
+            width:100%;height:90%;
+            overflow:visible;
+            background-color:transparent;
+            border-style:none;
+            font-size:medium;
+        }
+        #TextBox4{
+            width:40%;
+            background-color:transparent;
+            border-style:none;
+            font-size:medium;
+        }
 

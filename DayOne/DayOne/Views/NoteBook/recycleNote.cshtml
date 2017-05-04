@@ -1,1 +1,153 @@
 ﻿@{ViewBag.Title = "笔记回收站";}
+<link rel="stylesheet" href="~/Content/recycle.css" />
+
+<script>
+        function myfunction(on)
+        {
+            on.style.backgroundColor = "#1E90FF";
+            on.style.color = "white";
+        }
+        function myfunction1(out)
+        {
+            out.style.backgroundColor = "#F8F8FF";
+            out.style.color = "#1E90FF";
+        }
+        function myfunction2(on)
+        {
+            on.style.backgroundColor = "#D1D1D1";
+        }
+        function myfunction3(out)
+        {
+            out.style.backgroundColor = "#722b72";
+        }
+        function myfunction4()
+        {
+            window.location.href = "http://localhost:2693/LoveNote.aspx";
+        }
+        function myfunction5()
+        {
+            window.location.href = "http://localhost:2693/AttchmentNote.aspx#";
+        }
+
+        //参数传递值的获取
+        function GetRequest()
+        {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        //页面跳转传递参数，显示删除的笔记信息
+        function show()
+        {
+                var a = GetRequest();
+                var index_1 = a['title'];
+                var b = GetRequest();
+                var index_2 = b['content'];
+                var c = GetRequest();
+                var index_3 = c['time'];
+                document.getElementById("input1").value = index_1;
+                document.getElementById("TextBox1").value = index_2;
+                document.getElementById("Label1").innerHTML = index_3;
+        }
+
+        //删除回收站
+        function deleteinformation()
+        {
+            document.getElementById("input1").value = "";
+            document.getElementById("TextBox1").value = "";
+            document.getElementById("Label1").innerHTML = "";
+        }
+
+        function goback()
+        {
+            history.go(-1);
+        }
+</script>
+
+<body onload="show()">
+    <form id="form1" runat="server">
+
+        <!--删除笔记模态框-->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="font-size:x-large;font-weight:bold;text-align:center;color:#722b72">Day One</h4>
+                    </div>
+                    <div class="modal-body" style="font-size:large;text-align:center;color:#722b72;">确定要删除笔记吗？</div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn1" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                        <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" onclick="deleteinformation()">确定</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+        <!--按钮栏-->
+        <div class="DIV1" style="width:100%;height:50px">
+            <nav class="navbar navbar-tabs navbar-static" id="navi2" role="navigation">
+                <div class="container-fluid">
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills">
+                            <li role="presentation">@Html.ActionLink("添加笔记", "NoteEdit", "NoteBook")</li>
+                            <li role="presentation">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
+                            <li role="presentation">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li>
+                            <li role="presentation">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
+                        </ul>
+
+
+                    </div>
+                    <div class="col-md-6" style="padding-left:25%">
+                        <div class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="笔记搜索" />
+                            </div>
+                            <button type="submit" class="btn btn-default">GO!</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!--内容-->
+        <div class="DIV2">
+            <div class="DIV3">
+                <div class="context">
+                    <div class="DIV4">
+                        <div class="col-md-2">
+                            <!--垃圾箱图标-->
+                            <span class="glyphicon glyphicon-trash" style="color:#722b72;font-size:xx-large"
+                                  data-toggle="modal" data-target="#myModal1"></span>
+                        </div>
+                        <!--显示删除的笔记标题-->
+                        <div class="col-md-10">
+                            <input id="input1" style="margin-left:20%;background-color:transparent;border-style:none;font-size:x-large;" />
+                        </div>
+                        <!--显示删除的笔记-->
+                    </div>
+                    <div>
+                        <textarea id="TextBox1" rows="10" style="width:90%;background-color:transparent;border-style:none;font-size:medium;"></textarea>
+                    </div>
+                </div>
+                <!--删除的笔记保存时间-->
+                <div class="Time">
+                    <label id="Label1"></label>
+                </div>
+                <button class="btn btn-warning" onclick="goback()">返回</button>
+            </div>
+
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        </div>
+
+
+    </form>
+</body>

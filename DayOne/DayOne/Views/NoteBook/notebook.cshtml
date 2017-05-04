@@ -1,109 +1,90 @@
 ﻿@{ViewBag.Title = "笔记本";}
 
 <link rel="stylesheet" href="~/Content/notebook.css" />
+
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/angular.js"></script>
-<script>
+<script type="text/javascript"></script>
+<script href="~/Scripts/notebook.js" rel="stylesheet"></script>
 
-
-    function newNotebook() {
-        var name = $("#inputBookname").val();
-        $.get(
-            "addNotebook",
-            { name: name },
-            function (data) {
-                if (data = "true") {
-                    var str = $("#notebookn").html();
-                    str += "<div class=\"note\"><div class=\"note-left\"><\/div><div class=\"note-body\"><h4>";
-                    str += name;
-                    str += "<\/h4><\/div><\/div>";
-                    $("#notebookn").html(str);
-                }
-            }
-            )
-    }
-
-    $(function () {
-        $('#myModal').modal()
-    })
-
-
-</script>
-
-<div id="up">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="笔记搜索">
-                    </div>
-                    <button type="submit" class="btn btn-default">GO!</button>
-                </form>
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active" data-toggle="modal" data-target="#myModal">添加笔记本</li>
-                    <li role="presentation"><a href="#">爱心笔记</a></li>
-                    <li role="presentation"><a href="#">附件笔记</a></li>
-                    <li role="presentation"><a href="#">笔记回收站</a></li>
-                </ul>  
-            </div>
-
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" id="myModalLabel">添加笔记本</h4>
-                        </div>
-                        <input id="inputBookname" type="text" name="bookname" placeholder="请输入笔记本名称" />
-                        <div class="modal-footer">
-                            <button type="button" data-dismiss="modal">取消</button>
-                            <button onclick="newNotebook()">创建</button>
-                        </div>
-                    </div>
+<div ng-controller="noteCtrl">
+    <div id="up">
+        <!--添加笔记本的模态框-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-            </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="笔记搜索">
+                        </div>
+                        <button type="submit" class="btn btn-default">GO!</button>
+                    </form>
 
-        </div>
-    </nav>
-</div>
-<div id="notebook">
-    <div ng-show="nav==1" id="notebookn">
-        <div class="note">
-            <div class="note-left"></div>
-            <div class="note-body">
-                <h4>生活</h4>
-            </div>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active" data-toggle="modal" data-target="#myModal1"><a href="#">添加笔记本</a></li>
+                        <li role="presentation">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
+                        <li role="presentation">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li>
+                        <li role="presentation">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
+                    </ul>
 
-        </div>
-        <div class="note">
-            <div class="note-left"></div>
-            <div class="note-body">
-                <h4>学习</h4>
+                </div>
+
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="H" align="center">Day One</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input id="input-bookName" type="text" ng-model="noteName" placeholder="请输入笔记本名称" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btn1" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" ng-click="add()">创建</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
             </div>
-        </div>
-        <div class="note">
-            <div class="note-left"></div>
-            <div class="note-body">
-                <h4>工作</h4>
-            </div>
-        </div>
-        <div class="note">
-            <div class="note-left"></div>
-            <div class="note-body">
-                <h4>爱情</h4>
+        </nav>
+    </div>
+    <div id="notebook">
+        <div ng-show="nav==1" id="notebookn">
+            <div class="note" ng-repeat="note in notes">
+                <div class="note-left"></div>
+                <div class="note-body">
+                    <h4>{{note.BookName}}</h4>
+                </div>
             </div>
         </div>
     </div>
-
-
 </div>
+
+@section  scripts {
+    <script>
+        var app = angular.module('ngApp', []);
+
+        app.controller("noteCtrl", function ($scope, $http) {
+            $scope.nav = 1;
+            $http.get("NoteList").success(function (response) {
+                $scope.notes = response;
+            });
+
+            $scope.add = function () {
+                alert($scope.noteName);
+                $http.post("AddNoteBook",{name:$scope.noteName}).success(function (response) { });
+            }
+        });
+    </script>
+}

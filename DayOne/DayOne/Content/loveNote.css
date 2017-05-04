@@ -1,0 +1,60 @@
+﻿#navi{
+            background-color:#722b72;
+            margin-bottom:0;
+            width:100%;
+        } 
+		#ul1{
+            font-size:14px;
+			font-family:Microsoft YaHei;
+            font-weight:bold;
+		}        
+        #ul2{
+            color:#1E90FF;
+            font-weight:bold;
+        }
+        #a-txt1{
+            color:white;
+        }
+        .DIV2 {
+            background-color:#515151;
+            height:100%;
+            width:100%;
+            position:fixed;
+            margin-top:0;
+            overflow-y:auto;
+        }
+        .DIV3{
+            height :50%;
+            width:50%;
+            margin-left:100px;
+            margin-top:50px;
+            background-color:#EDEDED;
+        }
+        .DIV4{
+            width:50%;
+            height:15%;
+            border-bottom:solid;
+            border-width:thin;
+            margin-left:5%;
+        }
+        .context{
+            width:100%;
+            height:90%;
+            padding-left:10%;
+            padding-top:2%;          
+        } 
+        h4{
+            font-weight:bold;
+        }       
+        h5{
+            font-weight:bold;
+            font-family:'Microsoft JhengHei';
+        }
+        .Time{
+            color:#722b72;
+            font-weight:bold;
+            font-size:larger;
+            margin-left:5%;
+            margin-bottom:5%;
+            font-family:'Courier New', Courier, 'Nimbus Mono L', monospace;
+        }

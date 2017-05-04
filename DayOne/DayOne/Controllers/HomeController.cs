@@ -12,13 +12,13 @@ namespace DayOne.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         public ActionResult Login()
         {
             ViewBag.Message = "Your contact page.";
-            return View();
+            return View("login");
         }
 
 

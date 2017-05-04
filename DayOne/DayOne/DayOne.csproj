@@ -175,8 +175,8 @@
     <Compile Include="Controllers\ForgetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoteBookController.cs" />
-    <Compile Include="Controllers\NoteEdit.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +198,9 @@
     <Content Include="Content\notebook.css" />
     <Content Include="Content\noteEdit.css" />
     <Content Include="Content\register.css" />
+    <Content Include="Content\loveNote.css" />
+    <Content Include="Content\recycle.css" />
+    <Content Include="Content\AttachNote.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -231,7 +234,7 @@
     <None Include="Views\Home\login.cshtml" />
     <None Include="Views\NoteBook\notebook.cshtml" />
     <None Include="Views\Register\register.cshtml" />
-    <None Include="Views\Home\share.cshtml" />
+    <None Include="Views\Share\share.cshtml" />
     <None Include="Views\NoteBook\noteEdit.cshtml" />
     <None Include="Views\Home\UserInfo.cshtml" />
     <None Include="Views\NoteBook\loveNote.cshtml" />
@@ -269,7 +272,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Filter\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Share\" />
+    <Folder Include="Views\Setup\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

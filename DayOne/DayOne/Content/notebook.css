@@ -115,3 +115,13 @@ body{
 	width: 90%;
     margin: 50px auto;
 }
+#input-bookName {
+    border: none;
+
+    font-size: 20px;
+    color: #330033;
+}
+    #input-bookName:focus {
+    border:none;
+    }
+

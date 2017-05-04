@@ -7,6 +7,9 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap.css")
     @Styles.Render("~/Content/DayOne.css")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+
 </head>
 
 @functions{
@@ -30,7 +33,7 @@
         return flg ? "active" : string.Empty;
     }
 }
-<body class="index">
+<body class="index" ng-app="ngApp">
     <section>
         <div class='navbar ' role='navigation'>
             <div class="head">
@@ -39,12 +42,11 @@
                     <div class='navbar-header'>
                         <div class='pull-right'>
                             <ul class='nav navbar-nav'>
-                                <li class=""><a href="~/Home/Index">首页</a></li>
-                                <li class=""><a href="~/DayPlan/dayplan">日计划</a></li>
-                                <li class=""><a href="~/NoteBook/notebook">笔记本</a></li>
-                                <li class=""><a href="~/Share/share">分享</a></li>
-                                <li class=""><a href="~/Home/login">登录</a></li>
-
+                                <li class="">@Html.ActionLink("首页","Index","Home")</li>                              
+                                <li class="">@Html.ActionLink("日计划", "DayPlan", "DayPlan")</li>
+                                <li class="">@Html.ActionLink("笔记本", "NoteBook", "NoteBook")</li>
+                                <li class="">@Html.ActionLink("分享", "Share", "Share")</li>
+                                <li class="">@Html.ActionLink("登陆", "Login", "Home")</li>
                             </ul>
                         </div>
                     </div>
@@ -55,4 +57,6 @@
     </section>
 
 </body>
+
+@RenderSection("scripts", false)
 </html>

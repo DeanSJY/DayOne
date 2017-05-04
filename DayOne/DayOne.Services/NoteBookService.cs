@@ -20,11 +20,11 @@ namespace DayOne.Services
         {
             NoteBook notebook = new NoteBook()
             {
-                UserId = CurrentPrincipal.UserId,
+                UserId = 1,// CurrentPrincipal.UserId,
                 CreateAt = DateTime.Now,
                 BookName = bookName,
                 ShareOrNot = false,
-               
+
             };
             //notebook.BookName = bookName;
             CurrentDB.NoteBookTable.Add(notebook);
@@ -219,7 +219,7 @@ namespace DayOne.Services
         /// <param name="keyword"></param>
         /// <param name="CreateAt"></param>
         /// <returns></returns>
-        public List<OneNote> Search(int noteId, string content, string keyword,DateTime CreateAt)
+        public List<OneNote> Search(int noteId, string content, string keyword, DateTime CreateAt)
         {
             var notes = CurrentDB.OneNoteTable.Where(o => o.Title.Contains(keyword) || o.Content.Contains(keyword))
                 .OrderByDescending(o => o.UpdateAt).ThenBy(o => o.CreateAt).ToList();
