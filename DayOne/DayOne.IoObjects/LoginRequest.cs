@@ -12,26 +12,34 @@ namespace DayOne.IoObjects
     /// </summary>
     public class LoginRequest
     {
-        [StringLength(64,MinimumLength=8, ErrorMessage="用户名必须是字母和数字的组合")]
-       
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入用户名")]
+        [StringLength(64, MinimumLength = 4, ErrorMessage = "用户名必须大于4位")]
+        
         public string UserName { get; set; }
 
-        [StringLength(32, MinimumLength=8, ErrorMessage="密码必须是字母和数字的组合")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入密码")]
+        [StringLength(32, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
+        
         public string PassWord { get; set; }
 
     }
 
-    public class RegisterRequest {
-
-       [StringLength(64, MinimumLength = 8, ErrorMessage = "用户名必须是字母和数字的组合")]
+    public class RegisterRequest
+    {
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入注册的用户名")]
+        [StringLength(64, MinimumLength = 4, ErrorMessage = "用户名必须大于4位")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "用户名必须是字母和数字的组合")]
         public string UserName { get; set; }
-       [StringLength(64, MinimumLength = 8, ErrorMessage = "密码必须是字母和数字的组合")]
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入注册的密码")]
+        [StringLength(64, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
+        
         public string PassWord { get; set; }
-        [StringLength(64, MinimumLength = 8, ErrorMessage = "密码必须是字母和数字的组合")]
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入密码")]
+        [StringLength(64, MinimumLength = 6, ErrorMessage = "密码必须大于6位")]
+       
         public string PassWord2 { get; set; }
 
-        [StringLength(11,ErrorMessage = "请正确输入手机号")]
-        public string CellPhone { get; set; }
-    
     }
 }
