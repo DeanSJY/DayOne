@@ -12,17 +12,33 @@ namespace DayOne.Controllers
     [RoutePrefix("NoteBook")]
     public class NoteBookController : Controller
     {
+        private  NoteBookService notebookservice = new NoteBookService();
+
         //笔记本
+
+        /// <summary>
+        /// 笔记本首页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+            return View("NoteBook", notebookservice.GetNoteBooks());
+        }
 
         public ActionResult NoteBook()
         {
-            ViewBag.Message = "Your contact page.";
             return View();
         }
 
+        public JsonResult NoteList()
+        {
+            var list = notebookservice.GetNoteBooks();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult NoteEdit()
         {
-            ViewBag.Message = "Your contact page.";
             return View("noteEdit");
         }
 
@@ -43,14 +59,11 @@ namespace DayOne.Controllers
             return View("AttachmentNote");
         }
 
-        [HttpPost]
-        [Route("addNotebook")]
+        [HttpPost, Route("addNotebook")]
         public ActionResult AddNoteBook(string name)
         {
-            var notebookservice = new NoteBookService();
-            notebookservice.AddNoteBook(name);
-            return Json(true);
-
+            var notebook = notebookservice.AddNoteBook(name);
+            return Json(notebook);
         }
 
         public bool AddNote(int bookId, string content, string title)
@@ -58,12 +71,6 @@ namespace DayOne.Controllers
             return true;
         }
 
-        public JsonResult NoteList()
-        {
-            var notebookservice = new NoteBookService();
-            var list = notebookservice.GetNoteBooks();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
 
         //修改笔记
         //public ActionResult NoteEdit(int noteId)

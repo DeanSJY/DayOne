@@ -5,11 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/bootstrap.css")
-    @Styles.Render("~/Content/DayOne.css")
-    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
-    @Scripts.Render("~/Scripts/bootstrap.js")
-
+    @Styles.Render(
+        "~/Content/bootstrap.css",
+        "~/Content/DayOne.css"
+    )@Scripts.Render(
+        "~/Scripts/jquery-1.10.2.js",
+        "~/Scripts/bootstrap.js"
+    )@RenderSection("headers", false)
+    <script type="text/javascript"> @RenderSection("scripts", false) </script>
 </head>
 
 @functions{
@@ -51,10 +54,9 @@
                                     if (Request.IsAuthenticated)
                                     {
                                         <li class="">
-                                            <a href="~/Views/Home/UserInfo.cshtml"><span class="glyphicon glyphicon-user" id=" userlogo" color="white"></span>&nbsp;@HttpContext.Current.User.Identity.Name</a>
+                                            <a href="~/Views/Home/UserInfo.cshtml"><span class="glyphicon glyphicon-user" id="userlogo" color="white"></span>&nbsp;@HttpContext.Current.User.Identity.Name</a>
                                         </li>
                                         <li class="">@Html.ActionLink("注销", "Logout", "Home")</li>
-
                                     }
                                     else
                                     {
@@ -72,5 +74,5 @@
 
 </body>
 
-@RenderSection("scripts", false)
+
 </html>

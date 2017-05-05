@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Notebook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headers{
+    <script src="/Scripts/angular.js" type="text/javascript"></script>
+    @RenderSection("headers", false)
+}
+
+@section scripts{ @RenderSection("scripts", false) }
+@RenderBody()

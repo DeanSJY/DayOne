@@ -1,11 +1,10 @@
 ﻿@{ViewBag.Title = "笔记本";}
 
-<link rel="stylesheet" href="~/Content/notebook.css" />
-
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/angular.js"></script>
-<script type="text/javascript"></script>
-<script href="~/Scripts/notebook.js" rel="stylesheet"></script>
+@section headers{
+    <link rel="stylesheet" href="~/Content/notebook.css" />
+    <script src="~/Scripts/notebook.js"></script>
+    <script src="~/Scripts/notebook2.js"></script>
+}
 
 <div ng-controller="noteCtrl">
     <div id="up">
@@ -55,7 +54,6 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
                 </div>
-
             </div>
         </nav>
     </div>
@@ -66,25 +64,9 @@
                 <div class="note-body">
                     <h4>{{note.BookName}}</h4>
                 </div>
+                <span class="glyphicon glyphicon-pencil" style="cursor: pointer"></span>&nbsp;
+                <span class="glyphicon glyphicon-remove" style="cursor: pointer"></span>
             </div>
         </div>
     </div>
 </div>
-
-@section  scripts {
-    <script>
-        var app = angular.module('ngApp', []);
-
-        app.controller("noteCtrl", function ($scope, $http) {
-            $scope.nav = 1;
-            $http.get("NoteList").success(function (response) {
-                $scope.notes = response;
-            });
-
-            $scope.add = function () {
-                alert($scope.noteName);
-                $http.post("AddNoteBook",{name:$scope.noteName}).success(function (response) { });
-            }
-        });
-    </script>
-}
