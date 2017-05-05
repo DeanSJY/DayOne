@@ -13,7 +13,7 @@ namespace DayOne.IoObjects
     public class LoginRequest
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "请输入用户名")]
-        [StringLength(64, MinimumLength = 4, ErrorMessage = "用户名必须大于4位")]
+        [StringLength(64, MinimumLength = 3, ErrorMessage = "用户名必须大于4位")]
         
         public string UserName { get; set; }
 
@@ -26,7 +26,7 @@ namespace DayOne.IoObjects
     public class RegisterRequest
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "请输入注册的用户名")]
-        [StringLength(64, MinimumLength = 4, ErrorMessage = "用户名必须大于4位")]
+        [StringLength(64, MinimumLength = 3, ErrorMessage = "用户名必须大于4位")]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "用户名必须是字母和数字的组合")]
         public string UserName { get; set; }
 
@@ -39,10 +39,11 @@ namespace DayOne.IoObjects
         public string PassWord2 { get; set; }
 
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入有效验证码")]
-        public string ValidCode { get; set; }
-        [StringLength(11, ErrorMessage = "请输入有效手机号")]
-        public long CellPhone { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "请输入有效验证码")]
+        //public string ValidCode { get; set; }
+
+        //[StringLength(11, ErrorMessage = "请输入有效手机号")]
+        //public string CellPhone { get; set; }
 
 
         //[StringLength(11, ErrorMessage = "请正确输入手机号")]

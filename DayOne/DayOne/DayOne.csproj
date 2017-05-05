@@ -230,7 +230,7 @@
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
     <None Include="Views\NoteBook\notebook.cshtml" />
-    <None Include="Views\Register\register.cshtml" />
+    <None Include="Views\Register\index.cshtml" />
     <None Include="Views\Share\share.cshtml" />
     <None Include="Views\NoteBook\noteEdit.cshtml" />
     <None Include="Views\Home\UserInfo.cshtml" />

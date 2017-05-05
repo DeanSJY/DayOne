@@ -14,7 +14,7 @@
             <div class="col-sm-6 text-center">
                 <h3 class="letter-space" align="center">DayOne登录</h3>
 
-                @Html.ValidationSummary(null, new { @class = "validation-summary-errors2" })
+                @Html.ValidationSummary(null, new { @class = "validation-summary-errors2 list-unstyled" })
 
                 @Html.TextBoxFor(o => o.UserName, new {name = "UserName", placeholder = "用户名"})
 
@@ -27,7 +27,7 @@
                 <div class="clearfix text-right">
                     <br/>
                     @Html.ActionLink("忘记密码", "Forget", "Forget") &nbsp;&nbsp;
-                    @Html.ActionLink("立即注册", "Register", "Register")
+                    @Html.ActionLink("立即注册", "Index", "Register")
                 </div>
             </div>
         }

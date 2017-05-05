@@ -9,11 +9,6 @@ namespace DayOne.Controllers
     {
         private readonly UserService _userService;
 
-        public ActionResult Register()
-        {
-            return View("register");
-        }
-
         public RegisterController()
         {
             _userService = new UserService();
@@ -29,7 +24,7 @@ namespace DayOne.Controllers
 
             try
             {
-                var userInfo =  _userService.RegisterV1(userRegister);
+                var userInfo = _userService.RegisterV1(userRegister);
 
                 Services.AuthorizationContext.Login(new LoginRequest()
                 {
@@ -46,6 +41,9 @@ namespace DayOne.Controllers
             return View();
         }
 
-
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }
