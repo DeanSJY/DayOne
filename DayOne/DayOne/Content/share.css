@@ -1,0 +1,150 @@
+﻿@font-face {
+	font-family:'zapfino';
+	src: url('../fonts/LinotypeZapfino Four.ttf');
+	}
+#title{
+	font-family:'zapfino';
+	font-size: xx-large;
+	}
+.div1{
+	background-color: lightgrey;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	margin-top: 0;
+}
+#div2{
+	width: 100%;
+	height: 50%;
+}
+#div3{
+	width: 100%;
+	height: 50%;
+}
+
+#co1{
+	margin-top: 2%;
+	margin-left: 9%;
+	width: 39%;
+	height: 73%;
+	background-color: white;
+}
+
+#co2{
+	margin-top: 2%;
+	margin-left: 4%;
+	width: 39%;
+	height: 73%;
+	background-color: white;
+}
+#co3{
+	margin-top: -2%;
+	margin-left: 9%;
+	width: 39%;
+	height: 72%;
+	background-color: white;
+}
+#co4{
+	margin-top: -2%;
+	margin-left: 4%;
+	width: 39%;
+	height: 72%;
+	background-color: white;
+}
+
+.title{
+	font-size: x-large;
+	font-family: "微软雅黑";
+	width: 30%;
+	height: 12%;
+	text-align: center;
+	border-bottom: groove;
+	border-bottom-color: black;
+	border-bottom-width: thin
+}
+.context{
+	width: 100%;
+	height: 72%;
+	margin-top: 1%;
+	
+}
+#textarea1{	
+	font-family: "微软雅黑";
+	background-color: transparent;
+	border: none;
+}
+#textarea2{
+	font-family: "微软雅黑";
+	background-color: transparent;
+	border: none;
+}
+#textarea3{	
+	font-family: "微软雅黑";
+	background-color: transparent;
+	border: none;
+}
+#textarea4{
+	font-family: "微软雅黑";
+	background-color: transparent;
+	border: none;
+}
+#T1{
+	text-align: right;
+}
+#T2{
+	text-align: right;
+}
+#T3{
+	text-align: right;
+}
+#T4{
+	text-align: right;
+}
+#heart1{
+	font-size: medium;
+	color: #722B72;
+	margin-right:-8.5%;
+	visibility: hidden;
+}
+#heart2{
+	font-size: medium;
+	color: #722B72;
+	margin-right:-8.5%;
+	visibility: hidden;
+}
+#heart3{
+	font-size: medium;
+	color: #722B72;
+	margin-right:-8.5%;
+	visibility: hidden;
+}
+#heart4{
+	font-size: medium;
+	color: #722B72;
+	margin-right:-8.5%;
+	visibility: hidden;
+}
+#emheart1{
+	margin-right: 5px;
+	font-size: medium;
+}
+#emheart2{
+	margin-right: 5px;
+	font-size: medium;
+}
+#emheart3{
+	margin-right: 5px;
+	font-size: medium;
+}
+#emheart4{
+	margin-right: 5px;
+	font-size: medium;
+}
+.lab{
+	font-size: medium;
+}
+.glyphicon glyphicon-heart-empty{
+	font-size: medium;
+	color: #722B72;
+}
+

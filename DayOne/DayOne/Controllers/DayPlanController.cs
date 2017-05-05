@@ -14,7 +14,7 @@ namespace DayOne.Controllers
         public ActionResult DayPlan()
         {
             ViewBag.Message = "Your contact page.";
-            return View();
+            return View("dayplan");
         }
         // GET: DayPlan
     } 

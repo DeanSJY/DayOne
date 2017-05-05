@@ -198,6 +198,8 @@
     <Content Include="Content\loveNote.css" />
     <Content Include="Content\recycle.css" />
     <Content Include="Content\AttachNote.css" />
+    <Content Include="Content\share.css" />
+    <Content Include="Content\userInfo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -982,6 +984,14 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="fonts\LinotypeZapfino Four.ttf" />
+    <Content Include="fonts\LinotypeZapfino Three.ttf" />
+    <Content Include="fonts\英章行书.ttf" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dayplan.js" />
+    <Content Include="Scripts\weekplan.js" />
+    <Content Include="Scripts\monthplan.js" />
+    <Content Include="Scripts\yearplan.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -993,6 +1003,8 @@
     <Content Include="Scripts\notebook.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\share.js" />
+    <Content Include="Scripts\userInfo.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\version.json" />
     <None Include="Views\DayPlan\dayplan.cshtml" />
@@ -1001,6 +1013,9 @@
     <None Include="Views\NoteBook\notebook.cshtml" />
     <None Include="Views\Register\index.cshtml" />
     <Content Include="Views\Shared\Notebook.cshtml" />
+    <Content Include="Views\DayPlan\weekplan.cshtml" />
+    <Content Include="Views\DayPlan\monthplan.cshtml" />
+    <Content Include="Views\DayPlan\yearplan.cshtml" />
     <None Include="Views\Share\share.cshtml" />
     <None Include="Views\NoteBook\noteEdit.cshtml" />
     <None Include="Views\Home\UserInfo.cshtml" />
