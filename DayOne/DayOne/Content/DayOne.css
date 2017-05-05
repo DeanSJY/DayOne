@@ -116,4 +116,15 @@ height: 50px;
 footer{
     margin-top:20px;
 }
+#userlogo:hover {
+    color:white;
+}
+#userlogo {
+    cursor:pointer;
+    font-size:20px;
+    color:white;
+}
+.glyphicon glyphicon-user {
+    color:white;
+} 
 

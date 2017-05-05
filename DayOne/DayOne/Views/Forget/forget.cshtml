@@ -1,4 +1,7 @@
-﻿@{
+﻿@model DayOne.IoObjects.LoginRequest
+    @model DayOne.Entities.UserInfo
+
+@{
     ViewBag.Title = "忘记密码";
 }
 <link rel="stylesheet" href="~/Content/login.css"  />
@@ -11,13 +14,17 @@
       
       
         <div class="col-sm-6 text-center">
+         @Html.ValidationSummary(true)
         <h3 class="letter-space" align="center">修改密码</h3>
+            @Html.TextBoxFor(x => x.CellPhone, new { name = "username", placeholder = "手机号" })
+            @Html.TextBoxFor(x => x.ValidCode, new { name = "pwd", placeholder = "验证码" })
+            @Html.PasswordFor(x => x.PassWord, new { name = "pwd2", placeholder = "再次输入密码" })            
        <input type="text" name="cellPhone"  placeholder="手机号"/>
        <input type="text" name="verifyCode" placeholder="验证码" />
        <input type="password" name="pwd"   placeholder="新密码"/>
        <input type="password" name="pwd2"   placeholder="确认新密码"/>
        <div>
-       <button class="ok">确认修改</button>
+       <button class="ok" type="submit">确认修改</button>
        </div>
 
      

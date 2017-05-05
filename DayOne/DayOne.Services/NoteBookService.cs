@@ -146,7 +146,7 @@ namespace DayOne.Services
         /// <returns></returns>
         public List<NoteBook> GetNoteBooks()
         {
-            return CurrentDB.NoteBookTable.OrderBy(o => o.BookName).ToList();
+            return CurrentDB.NoteBookTable.ToList();
 
         }
         /// <summary>

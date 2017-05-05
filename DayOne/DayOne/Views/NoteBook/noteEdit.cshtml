@@ -112,21 +112,17 @@
         </div>
 
         <!--右侧内容区域-->
-        <div class="col-md-10" id="Div3" style="height:100%;background-color:#aaa;padding-left:8px">
+        <div class="col-md-10" >
             <!--按钮栏-->
             <div id="d1">
-                <div style="text-align:left;font-size:15px;margin-top:14px;font-weight:bold">
+                <div style="text-align:left;font-size:15px;margin-top:16px;font-weight:bold">
                     <div class="col-md-6">
                         <asp:Label ID="lab1" runat="server" style="color:#722b72;font-family:'Microsoft YaHei'" Text="创建时间"></asp:Label>
                         <asp:Label ID="lab2" runat="server" style="color:#722b72;font-family:'Microsoft YaHei';margin-left:15%" Text="修改时间"></asp:Label>
                     </div>
-                    <div class="col-md-6">
-
-
+                    <div >
                         <!--上传附件，我用的自带的控件，你自己改-->                    
-                        <span class="glyphicon glyphicon-ok" id="sp1" onclick="myfunction7()" style="margin-right:13px;color:#aaa"></span>
                         <a href="#" class="a-txt" onclick="myfunction3()">添加笔记</a>
-                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="">上传附件</a>
                         <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction8()">删除笔记</a>
                         <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal3" onclick="myfunction2()">爱心笔记</a>
                         <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal1" onclick="myfunction8()">保存笔记</a>
@@ -142,6 +138,7 @@
                     <input id="TextBox4" type="text" />
                     <!--输入标题-->
                     <input type="text" id="TextBox1" placeholder="标题在此输入" />
+                    <hr />
                 </div>
                 <!--输入正文-->
                 <div style="height:100%;margin-top:30px">

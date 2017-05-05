@@ -117,7 +117,7 @@ body{
 }
 #input-bookName {
     border: none;
-
+    width:590px;
     font-size: 20px;
     color: #330033;
 }

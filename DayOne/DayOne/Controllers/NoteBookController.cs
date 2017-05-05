@@ -43,15 +43,6 @@ namespace DayOne.Controllers
             return View("AttachmentNote");
         }
 
-
-        //[HttpPost]
-        //public bool AddNoteBook(NoteBook notebook)
-        //{
-        //    var notebookservice = new NoteBookService();
-        //    notebookservice.AddNoteBook(notebook.BookName);
-        //    return true;
-        //}
-
         [HttpPost]
         [Route("addNotebook")]
         public ActionResult AddNoteBook(string name)

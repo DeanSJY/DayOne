@@ -12,6 +12,7 @@ namespace DayOne.Entities
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string CellPhone { get; set; }
+        public string ValidCode { get; set; }
 
          [Key]
         public int Id { get; set; }

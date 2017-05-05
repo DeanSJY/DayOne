@@ -3,14 +3,37 @@
 }
     <link rel="stylesheet" href="../Content/dayplan.css" />
 
-<div id=" left">
-    <div class=" plan">
-        <div href="~/Content/day.cshtml">日计划</div>
+
+
+<div class="left-side">
+    <div id="left-top"></div>
+    <button class="plan-btn" onclick="">日计划</button>
+    <button class="plan-btn" onclick="week()">周计划</button>
+    <button class="plan-btn" onclick="month()">月计划</button>
+    <button class="plan-btn" onclick="year()">年计划</button>
+</div>
+
+<div class="right-side" id="rs">
+    <button class="btn btn-default" id="addbtn" type="button" onclick="Addplan()">添加计划</button>
+    <button class="btn btn-default" id="delbtn" type="button" onclick="Removeplan()">删除计划</button>
+    <div class="plan" id="plan">
+        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+        <input type="text" class="plan-text" id="input1" placeholder="记录1天的计划 美好生活的开始" />
+        <label class="timeAt" id="lab1"></label>
     </div>
 
+    <div class="plan">
+        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+        <input type="text" class="plan-text" placeholder="记录1天的计划 美好生活的开始" />
+        <label class="timeAt" id="lab2"></label>
+    </div>
+
+    <div class="plan">
+        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+        <input type="text" class="plan-text" placeholder="记录1天的计划 美好生活的开始" />
+        <label class="timeAt" id="lab3"></label>
+    </div>
+
+
 </div>
 
-<div id="right">
-
-
-</div>

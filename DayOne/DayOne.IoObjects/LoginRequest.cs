@@ -39,6 +39,12 @@ namespace DayOne.IoObjects
         public string PassWord2 { get; set; }
 
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "请输入有效验证码")]
+        public string ValidCode { get; set; }
+        [StringLength(11, ErrorMessage = "请输入有效手机号")]
+        public long CellPhone { get; set; }
+
+
         //[StringLength(11, ErrorMessage = "请正确输入手机号")]
         //public string CellPhone { get; set; }
 

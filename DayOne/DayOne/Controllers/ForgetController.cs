@@ -11,7 +11,10 @@ namespace DayOne.Controllers
     public class ForgetController : Controller
     {
         // GET: Forget
-
+        public ActionResult Forget() {
+            ViewBag.Message = "Your contact page.";
+            return View("forget");
+        }
 
     }
 }

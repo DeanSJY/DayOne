@@ -42,22 +42,26 @@
                     <div class='navbar-header'>
                         <div class='pull-right'>
                             <ul class='nav navbar-nav'>
-                                <li class="">@Html.ActionLink("首页","Index","Home")</li>                              
+                                <li class="">@Html.ActionLink("首页", "Index", "Home")</li>
                                 <li class="">@Html.ActionLink("日计划", "DayPlan", "DayPlan")</li>
                                 <li class="">@Html.ActionLink("笔记本", "NoteBook", "NoteBook")</li>
                                 <li class="">@Html.ActionLink("分享", "Share", "Share")</li>
-                                @{
-                                    if (Request.IsAuthenticated)
-                                    {
-                                        <li class=""><a href="javascript:void(0);">&nbsp;@HttpContext.Current.User.Identity.Name &nbsp;</a></li>
+                               
+                                
+                                    @{ if (Request.IsAuthenticated) { <li class=""><a href="javascript:void(0);">&nbsp;@HttpContext.Current.User.Identity.Name &nbsp;</a></li>
                                         <li class="">@Html.ActionLink("注销", "Logout", "Home")</li>
+
+
                                     }
                                     else
                                     {
                                         <li class="">@Html.ActionLink("登陆", "Login", "Home")</li>
+
                                     }
                                 }
                             </ul>
+                            <a href="~/Views/Home/UserInfo.cshtml"><span class="glyphicon glyphicon-user" id=" userlogo" color="white"></span></a>
+                           
                         </div>
                     </div>
                 </div>
