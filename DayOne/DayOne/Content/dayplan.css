@@ -1,11 +1,52 @@
-#left {
-background-color:#000000;
-opacity:0.8;
-width:150px;
+.left-side{
+	width: 150px;
+	float: left;
+	margin-left: 0px;	
 }
-
-#right {
-padding-left:150px;
-
-
+.right-side{
+	margin-top: 0;
+	margin-left: 15%;
+}
+#left-top{
+	margin-top: 0;
+}
+.plan-btn{
+	width: 150px;
+	color: white;
+	font-size: 20px;
+	background-color: #330033;
+	height:150px;
+	border: 0px;
+	margin-top: 1px;
+}
+.plan-btn:hover{
+	background-color:#330033;
+	opacity: 0.5;
+}
+#input1{
+	margin-top: 45px;
+    width: 700px;
+    height: 30px;
+    border: 0px;
+    border-bottom: 1px solid #330033;
+    font-size: 20px;
+    margin-left: 15px;
+}
+.plan-text{
+	margin-top: 45px;
+    width: 700px;
+    height: 30px;
+    border: 0px;
+    border-bottom: 1px solid #330033;
+    font-size: 20px;
+    margin-left: 15px;
+}
+span{
+	color:#330033 ;
+	font-size: 25px;
+	margin-left: 80px;
+}
+.timeAt{
+	margin-left: 0px;
+	font-size: 20px;
 }
