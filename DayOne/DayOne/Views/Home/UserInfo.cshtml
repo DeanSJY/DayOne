@@ -1,10 +1,78 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
+﻿@{
+    ViewBag.Title = "用户信息";
+}
+<link rel="stylesheet" href="~/Content/userInfo.css" />
+<script src="~/Scripts/userInfo.js"></script>
 
-</body>
-</html>
+
+<div class="div1">
+    <div class="div2">
+        <!--logo-->
+        <img src="~/Image/logo.png" id="img" />
+        <div id="square"></div>
+        <div class="div3">
+
+            <div id="div4">
+                <b id="title">Day One</b>
+
+            </div>
+            <!--输入框-->
+            <!--用户名-->
+            <div class="col-md-12" id="col1">
+                <span class="glyphicon glyphicon-user" style="margin-left: -2%;"></span>
+                <input class="input" id="input1" placeholder="UserName"></input>
+            </div>
+
+            <!--密码-->
+            <div class="col-md-12" id="col2">
+                <span class="glyphicon glyphicon-edit" style="margin-left: -2%;" onclick="edit()"></span>
+                <input class="input" type="password" id="input2" placeholder="PassWord"></input>
+            </div>
+
+            <!--Likes-->
+            <div class="col-md-12" id="col3">
+                <button class="btn-default" id="btn1">
+                    <span class="glyphicon glyphicon-heart" id="heart" style="color: #722B72;font-size: small;"></span>
+                    Likes
+                </button>
+                <input id="sm-input1" placeholder="Likes"></input>
+            </div>
+
+            <!--new password-->
+            <div class="col-md-12" id="col-add1">
+                <span class="glyphicon glyphicon-pencil" id="pen1" style="color: #722B72;font-size: medium;"></span>
+                <input class="input" type="password" id="newpwd" placeholder="New PassWord">
+            </div>
+
+            <!--Rank-->
+            <div class="col-md-12" id="col4">
+                <button class="btn-default" id="btn2">
+                    <span class="glyphicon glyphicon-stats" style="color: #722B72;font-size: small;"></span>
+                    Rank
+                </button>
+                <input id="sm-input2" placeholder="Rank"></input>
+            </div>
+
+            <!--new password 2-->
+            <div class="col-md-12" id="col-add2">
+                <span class="glyphicon glyphicon-pencil" id="pen2" style="color: #722B72;font-size: medium;"></span>
+                <input class="input" type="password" id="newpwd2" placeholder="Input Again">
+            </div>
+
+            <!--Badge-->
+            <div class="col-md-12" id="col5">
+                <button class="btn-default" id="btn3" style="font-size: medium;">
+                    <span class="glyphicon glyphicon-certificate" style="color: #722B72;font-size: small;"></span>
+                    Badge
+                </button>
+                <input id="sm-input3" placeholder="Badge"></input>
+            </div>
+
+            <!--按钮-->
+            <div class="col-md-12" id="col6">
+                <button class="btn btn-default" id="btn4" onclick="confirm()">CONFIRM EDIT</button>
+            </div>
+
+        </div>
+    </div>
+</div>

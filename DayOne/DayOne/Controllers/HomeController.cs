@@ -20,7 +20,9 @@ namespace DayOne.Controllers
         {
             return View("login");
         }
-
+        public ActionResult UserInfo() {
+            return View("UserInfo");
+        }
 
         [HttpPost]
         public ActionResult Login(LoginRequest userInfo)
