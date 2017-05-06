@@ -23,6 +23,11 @@ namespace DayOne.Entities
 
         public Boolean LoveOrNot { get; set; }
 
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public UserInfo User { get; set; }
+
         public int BookId { get; set; }
 
         [ForeignKey("BookId")]
@@ -35,8 +40,5 @@ namespace DayOne.Entities
         public bool WithAttach { get; set; }
 
         public string KeyWords { get; set; }
-
-
-
     }
 }

@@ -1,32 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using DayOne.Entities;
 using System.Web.Mvc;
+using DayOne.IoObjects;
 
 namespace DayOne.Services
 {
     public partial class NoteBookService : BaseService
     {
+
+        #region 笔记本
+
         /// <summary>
         /// 增加笔记本
         /// </summary>
         /// <param name="bookName"></param>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        public NoteBook AddNoteBook(string bookName)
+        public NoteBook AddNoteBook(string bookName)  // OK
         {
+            if (string.IsNullOrWhiteSpace(bookName))
+                throw new ArgumentNullException("bookName");
+
             NoteBook notebook = new NoteBook()
             {
-                UserId = 1,// CurrentPrincipal.UserId,
+                UserId = CurrentPrincipal.UserId,
                 CreateAt = DateTime.Now,
                 BookName = bookName,
                 ShareOrNot = false,
 
             };
-            //notebook.BookName = bookName;
             CurrentDB.NoteBookTable.Add(notebook);
             CurrentDB.SaveChanges();
             return notebook;
@@ -40,22 +47,57 @@ namespace DayOne.Services
         /// <returns></returns>
         public NoteBook UpdateNoteBook(int bookId, string bookName)
         {
-            var notebook = CurrentDB.NoteBookTable.Find(bookId);
+            var notebook = GetMyBook(bookId);
             notebook.BookName = bookName;
             CurrentDB.SaveChanges();
             return notebook;
         }
+
+        private NoteBook GetMyBook(int bookId)
+        {
+            var userId = AuthorizationContext.CurrentPrincipal.UserId;
+
+            return CurrentDB.NoteBookTable.FirstOrDefault(o => o.NoteBookId == bookId && o.UserId == userId);
+        }
+
         /// <summary>
         /// 删除笔记本
         /// </summary>
         /// <param name="bookId"></param>
-        public void RemoveNoteBook(int bookId)
+        public void RemoveNoteBook(int bookId)  // OK
         {
-            var notebook = CurrentDB.NoteBookTable.Find(bookId);
-            CurrentDB.NoteBookTable.Remove(notebook);
-            var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId);
-            CurrentDB.OneNoteTable.RemoveRange(notes);
-            CurrentDB.SaveChanges();
+            var notebook = GetMyBook(bookId);
+            if (notebook != null)
+            {
+                var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId);
+                CurrentDB.OneNoteTable.RemoveRange(notes);
+
+                CurrentDB.NoteBookTable.Remove(notebook);
+
+                CurrentDB.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 笔记本的列表
+        /// </summary>
+        /// <returns></returns>
+        public List<NoteBook> GetNoteBooks()
+        {
+            var userId = AuthorizationContext.CurrentPrincipal.UserId;
+
+            return CurrentDB.NoteBookTable.Where(o => o.UserId == userId).ToList();
+        }
+
+        #endregion
+
+        #region  笔记
+
+        private OneNote GetMyNote(int noteId)
+        {
+            var userId = CurrentPrincipal.UserId;
+
+            return CurrentDB.OneNoteTable.FirstOrDefault(o => o.NoteId == noteId && o.UserId == userId);
         }
 
 
@@ -64,18 +106,14 @@ namespace DayOne.Services
         /// </summary>
         /// <param name="note"></param>
         /// <returns></returns>
-
-        public OneNote CreateNote(OneNote note)
+        public OneNote CreateNote(NewNote note)
         {
-            note.CreateAt = DateTime.Now;
-            note.UpdateAt = DateTime.Now;
-            note.IsDeleted = false;
-            CurrentDB.OneNoteTable.Add(note);
+            var oneNote = (OneNote) note;
+            oneNote.UserId = CurrentPrincipal.UserId;
+            CurrentDB.OneNoteTable.Add(oneNote);
             CurrentDB.SaveChanges();
             return note;
         }
-
-
 
         /// <summary>
         /// 修改1条笔记
@@ -83,18 +121,16 @@ namespace DayOne.Services
         /// <param name="noteId"></param>
         /// <param name="oneNote"></param>
         /// <returns></returns>
-        public OneNote UpdateNote(int noteId, OneNote oneNote)
+        public OneNote UpdateNote(NoteUpdating noteUpdating)
         {
-            var onenote = CurrentDB.OneNoteTable.Find(noteId);
-            if (string.IsNullOrWhiteSpace(oneNote.Title))
-                onenote.Title = oneNote.Title;
-
-            onenote.UpdateAt = DateTime.Now;
-            if (string.IsNullOrWhiteSpace(oneNote.Content))
-                onenote.Content = oneNote.Content;
-            onenote.LoveOrNot = oneNote.LoveOrNot;
+            var oneNote = GetMyNote(noteUpdating.NoteId);
+            if (oneNote == null)
+            {
+                throw new ArgumentException("笔记未找到");
+            }
+            noteUpdating.Merge(oneNote).UpdateAt = DateTime.Now;
             CurrentDB.SaveChanges();
-            return onenote;
+            return oneNote;
 
         }
 
@@ -104,17 +140,18 @@ namespace DayOne.Services
         /// <param name="noteId"></param>
         public void RemoveNote2(int noteId)
         {
-            var onenote = CurrentDB.OneNoteTable.Find(noteId);
+            var onenote = GetMyNote(noteId);
             onenote.IsDeleted = true;
-            UpdateNote(noteId, onenote);
+            CurrentDB.SaveChanges();
         }
+
         /// <summary>
         /// 物理删除笔记
         /// </summary>
         /// <param name="noteId"></param>
         public void RemoveNoteFinal(int noteId)
         {
-            var note = CurrentDB.OneNoteTable.Find(noteId);
+            var note = GetMyNote(noteId);
             CurrentDB.OneNoteTable.Remove(note);
             CurrentDB.SaveChanges();
         }
@@ -125,30 +162,26 @@ namespace DayOne.Services
         /// <param name="noteId"></param>
         public void RecoveryNote(int noteId)
         {
-            var onenote = CurrentDB.OneNoteTable.Find(noteId);
+            var onenote = GetMyNote(noteId);
             onenote.IsDeleted = false;
-            UpdateNote(noteId, onenote);
+            CurrentDB.SaveChanges();
         }
-        /// <summary>
-        /// 回收站的笔记列表
-        /// </summary>
-        /// <param name="bookId"></param>
-        /// <returns></returns>
-        public List<OneNote> GetRecycleList(int bookId)
-        {
-            var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId && o.IsDeleted).ToList();
-            return notes;
 
-        }
+
         /// <summary>
-        /// 笔记本的列表
+        /// 创建笔记查询
         /// </summary>
         /// <returns></returns>
-        public List<NoteBook> GetNoteBooks()
+        private IQueryable<OneNote> CreateNoteQuery(bool includeDeleted = false)
         {
-            return CurrentDB.NoteBookTable.ToList();
-
+            var userId = CurrentPrincipal.UserId;
+            if (includeDeleted == true)
+            {
+                return CurrentDB.OneNoteTable.Where(o => o.UserId == userId);
+            }
+            return CurrentDB.OneNoteTable.Where(o => o.UserId == userId && o.IsDeleted == false);
         }
+
         /// <summary>
         /// 笔记列表
         /// </summary>
@@ -156,28 +189,44 @@ namespace DayOne.Services
         /// <returns></returns>
         public List<OneNote> GetNotes(int bookId)
         {
-            var notes = CurrentDB.OneNoteTable.Where(o => o.BookId == bookId && !o.IsDeleted).ToList();
+            var notes = CreateNoteQuery().Where(o => o.BookId == bookId).ToList();
             return notes;
         }
+
+        /// <summary>
+        /// 回收站的笔记列表
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        public List<OneNote> GetRecycleList(int bookId)
+        {
+            var notes = CreateNoteQuery(true).Where(o => o.BookId == bookId && o.IsDeleted).ToList();
+            return notes;
+        }
+
         /// <summary>
         /// 附件笔记罗列的页面
         /// </summary>
         /// <param name="noteId"></param>
         /// <returns></returns>
-        public List<OneNote> GetAttachmentList(int noteId)
+        public List<OneNote> GetAttachmentList(int bookId)
         {
-            var attachnotes = CurrentDB.OneNoteTable.Where(o => o.NoteId == noteId && o.WithAttach).ToList();
+            var attachnotes = CreateNoteQuery(true).Where(o => o.BookId == bookId && o.WithAttach).ToList();
             return attachnotes;
         }
+
         /// <summary>
         /// 爱心笔记罗列的页面
         /// </summary>
         /// <returns></returns>
-        public List<OneNote> GetLoveList(int noteId)
+        public List<OneNote> GetLoveList(int BookId)
         {
-            var loveNotes = CurrentDB.OneNoteTable.Where(o => o.NoteId == noteId && o.LoveOrNot).ToList();
+            var loveNotes = CreateNoteQuery().Where(o => o.BookId == BookId && o.LoveOrNot).ToList();
             return loveNotes;
         }
+
+        #endregion
+
         /// <summary>
         /// 是否将笔记设置为爱心笔记
         /// </summary>
@@ -186,9 +235,9 @@ namespace DayOne.Services
         {
             var note = CurrentDB.OneNoteTable.Find(noteId);
             note.LoveOrNot = true;
-            UpdateNote(noteId, note);
-
+            CurrentDB.SaveChanges();
         }
+
         /// <summary>
         /// 是否将上传了附件笔记
         /// </summary>
@@ -197,7 +246,7 @@ namespace DayOne.Services
         {
             var note = CurrentDB.OneNoteTable.Find(noteId);
             note.WithAttach = true;
-            UpdateNote(noteId, note);
+            CurrentDB.SaveChanges();
         }
 
         /// <summary>

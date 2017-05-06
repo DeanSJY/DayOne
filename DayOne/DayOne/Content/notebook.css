@@ -75,7 +75,6 @@ body{
 
 
 .note{
-	diplay:inline-block;
 	width:150px;
 	height:150px;
 	margin:50px;
@@ -83,7 +82,7 @@ body{
 	border-radius:6px;
 	float: left;
 	margin-top: 60px;
-
+    position:relative;
 }
 .note-left{
 	float:left;
@@ -109,6 +108,26 @@ body{
 	overflow:hidden;
 	border:2px solid #aaa;
 	border-radius:4px;
+}
+.note-remove{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    color:red;
+    display:none;
+}
+.note-edit{
+    position:absolute;
+    bottom:10px;
+    left:30px;
+    display:none;
+}
+.note-operator-show{
+    display:block;
+}
+.note-remove:hover,
+.note-edit:hover{
+    color:white;
 }
 
 .table{

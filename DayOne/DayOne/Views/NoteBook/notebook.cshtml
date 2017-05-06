@@ -58,11 +58,17 @@
         </nav>
     </div>
     <div id="notebook">
-        <div ng-show="nav==1" id="notebookn">
-            <div class="note" ng-repeat="note in notes">
+        <div @*ng-show="nav==1"*@ id="notebookn">
+            <div class="note" ng-repeat="note in [1,2]">
                 <div class="note-left"></div>
-                <div class="note-body">
+                <div class="note-body" ng-mouseover="show=true" ng-mouseout="show=false">
                     <h4>{{note.BookName}}</h4>
+                    <a href="javascript:void(0);" class="note-remove" ng-class="{'note-operator-show':show}" title="删除">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="note-edit" ng-class="{'note-operator-show':show}" title="修改">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
                 </div>
                 <span class="glyphicon glyphicon-pencil" style="cursor: pointer"></span>&nbsp;
                 <span class="glyphicon glyphicon-remove" style="cursor: pointer" ng-click="removeBook(note)"></span>

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginRequest.cs" />
+    <Compile Include="NewNote.cs" />
+    <Compile Include="NoteUpdating.cs" />
     <Compile Include="ShareableContent.cs" />
     <Compile Include="UserDayPlan.cs" />
     <Compile Include="UserNoteBook.cs" />
