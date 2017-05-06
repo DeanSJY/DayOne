@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!--按钮栏-->
+<div id="d1">
+    <div style="text-align:left;font-size:15px;margin-top:16px;font-weight:bold">
+        <div class="col-md-6">
+            <asp:Label ID="lab1" runat="server" style="color:#722b72;font-family:'Microsoft YaHei'" Text="创建时间"></asp:Label>
+            <asp:Label ID="lab2" runat="server" style="color:#722b72;font-family:'Microsoft YaHei';margin-left:15%" Text="修改时间"></asp:Label>
+        </div>
+        <div>
+            <!--上传附件，我用的自带的控件，你自己改-->
+            <a href="#" class="a-txt" ng-click="prepare_create_note()">添加笔记</a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction8()">删除笔记</a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal3" onclick="myfunction2()">爱心笔记</a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal1" ng-click="post_create_note(current)">保存笔记</a>
+        </div>
+    </div>
+</div>
+
+<form class="form-horizontal" name="noteForm" novalidate style="margin-top:80px;">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">标题：</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" placeholder="标题是什么？" ng-model="current.Title" />
+        </div>
+
+    </div>
+
+    <div class="form-group" style="margin-top:30px;">
+        <label class="col-sm-2 control-label">正文：</label>
+        <div class="col-sm-8">
+            <textarea class="form-control" rows="20" placeholder="在此输入正文..." ng-model="current.Content"></textarea>
+        </div>
+    </div>
+</form>
+

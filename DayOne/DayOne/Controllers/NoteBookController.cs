@@ -35,7 +35,7 @@ namespace DayOne.Controllers
         /// 笔记本列表
         /// </summary>
         /// <returns></returns>
-        public JsonResult NoteList()  //ok
+        public JsonResult NoteBookList()  //ok
         {
             var list = notebookservice.GetNoteBooks();
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -60,7 +60,7 @@ namespace DayOne.Controllers
         public ActionResult UpdateNoteBook(int bookId, string newName)
         {
             var notebook = notebookservice.UpdateNoteBook(bookId, newName);
-            return View(notebook);
+            return Json(notebook);
         }
 
         /// <summary>
@@ -79,6 +79,39 @@ namespace DayOne.Controllers
 
 
         #region 笔记
+
+            #region 页面
+
+        public ActionResult NoteListHtml()
+        {
+            return View("noteList");
+        }
+
+        public ActionResult NoteEditHtml()
+        {
+            return View("noteEdit");
+        }
+
+        public ActionResult NoteViewHtml()
+        {
+            return View("noteView");
+        }
+
+        public ActionResult NoteAddHtml()
+        {
+            return View("noteAdd");
+        }
+
+            #endregion
+
+        public ActionResult Note(int bookId)
+        {
+            var book = notebookservice.GetMyBook(bookId);
+
+            var notes = notebookservice.GetNotes(bookId);
+
+            return View(new NoteBookView(book, notes));
+        }
 
         public JsonResult NoteList(int bookId)
         {
@@ -139,22 +172,22 @@ namespace DayOne.Controllers
 
         #endregion
 
-        //public ActionResult RecycleNote()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-        //    return View("recycleNote");
-        //}
-        //public ActionResult LoveNote()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-        //    return View("loveNote");
-        //}
+        public ActionResult RecycleNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("recycleNote");
+        }
+        public ActionResult LoveNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("loveNote");
+        }
 
-        //public ActionResult AttachNote()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-        //    return View("AttachmentNote");
-        //}
+        public ActionResult AttachNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("AttachmentNote");
+        }
 
 
 

@@ -53,7 +53,7 @@ namespace DayOne.Services
             return notebook;
         }
 
-        private NoteBook GetMyBook(int bookId)
+        public NoteBook GetMyBook(int bookId)
         {
             var userId = AuthorizationContext.CurrentPrincipal.UserId;
 

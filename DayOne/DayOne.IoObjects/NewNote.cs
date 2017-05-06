@@ -27,7 +27,7 @@ namespace DayOne.IoObjects
                 LoveCount = 0,
                 LoveOrNot = false,
                 Content =  newNote.Content,
-                KeyWords = newNote.Title,
+                Title =  newNote.Title,
                 BookId =  newNote.BookId
             };
         }

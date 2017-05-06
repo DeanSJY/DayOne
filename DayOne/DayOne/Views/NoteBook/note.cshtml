@@ -1,0 +1,86 @@
+﻿@model DayOne.IoObjects.NoteBookView
+            
+@{ViewBag.Title = "笔记ing...";}
+
+@section headers{
+    <link rel="stylesheet" href="~/Content/notebook.css" />
+    <link rel="stylesheet" href="~/Content/noteEdit.css" />
+    <script src="~/Scripts/note.js"></script>
+    <script type="text/javascript">
+        var _gNoteBook = @Html.Raw(Json.Encode(Model));
+    </script>
+}
+
+<div ng-controller="NoteListControl" ng-cloak>
+    <!--保存笔记模态框-->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H">Day One</h4>
+                </div>
+                <div class="modal-body">确定要保存笔记吗？</div>
+                <div class="modal-footer">
+                    <button type="button" id="btn1" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                    <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" onclick="myfunction4()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--删除笔记模态框-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H1">Day One</h4>
+                </div>
+                <div class="modal-body">确定要删除笔记吗？</div>
+                <div class="modal-footer">
+                    <button type="button" id="Button1" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                    <button type="button" id="Button2" class="btn btn-success" onclick="myfunction5();return false;" data-dismiss="modal">确定</button>
+                    <button type="button" id="Button3" class="btn btn-warning" onclick="gotobin()">查看回收站</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--爱心笔记模态框-->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H2">Day One</h4>
+                </div>
+                <div class="modal-body">This note is categoryed to the Love Notes！</div>
+                <div class="modal-footer">
+                    <button type="button" id="Button5" class="btn btn-danger" data-dismiss=" modal">取消</button>
+                    <button type="button" id="Button4" class="btn btn-success" data-dismiss="modal">确定</button>
+                    <button type="button" id="Button6" class="btn btn-warning" data-dismiss="modal" onclick="heart()">查看爱心笔记</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--内容-->
+    <div class="Div1" id="Div1">
+        <!-- 左侧摘要 -->
+        <div class="col-md-2" id="Div2">
+            <div class="Cont" id="cont1" ng-repeat="note in notes">
+                <div class="context" ng-click="select(note)">
+                    <b class="b1txt" id="b1">{{note.Title}}</b><br />
+                    <b class="b2txt" id="b2">错错错</b><br />
+                    <label class="Lab" id="Label1">啊啊啊</label>
+                    <button id="bt1" class="btn btn-default" style="visibility:hidden" onclick="replay1();return false;">查看</button>
+                </div>
+            </div>
+        </div>
+
+        <!--右侧内容区域-->
+        <div class="col-md-10" ng-include="contentUrl"></div>
+
+    </div>
+</div>
