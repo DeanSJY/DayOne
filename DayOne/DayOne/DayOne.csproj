@@ -989,6 +989,7 @@
     <Content Include="fonts\英章行书.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dayplan.js" />
+    <Content Include="Scripts\notebook2.js" />
     <Content Include="Scripts\weekplan.js" />
     <Content Include="Scripts\monthplan.js" />
     <Content Include="Scripts\yearplan.js" />

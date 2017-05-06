@@ -113,9 +113,9 @@
       <Project>{c4cd05d7-5944-4834-bb8b-4c7cae67d16d}</Project>
       <Name>DayOne.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DayOne\DayOne.csproj">
+    <ProjectReference Include="..\DayOne\DayOne2.csproj">
       <Project>{4431A5E2-A870-4BEE-AF67-240D4FA25E29}</Project>
-      <Name>DayOne</Name>
+      <Name>DayOne2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
