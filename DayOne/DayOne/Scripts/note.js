@@ -26,10 +26,14 @@ app.controller("NoteListControl", function ($scope, $http) {
             Title: "",
             Content :""
         };
+        $scope.contentUrl = "/NoteBook/NoteAddHtml";
     };
 
     $scope.post_create_note = function(newnote){
         $http.post("/NoteBook/AddNote", newnote)
-            .then($scope.refresh_note_list);
+            .then(function(){
+                $scope.refresh_note_list();
+                $scope.contentUrl = "/NoteBook/NoteViewHtml";
+            });
     };
 });
