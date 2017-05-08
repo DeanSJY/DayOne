@@ -19,3 +19,10 @@ function confirm(){
 }
 
 //document.getElementById("input2").type="password";
+$(function () {
+    $(".password-edit").click(function () {
+        $(".other-item").slideToggle(function () {
+            $(".password-item").slideToggle();
+        })
+    })
+})

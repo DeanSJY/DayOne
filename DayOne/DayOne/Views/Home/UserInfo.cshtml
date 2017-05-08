@@ -4,8 +4,64 @@
 <link rel="stylesheet" href="~/Content/userInfo.css" />
 <script src="~/Scripts/userInfo.js"></script>
 
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="user-info">
+            <div class="user-info-sign">
+                <div></div>
+            </div>
+            <h3 class="user-info-title">Day&nbsp;&nbsp;One</h3>
 
-<div class="div1">
+            <div class="user-info-item">
+                <div class="item-title">USERNAME</div>
+                <div>SJY_DEAN</div>
+            </div>
+
+            <div class="user-info-item">
+                <div class="item-title">PASSWORD</div>
+                <div>************<a href="javascript:void(0);" class="pull-right password-edit">EDIT</a></div>
+            </div>
+
+            <div class="other-item">
+                <div class="user-info-item">
+                    <div class="item-title">LIKES<span class="pull-right">RANK</span></div>
+                    <div>17<span class="pull-right">2</span></div>
+                </div>
+
+                <div class="user-info-item">
+                    <div class="item-title">BADGES</div>
+                    <div>
+                        <span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+
+            <div class="password-item">
+                <div class="user-info-item">
+                    <div class="item-title">NEW PASSWORD</div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="输入新密码" />
+                    </div>
+                </div>
+
+                <div class="user-info-item">
+                    <div class="item-title">CONFIRM NEW PASSWORD</div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="确认新密码" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-info-button">
+                <button class="btn btn-block">CONFIRM EDIT</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="div1">
     <div class="div2">
         <!--logo-->
         <img src="~/Image/logo.png" id="img" />
@@ -20,13 +76,13 @@
             <!--用户名-->
             <div class="col-md-12" id="col1">
                 <span class="glyphicon glyphicon-user" style="margin-left: -2%;"></span>
-                <input class="input" id="input1" placeholder="UserName"></input>
+                <div class="input" id="input1">UserName</div>
             </div>
 
             <!--密码-->
             <div class="col-md-12" id="col2">
                 <span class="glyphicon glyphicon-edit" style="margin-left: -2%;" onclick="edit()"></span>
-                <input class="input" type="password" id="input2" placeholder="PassWord"></input>
+                <div class="input" type="password" id="input2">PassWord</div>
             </div>
 
             <!--Likes-->
@@ -35,7 +91,7 @@
                     <span class="glyphicon glyphicon-heart" id="heart" style="color: #722B72;font-size: small;"></span>
                     Likes
                 </button>
-                <input id="sm-input1" placeholder="Likes"></input>
+                <div id="sm-input1">100</div>
             </div>
 
             <!--new password-->
@@ -50,7 +106,7 @@
                     <span class="glyphicon glyphicon-stats" style="color: #722B72;font-size: small;"></span>
                     Rank
                 </button>
-                <input id="sm-input2" placeholder="Rank"></input>
+                <div id="sm-input2">16</div>
             </div>
 
             <!--new password 2-->
@@ -65,7 +121,7 @@
                     <span class="glyphicon glyphicon-certificate" style="color: #722B72;font-size: small;"></span>
                     Badge
                 </button>
-                <input id="sm-input3" placeholder="Badge"></input>
+                <span class=" glyphicon glyphicon-asterisk"  aria-hidden="true"></span>
             </div>
 
             <!--按钮-->
@@ -75,4 +131,4 @@
 
         </div>
     </div>
-</div>
+</div>*@

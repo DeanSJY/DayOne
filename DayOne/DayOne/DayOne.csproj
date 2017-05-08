@@ -208,6 +208,7 @@
     <Content Include="Image\123.jpg" />
     <Content Include="Image\222.jpg" />
     <Content Include="Image\book.png" />
+    <Content Include="Image\logo.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
