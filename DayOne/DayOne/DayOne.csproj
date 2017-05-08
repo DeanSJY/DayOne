@@ -51,6 +51,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -990,6 +991,8 @@
     <Content Include="fonts\英章行书.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dayplan.js" />
+    <Content Include="Scripts\note.js" />
+    <Content Include="Scripts\notebook2.js" />
     <Content Include="Scripts\weekplan.js" />
     <Content Include="Scripts\monthplan.js" />
     <Content Include="Scripts\yearplan.js" />
@@ -1011,7 +1014,11 @@
     <None Include="Views\DayPlan\dayplan.cshtml" />
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
+    <Content Include="Views\NoteBook\note.cshtml" />
     <None Include="Views\NoteBook\notebook.cshtml" />
+    <Content Include="Views\NoteBook\noteList.cshtml" />
+    <Content Include="Views\NoteBook\noteView.cshtml" />
+    <Content Include="Views\NoteBook\noteAdd.cshtml" />
     <None Include="Views\Register\index.cshtml" />
     <Content Include="Views\Shared\Notebook.cshtml" />
     <Content Include="Views\DayPlan\weekplan.cshtml" />

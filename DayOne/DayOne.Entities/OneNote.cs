@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace DayOne.Entities
 {
@@ -23,9 +24,14 @@ namespace DayOne.Entities
 
         public Boolean LoveOrNot { get; set; }
 
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId"), ScriptIgnore]
+        public UserInfo User { get; set; }
+
         public int BookId { get; set; }
 
-        [ForeignKey("BookId")]
+        [ForeignKey("BookId"), ScriptIgnore]
         public NoteBook Book { get; set; }
 
         public Boolean IsDeleted { get; set; }
@@ -35,8 +41,5 @@ namespace DayOne.Entities
         public bool WithAttach { get; set; }
 
         public string KeyWords { get; set; }
-
-
-
     }
 }

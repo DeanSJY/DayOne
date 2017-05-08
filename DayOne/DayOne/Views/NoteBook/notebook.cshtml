@@ -26,51 +26,94 @@
                             <input type="text" class="form-control" placeholder="笔记搜索">
                         </div>
                         <button type="submit" class="btn btn-default">GO!</button>
+                        <button type="submit" class="btn btn-default" ng-click="refresh_notebook_list()"><span class="glyphicon glyphicon-repeat" /></button>
                     </form>
 
                     <ul class="nav nav-pills">
-                        <li role="presentation" class="active" data-toggle="modal" data-target="#myModal1"><a href="#">添加笔记本</a></li>
+                        <li role="presentation" class="active" data-toggle="modal" data-target="#notebook_creating_diaglog"><a href="#">添加笔记本</a></li>
                         <li role="presentation">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
                         <li role="presentation">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li>
                         <li role="presentation">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
+                        <!-- <li role="presentation"><span class="glyphicon glyphicon-repeat" /><small>刷新</small> </li> -->
                     </ul>
-
-                </div>
-
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="H" align="center">Day One</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input id="input-bookName" type="text" ng-model="noteName" placeholder="请输入笔记本名称" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" id="btn1" class="btn btn-danger" data-dismiss="modal">关闭</button>
-                                <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" ng-click="add()">创建</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal -->
                 </div>
             </div>
         </nav>
     </div>
     <div id="notebook">
         <div @*ng-show="nav==1"*@ id="notebookn">
-            <div class="note" ng-repeat="note in [1,2]">
+            <div class="note" ng-repeat="note in notes">
                 <div class="note-left"></div>
                 <div class="note-body" ng-mouseover="show=true" ng-mouseout="show=false">
-                    <h4>{{note.BookName}}</h4>
-                    <a href="javascript:void(0);" class="note-remove" ng-class="{'note-operator-show':show}" title="删除">
+                    <h4><a href="/NoteBook/Note?bookId={{note.NoteBookId}}" style="color: white;">{{note.BookName}}</a></h4>
+                    <a href="javascript:void(0);" class="note-remove" ng-class="{'note-operator-show':show}" title="删除" ng-click="select(note);" data-toggle="modal" data-target="#notebook_removing_diaglog">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
-                    <a href="javascript:void(0);" class="note-edit" ng-class="{'note-operator-show':show}" title="修改">
-                        <span class="glyphicon glyphicon-pencil"></span>
+                    <a href="javascript:void(0);" class="note-edit" ng-class="{'note-operator-show':show}" title="修改" ng-click="select(note);" data-toggle="modal" data-target="#notebook_updating_diaglog">
+                        <span class="glyphicon glyphicon-pencil" ></span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- 确认删除对话框 -->
+    <div id="notebook_removing_diaglog" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">删除笔记本{{current.BookName}}？</h4>
+          </div>
+          <div class="modal-body">
+            <p><blockquote> 删除笔记本，将一同删除其中包含的笔记，确认删除？</blockquote></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="removeBook(current)">删除</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 新增笔记本对话框 -->
+    <div class="modal fade" id="notebook_creating_diaglog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:0">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" align="center">笔记本名？</h4>
+                </div>
+                <div class="modal-body form-group">
+                    <input type="text" class="form-control input-lg" ng-model="noteName" placeholder="请输入笔记本名称" />
+                    <p class="help-block"><blockquote><small>简洁的名字一枚 :)</small></blockquote></p>
+                </div>
+                <div class="modal-footer" style="border-top:0; padding-top: 0;">
+                    <button type="button" id="btn1" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" ng-click="add()">创建</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 新增笔记本对话框 -->
+    <div class="modal fade" id="notebook_updating_diaglog" tabindex="-1" role="dialog" aria-labelledby="notebook_updating_diaglog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:0">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" align="center">新名字？</h4>
+                </div>
+                <div class="modal-body form-group">
+                    <input type="text" class="form-control input-lg" ng-model="current.BookName" placeholder="请输入笔记本名称" />
+                    <p class="help-block"><blockquote><small>简洁的名字一枚 :)</small></blockquote></p>
+                </div>
+                <div class="modal-footer" style="border-top:0; padding-top: 0;">
+                    <button type="button" id="btn1" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="btn2" class="btn btn-success" data-dismiss="modal" ng-click="updateBook(current)">修改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
 </div>

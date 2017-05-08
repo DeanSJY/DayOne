@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DayOne.Entities;
+using DayOne.IoObjects;
 using DayOne.Services;
 
 
@@ -14,13 +15,13 @@ namespace DayOne.Controllers
     {
         private  NoteBookService notebookservice = new NoteBookService();
 
-        //笔记本
+        #region  笔记本
 
         /// <summary>
         /// 笔记本首页
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index()  //ok
         {
             return View("NoteBook", notebookservice.GetNoteBooks());
         }
@@ -30,35 +31,21 @@ namespace DayOne.Controllers
             return View();
         }
 
-        public JsonResult NoteList()
+        /// <summary>
+        /// 笔记本列表
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult NoteBookList()  //ok
         {
             var list = notebookservice.GetNoteBooks();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult NoteEdit()
-        {
-            return View("noteEdit");
-        }
-
-        public ActionResult RecycleNote()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View("recycleNote");
-        }
-        public ActionResult LoveNote()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View("loveNote");
-        }
-
-        public ActionResult AttachNote()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View("AttachmentNote");
-        }
-
+        /// <summary>
+        /// 新增笔记本
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpPost, Route("addNotebook")]
         public ActionResult AddNoteBook(string name)
         {
@@ -66,21 +53,100 @@ namespace DayOne.Controllers
             return Json(notebook);
         }
 
-        public bool AddNote(int bookId, string content, string title)
+        /// <summary>
+        /// 更新笔记本
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UpdateNoteBook(int bookId, string newName)
         {
-            return true;
+            var notebook = notebookservice.UpdateNoteBook(bookId, newName);
+            return Json(notebook);
         }
 
+        /// <summary>
+        /// 删除笔记本，并删除笔记本包含的笔记
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public JsonResult Delete(int bookId)  // ok
+        {
+            notebookservice.RemoveNoteBook(bookId);
+            return Json(true);
+        }
 
-        //修改笔记
-        //public ActionResult NoteEdit(int noteId)
-        //{
-        //    ViewBag.Message = "Your contact page.";
-        //    DayOneContext db = new DayOneContext();
-        //    var onenote = new DayOne.Entities.OneNote();
-        //    ViewData.Model = onenote;
-        //    return View();
-        //}
+        #endregion
+
+
+        #region 笔记
+
+            #region 页面
+
+        public ActionResult NoteListHtml()
+        {
+            return View("noteList");
+        }
+
+        public ActionResult NoteEditHtml()
+        {
+            return View("noteEdit");
+        }
+
+        public ActionResult NoteViewHtml()
+        {
+            return View("noteView");
+        }
+
+        public ActionResult NoteAddHtml()
+        {
+            return View("noteAdd");
+        }
+
+            #endregion
+
+        public ActionResult Note(int bookId)
+        {
+            var book = notebookservice.GetMyBook(bookId);
+
+            var notes = notebookservice.GetNotes(bookId);
+
+            return View(new NoteBookView(book, notes));
+        }
+
+        public JsonResult NoteList(int bookId)
+        {
+            var noteList = notebookservice.GetNotes(bookId);
+            return Json(noteList, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 添加笔记
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <param name="content"></param>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public JsonResult AddNote(NewNote note)
+        {
+            var oneNote = notebookservice.CreateNote(note);
+            return Json(oneNote);
+        }
+
+        /// <summary>
+        /// 修改笔记
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
+        public ActionResult NoteEdit(NoteUpdating noteUpdating)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState);
+            }
+
+            var oneNote = notebookservice.UpdateNote(noteUpdating);
+            return View(oneNote);
+        }
 
 
         //提交笔记内容
@@ -92,15 +158,40 @@ namespace DayOne.Controllers
         //}
 
 
-        //删除笔记
-        //public ActionResult DeleteNote(int noteId)
-        //{
-        //    DayOneContext db = new DayOneContext();
-        //    var onenote = db.OneNoteTable.FirstOrDefault(a => a.NoteId == noteId);
-        //    ViewData.Model = onenote;
-        //    db.OneNoteTable.Remove(onenote);
-        //    db.SaveChanges();
-        //    return View();
+        /// <summary>
+        /// 删除笔记
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
+
+        public ActionResult DeleteNote(int noteId)
+        {
+            notebookservice.RemoveNote2(noteId);
+            return View();
+        }
+
+        #endregion
+
+        public ActionResult RecycleNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("recycleNote");
+        }
+        public ActionResult LoveNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("loveNote");
+        }
+
+        public ActionResult AttachNote()
+        {
+            //ViewBag.Message = "Your contact page.";
+            return View("AttachmentNote");
+        }
+
+
+
+
         //}
 
         //[HttpPost]
