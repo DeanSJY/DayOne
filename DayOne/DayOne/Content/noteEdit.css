@@ -55,13 +55,14 @@
         .Lab {
             font-size:medium;
         }
-		a:link {
-			text-decoration:none;
-		}
         .a-txt{
             margin-right:25px;
             color:#722b72;
         }
+            .a-txt:hover {
+               color:black;
+               opacity:0.8;
+            }
 		.context{
 			width:88%;
 			height :90%;
@@ -107,12 +108,12 @@
             font-size:medium;
         }
 .col-md-2 {
-background-color:#CC9999;
+background-color:#ff006e;
 opacity:0.6;
 }
 
 .col-md-10 {
-background-color:#fff;
+background-color:white;
 opacity:0.85;
 z-index:-100;
 margin-left:0px;
@@ -128,6 +129,3 @@ border:0px;
     height:20px;
     }
 
-.a-txt:hover {
-    color:white;
-}

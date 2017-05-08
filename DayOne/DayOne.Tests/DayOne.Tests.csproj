@@ -113,7 +113,7 @@
       <Project>{c4cd05d7-5944-4834-bb8b-4c7cae67d16d}</Project>
       <Name>DayOne.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DayOne\DayOne2.csproj">
+    <ProjectReference Include="..\DayOne\DayOne.csproj">
       <Project>{4431A5E2-A870-4BEE-AF67-240D4FA25E29}</Project>
       <Name>DayOne2</Name>
     </ProjectReference>

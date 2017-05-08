@@ -207,6 +207,7 @@
     <Content Include="Image\123.jpg" />
     <Content Include="Image\222.jpg" />
     <Content Include="Image\book.png" />
+    <Content Include="Image\logo.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -989,7 +990,6 @@
     <Content Include="fonts\英章行书.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dayplan.js" />
-    <Content Include="Scripts\notebook2.js" />
     <Content Include="Scripts\weekplan.js" />
     <Content Include="Scripts\monthplan.js" />
     <Content Include="Scripts\yearplan.js" />

@@ -2,7 +2,7 @@
 	font-family:'zapfino';
 	src: url('../fonts/LinotypeZapfino Four.ttf');
 	}
-#title{
+/*#title{
 	font-family:'zapfino';
 	font-size: xx-large;
 	}
@@ -120,6 +120,7 @@
 	font-size: x-large;
 	font-family: "微软雅黑";
 	margin-right: -2%;
+    float:right;
 }
 .input1{
 	background-color: transparent;
@@ -182,8 +183,85 @@
 .glyphicon{
 	color: #722B72;
 	font-size: larger;
+}*/
+
+body{
+    background:#f3f3f3;
 }
 
+.user-info{
+    background:#fff;
+    margin-top:100px;
+    border-radius:20px;
+    position:relative;
+    border: 1px solid #dedede;
+    box-shadow: 1px 1px #e5e5e5;
+    padding: 0 20px;
+}
 
+.user-info-sign{
+    position:absolute;
+    width:80px;
+    height:40px;
+    background:#fff;
+    border-radius:40px 40px 0 0;
+    border: 1px solid #dedede;
+    border-top:0;
+    border-bottom:0;
+    top:-40px;
+    left:50%;
+    margin-left:-40px;
+}
+.user-info-sign>div{
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    background:#aaa;
+    margin:20px 20px 0 20px;
+}
 
+.user-info-title{
+    color: #722B72;
+    font-family:'zapfino';
+    text-align:center;
+    font-weight:bold;
+    padding-top: 5px;
+}
 
+.user-info-item{
+    border:1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom:20px;
+}
+.user-info-item a{
+    color: #722B72;
+    font-style: italic;
+    font-weight: bold;
+}
+.user-info-item a:hover{
+    color: #d822d8
+}
+.item-title{
+    color: #722B72;
+    font-style: italic;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.password-item{
+    display:none;
+}
+
+.user-info-button{
+    margin-bottom:30px;
+}
+.user-info-button>button{
+    background:#722B72;
+    color:#fff;
+}
+.user-info-button>button:hover,
+.user-info-button>button:focus{
+    background:#4c1e4c;
+    color:#fff;
+}
