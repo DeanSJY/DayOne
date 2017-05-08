@@ -55,7 +55,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="H2">Day One</h4>
                 </div>
-                <div class="modal-body">This note is categoryed to the Love Notes！</div>
+                <div class="modal-body">确定将该笔记归为爱心笔记吗？</div>
                 <div class="modal-footer">
                     <button type="button" id="Button5" class="btn btn-danger" data-dismiss=" modal">取消</button>
                     <button type="button" id="Button4" class="btn btn-success" data-dismiss="modal">确定</button>
@@ -72,15 +72,20 @@
             <div class="Cont" id="cont1" ng-repeat="note in notes">
                 <div class="context" ng-click="select(note)">
                     <b class="b1txt" id="b1">{{note.Title}}</b><br />
-                    <b class="b2txt" id="b2">错错错</b><br />
-                    <label class="Lab" id="Label1">啊啊啊</label>
+                    <b class="b2txt" id="b2">{{note.Content}}</b><br />
+                    <label class="Lab" id="Label1">{{note.StartAt}}</label>
                     <button id="bt1" class="btn btn-default" style="visibility:hidden" onclick="replay1();return false;">查看</button>
                 </div>
             </div>
+
         </div>
+        <!--左侧栏-->
+
+
 
         <!--右侧内容区域-->
         <div class="col-md-10" ng-include="contentUrl"></div>
 
     </div>
 </div>
+

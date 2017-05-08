@@ -82,8 +82,10 @@ namespace DayOne.Services
         /// 笔记本的列表
         /// </summary>
         /// <returns></returns>
+
         public List<NoteBook> GetNoteBooks()
         {
+
             var userId = AuthorizationContext.CurrentPrincipal.UserId;
 
             return CurrentDB.NoteBookTable.Where(o => o.UserId == userId).ToList();

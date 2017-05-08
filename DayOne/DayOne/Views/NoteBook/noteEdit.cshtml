@@ -58,59 +58,10 @@
         </div><!-- /.modal -->
     </div>
 
+
     <!--内容-->
     <div class="Div1" id="Div1">
         <!--左侧栏-->
-        <div class="col-md-2" id="Div2">
-            <!--框1-->
-            <div class="Cont" id="cont1">
-                <div class="context">
-                    <b class="b1txt" id="b1"></b><br />
-                    <b class="b2txt" id="b2"></b><br />
-                    <label class="Lab" id="Label1"></label>
-                    <button id="bt1" class="btn btn-default" style="visibility:hidden" onclick="replay1();return false;">查看</button>
-                </div>
-            </div>
-            <!--框2-->
-            <div class="Cont" id="cont2">
-                <div class="context">
-                    <b class="b1txt" id="b3"></b><br />
-                    <b class="b2txt" id="b4"></b><br />
-                    <label class="Lab" id="Label2"></label>
-                    <button id="bt2" class="btn btn-default" style="visibility:hidden" onclick="replay2();return false;">查看</button>
-                </div>
-            </div>
-            <!--框3-->
-            <div class="Cont" id="cont3">
-                <div class="context">
-                    <b class="b1txt" id="b5"></b><br />
-                    <b class="b2txt" id="b6"></b><br />
-                    <label class="Lab" id="Label3"></label>
-                    <button id="bt3" class="btn btn-default" style="visibility:hidden" onclick="replay3();return false;">查看</button>
-                </div>
-            </div>
-            <!--框4-->
-            <div class="Cont" id="cont4">
-                <div class="context">
-                    <b class="b1txt" id="b7"></b><br />
-                    <b class="b2txt" id="b8"></b><br />
-                    <label class="Lab" id="Label4"></label>
-                    <button id="bt4" class="btn btn-default" style="visibility:hidden" onclick="replay4();return false;">查看</button>
-                </div>
-            </div>
-            <!--框5-->
-            <div class="Cont" id="cont5">
-                <div class="context">
-                    <b class="b1txt" id="b9"></b><br />
-                    <b class="b2txt" id="b10"></b><br />
-                    <label class="Lab" id="Label5"></label>
-                    <button id="bt5" class="btn btn-default" style="visibility:hidden" onclick="replay5();return false;">查看</button>
-                </div>
-            </div>
-            <br /><br /><br /><br />
-
-        </div>
-
         <!--右侧内容区域-->
         <div class="col-md-10" >
             <!--按钮栏-->
@@ -122,30 +73,13 @@
                     </div>
                     <div >
                         <!--上传附件，我用的自带的控件，你自己改-->                    
-                        <a href="#" class="a-txt" onclick="myfunction3()">添加笔记</a>
+                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction3()">添加笔记</a>
                         <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction8()">删除笔记</a>
                         <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal3" onclick="myfunction2()">爱心笔记</a>
-                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal1" onclick="myfunction8()">保存笔记</a>
 
                     </div>
                 </div>
             </div>
-
-            <!--内容输入-->
-            @*<div id="d2">
-                <div>
-                    <!--显示附件-->
-                    <input id="TextBox4" type="text" />
-                    <!--输入标题-->
-                    <input type="text" id="TextBox1" placeholder="标题在此输入" />
-                    <hr />
-                </div>
-                <!--输入正文-->
-                <div style="height:100%;margin-top:30px">
-                    <textarea id="TextBox2" style="" placeholder="在此输入正文"></textarea>
-                </div>
-            </div>*@
-
             <form class="form-horizontal" name="noteForm" novalidate style="margin-top:80px;">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">标题：</label>
