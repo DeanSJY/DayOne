@@ -43,7 +43,7 @@
 
     <!--按钮栏-->
     <div class="toolbar row">
-        <div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt}}</div>
+        <div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt|longdate}}</div>
         <div class="col-md-5" @* style="margin-top: 10px; margin-bottom:10px;" *@>
 
             <a href="#" class="a-txt" ng-click="return_to_view()" ><span class="glyphicon glyphicon-off"></span>&nbsp;返回</a>

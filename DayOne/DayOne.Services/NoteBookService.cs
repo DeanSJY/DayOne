@@ -187,10 +187,16 @@ namespace DayOne.Services
         /// 笔记列表
         /// </summary>
         /// <param name="bookId"></param>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
         /// <returns></returns>
-        public List<OneNote> GetNotes(int bookId)
+        public List<OneNote> GetNotes(int bookId, int start = 0, int limit = 5)
         {
-            var notes = CreateNoteQuery().Where(o => o.BookId == bookId).ToList();
+            if (start < 0) start = 0;
+            if (limit < 0 || limit > 100) limit = 5;
+
+            var notes = CreateNoteQuery().Where(o => o.BookId == bookId)
+                .OrderByDescending(o => o.NoteId).Skip(start).Take(limit).ToList();
             return notes;
         }
 

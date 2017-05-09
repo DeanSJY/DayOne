@@ -4,30 +4,62 @@ app.controller("NoteListControl", function($scope, $http) {
     $scope.book = _gNoteBook;
     $scope.notes = _gNoteBook.NoteList;
 
+    $scope.offset = {
+        start: 0,
+        limit: 5,
+
+        getUrl: function() {
+            return "start=" + $scope.offset.start + "&limit=" + $scope.offset.limit;
+        }
+    };
+
     $scope.current = $scope.notes[0] || {};
     $scope.contentUrl = "/NoteBook/NoteViewHtml";
 
     _gNoteBook = null;
 
     $scope.select = function(note) {
-        $scope.current = angular.copy(note);
+        $scope.current = note;
         $scope.contentUrl = "/NoteBook/NoteViewHtml";
     };
 
     $scope.refresh_note_list = function() {
-        $http.get("/NoteBook/NoteList?bookId=" + $scope.book.NoteBookId)
+        $http.get("/NoteBook/NoteList?bookId=" + $scope.book.NoteBookId + "&" + $scope.offset.getUrl())
             .then(function(response) {
                 $scope.notes = response.data;
                 if ($scope.current != null && $scope.current.NoteId >= 0) {
                     for (var i in $scope.notes) {
                         if ($scope.notes[i].NoteId === $scope.current.NoteId) {
-                            return $scope.current = angular.copy($scope.notes[i]);
+                            return $scope.current = $scope.notes[i];
                         }
                     }
                 }
 
-                $scope.current = angular.copy($scope.notes[0] || {});
+                $scope.current = $scope.notes[0] || {};
+                $scope.contentUrl = "/NoteBook/NoteViewHtml";
             });
+    };
+
+    $scope.goto_previous = function() {
+        $scope.offset.start = $scope.offset.start + 5;
+        $scope.refresh_note_list();
+    };
+
+    $scope.has_previous = function(){
+        return $scope.offset.start != null && !!$scope.notes && $scope.notes.length === $scope.offset.limit;
+    };
+
+    $scope.goto_next = function() {
+        $scope.offset.start = $scope.offset.start - 10;
+        if ($scope.offset.start < 0) {
+            $scope.offset.start = 0;
+        }
+        $scope.refresh_note_list();
+    };
+
+    $scope.has_next = function() {
+        return $scope.offset.start > 0;
+        
     };
 
     $scope.prepare_create_note = function() {
@@ -35,7 +67,8 @@ app.controller("NoteListControl", function($scope, $http) {
         $scope.current = {
             BookId: $scope.book.NoteBookId,
             Title: "",
-            Content: ""
+            Content: "",
+            LoveOrNot: false
         };
 
         $scope.contentUrl = "/NoteBook/NoteAddHtml";
@@ -59,7 +92,8 @@ app.controller("NoteListControl", function($scope, $http) {
     };
 
     $scope.prepare_edit_note = function() {
-        $scope.current2 = angular.copy($scope.current);
+        $scope.current2 = $scope.current;
+        $scope.current = angular.copy($scope.current);
         $scope.contentUrl = "/NoteBook/NoteEditHtml";
     };
 
@@ -78,7 +112,7 @@ app.controller("NoteListControl", function($scope, $http) {
     };
 
     $scope.cancel_edit_note = function(validate) {
-        $scope.current = angular.copy($scope.current2);
+        $scope.current = $scope.current2;
         $scope.contentUrl = "/NoteBook/NoteViewHtml";
     };
 

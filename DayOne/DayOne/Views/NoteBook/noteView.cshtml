@@ -3,7 +3,7 @@
 }
 <!--按钮栏-->
 <div class="toolbar row">
-	<div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt}} </div>
+	<div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt|longdate}} </div>
 	<div class="col-md-5" @* style="margin-top: 10px; margin-bottom:10px;" *@>
         <!--上传附件，我用的自带的控件，你自己改 -->       
         <a href="#" class="a-txt" data-toggle="modal" data-target="#note_deleting_dialog">删除笔记</a>
@@ -18,4 +18,4 @@
 
 <!-- 内容栏 -->
 <p class="title">{{current.Title}}</p>
-<div class="content">{{current.Content}}</div>
+<div class="content"><pre>{{current.Content}}</pre></div>

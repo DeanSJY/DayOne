@@ -139,7 +139,7 @@ div.notepanel > .notelist {
 
 div.notepanel > .notelist > .summary {
     min-height:10%;
-    margin-left:10px
+    margin-left:-10px
 }
 
 div.notepanel > .notelist > .summary > .title {
@@ -149,7 +149,7 @@ div.notepanel > .notelist > .summary > .title {
 }
 
 div.notepanel > .notelist > .summary > .text {
-    max-height: 60%;
+    max-height: 200px;
     overflow: hidden;
     text-indent: initial;
 }

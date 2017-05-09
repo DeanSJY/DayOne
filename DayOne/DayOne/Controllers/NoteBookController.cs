@@ -113,9 +113,9 @@ namespace DayOne.Controllers
             return View(new NoteBookView(book, notes));
         }
 
-        public JsonResult NoteList(int bookId)
+        public JsonResult NoteList(int bookId, int start, int limit)
         {
-            var noteList = notebookservice.GetNotes(bookId);
+            var noteList = notebookservice.GetNotes(bookId, start, limit);
             return Json(noteList, JsonRequestBehavior.AllowGet);
         }
 
