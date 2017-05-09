@@ -10,8 +10,10 @@ namespace DayOne.IoObjects
 {
     public class NewNote
     {
+        [MinLength(1, ErrorMessage = "标题太短")]
         public string Title { get; set; }
 
+        [MinLength(1, ErrorMessage = "内容太短")]
         public string Content { get; set; }
 
         [Range(0, Int32.MaxValue)]

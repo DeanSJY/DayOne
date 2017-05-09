@@ -1,11 +1,10 @@
 ﻿@{
+    Layout = null;
     ViewBag.Title = "笔记本";
  }
-<link rel="stylesheet" href="~/Content/noteEdit.css" />
-<script src="~/Scripts/angular.js"></script>
-<script src="~/Scripts/notebook.js"></script>
+
 <div>
-    <!--保存笔记模态框-->
+    @* <!--保存笔记模态框-->
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -22,23 +21,6 @@
         </div><!-- /.modal -->
     </div>
 
-    <!--删除笔记模态框-->
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="H1">Day One</h4>
-                </div>
-                <div class="modal-body">确定要删除笔记吗？</div>
-                <div class="modal-footer">
-                    <button type="button" id="Button1" class="btn btn-danger" data-dismiss="modal">关闭</button>
-                    <button type="button" id="Button2" class="btn btn-success" onclick="myfunction5();return false;" data-dismiss="modal">确定</button>
-                    <button type="button" id="Button3" class="btn btn-warning" onclick="gotobin()">查看回收站</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
 
     <!--爱心笔记模态框-->
     <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -57,46 +39,38 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+    *@
 
+    <!--按钮栏-->
+    <div class="toolbar row">
+        <div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt}}</div>
+        <div class="col-md-5" @* style="margin-top: 10px; margin-bottom:10px;" *@>
 
-    <!--内容-->
-    <div class="Div1" id="Div1">
-        <!--左侧栏-->
-        <!--右侧内容区域-->
-        <div class="col-md-10" >
-            <!--按钮栏-->
-            <div id="d1">
-                <div style="text-align:left;font-size:15px;margin-top:16px;font-weight:bold">
-                    <div class="col-md-6">
-                        <asp:Label ID="lab1" runat="server" style="color:#722b72;font-family:'Microsoft YaHei'" Text="创建时间"></asp:Label>
-                        <asp:Label ID="lab2" runat="server" style="color:#722b72;font-family:'Microsoft YaHei';margin-left:15%" Text="修改时间"></asp:Label>
-                    </div>
-                    <div >
-                        <!--上传附件，我用的自带的控件，你自己改-->                    
-                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction3()">添加笔记</a>
-                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal2" onclick="myfunction8()">删除笔记</a>
-                        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal3" onclick="myfunction2()">爱心笔记</a>
-
-                    </div>
-                </div>
-            </div>
-            <form class="form-horizontal" name="noteForm" novalidate style="margin-top:80px;">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">标题：</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="标题在此输入" />
-                    </div>
-                    
-                </div>
-
-                <div class="form-group" style="margin-top:30px;">
-                    <label class="col-sm-2 control-label">正文：</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" rows="20" placeholder="在此输入正文..."></textarea>
-                    </div>
-                </div>
-            </form>
-
+            <a href="#" class="a-txt" ng-click="return_to_view()" ><span class="glyphicon glyphicon-off"></span>&nbsp;返回</a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#note_deleting_dialog">删除笔记</a>
+            <a href="#" class="a-txt" @* data-toggle="modal" data-target="#myModal1" *@ ng-click="post_edit_note(current)">保存笔记</a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#mark_love_dialog" >
+                <span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart"></span>
+                <span ng-if="!current.LoveOrNot" class="glyphicon glyphicon glyphicon-heart-empty"></span> &nbsp;爱心笔记
+            </a>
         </div>
     </div>
+
+
+    <form class="form-horizontal" name="noteForm" novalidate style="margin-top:80px;">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">标题：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="标题在此输入" ng-model="current.Title" />
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:30px;">
+            <label class="col-sm-2 control-label">正文：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" rows="20" placeholder="在此输入正文..." ng-model="current.Content" ></textarea>
+            </div>
+        </div>
+    </form>
+
 </div>

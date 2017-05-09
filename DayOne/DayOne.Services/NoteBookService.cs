@@ -85,7 +85,6 @@ namespace DayOne.Services
 
         public List<NoteBook> GetNoteBooks()
         {
-
             var userId = AuthorizationContext.CurrentPrincipal.UserId;
 
             return CurrentDB.NoteBookTable.Where(o => o.UserId == userId).ToList();
@@ -233,11 +232,16 @@ namespace DayOne.Services
         /// 是否将笔记设置为爱心笔记
         /// </summary>
         /// <param name="noteId"></param>
-        public void LoveIt(int noteId)
+        public bool ToggleLoveIt(int noteId)
         {
-            var note = CurrentDB.OneNoteTable.Find(noteId);
-            note.LoveOrNot = true;
-            CurrentDB.SaveChanges();
+            var note = GetMyNote(noteId);
+            if (note != null)
+            {
+                note.LoveOrNot = !note.LoveOrNot;
+                CurrentDB.SaveChanges();
+                return note.LoveOrNot;
+            }
+            return false;
         }
 
         /// <summary>

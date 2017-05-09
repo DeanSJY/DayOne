@@ -13,7 +13,7 @@ namespace DayOne.Controllers
     [RoutePrefix("NoteBook")]
     public class NoteBookController : Controller
     {
-        private  NoteBookService notebookservice = new NoteBookService();
+        private NoteBookService notebookservice = new NoteBookService();
 
         #region  笔记本
 
@@ -21,7 +21,7 @@ namespace DayOne.Controllers
         /// 笔记本首页
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()  //ok
+        public ActionResult Index() //ok
         {
             return View("NoteBook", notebookservice.GetNoteBooks());
         }
@@ -35,7 +35,7 @@ namespace DayOne.Controllers
         /// 笔记本列表
         /// </summary>
         /// <returns></returns>
-        public JsonResult NoteBookList()  //ok
+        public JsonResult NoteBookList() //ok
         {
             var list = notebookservice.GetNoteBooks();
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -69,7 +69,7 @@ namespace DayOne.Controllers
         /// <param name="bookId"></param>
         /// <returns></returns>
         [HttpDelete]
-        public JsonResult Delete(int bookId)  // ok
+        public JsonResult Delete(int bookId) // ok
         {
             notebookservice.RemoveNoteBook(bookId);
             return Json(true);
@@ -80,7 +80,7 @@ namespace DayOne.Controllers
 
         #region 笔记
 
-            #region 页面
+        #region 页面
 
         public ActionResult NoteListHtml()
         {
@@ -102,7 +102,7 @@ namespace DayOne.Controllers
             return View("noteAdd");
         }
 
-            #endregion
+        #endregion
 
         public ActionResult Note(int bookId)
         {
@@ -128,6 +128,11 @@ namespace DayOne.Controllers
         /// <returns></returns>
         public JsonResult AddNote(NewNote note)
         {
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState);
+            }
+
             var oneNote = notebookservice.CreateNote(note);
             return Json(oneNote);
         }
@@ -137,7 +142,7 @@ namespace DayOne.Controllers
         /// </summary>
         /// <param name="noteId"></param>
         /// <returns></returns>
-        public ActionResult NoteEdit(NoteUpdating noteUpdating)
+        public JsonResult NoteEdit(NoteUpdating noteUpdating)
         {
             if (!ModelState.IsValid)
             {
@@ -145,7 +150,13 @@ namespace DayOne.Controllers
             }
 
             var oneNote = notebookservice.UpdateNote(noteUpdating);
-            return View(oneNote);
+            return Json(oneNote);
+        }
+
+        public JsonResult ToggleLoveIt(int noteId)
+        {
+            var result = notebookservice.ToggleLoveIt(noteId);
+            return Json(result);
         }
 
 
@@ -163,11 +174,11 @@ namespace DayOne.Controllers
         /// </summary>
         /// <param name="noteId"></param>
         /// <returns></returns>
-
-        public ActionResult DeleteNote(int noteId)
+        [HttpDelete]
+        public JsonResult DeleteNote(int noteId)
         {
             notebookservice.RemoveNote2(noteId);
-            return View();
+            return Json(true);
         }
 
         #endregion
