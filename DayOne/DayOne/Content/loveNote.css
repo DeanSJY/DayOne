@@ -15,14 +15,39 @@
         #a-txt1{
             color:white;
         }
-        .DIV2 {
+        .loveNotePanel {
             background-color:#515151;
-            height:100%;
-            width:100%;
-            position:fixed;
+            min-height: 500px;
+            /*height:100%;
+            width:100%;*/
+            /*position:fixed;*/
             margin-top:0;
+            padding-top: 10px;
             overflow-y:auto;
         }
+        .loveNotePanel .panel.panel-note {
+            background-color:#EDEDED;
+        }
+
+        .loveNotePanel .panel.panel-note  .title {
+            color:#722b72;
+            font-size:xx-large;
+        }
+
+        .loveNotePanel .panel.panel-note .onenote {
+            /*padding-bottom: 30px;*/
+            border-bottom: 1px black solid;
+            margin-bottom: 30px;
+        }
+
+        .loveNotePanel .panel.panel-note .toolbar {
+            color: grey;
+        }
+
+        .loveNotePanel .panel.panel-note .toolbar a{
+            color: grey;
+        }
+
         .DIV3{
             height :50%;
             width:50%;

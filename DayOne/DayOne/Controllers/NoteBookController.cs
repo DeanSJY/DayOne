@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DayOne.App_Start;
 using DayOne.Entities;
 using DayOne.IoObjects;
 using DayOne.Services;
@@ -116,6 +117,56 @@ namespace DayOne.Controllers
         public JsonResult NoteList(int bookId, int start, int limit)
         {
             var noteList = notebookservice.GetNotes(bookId, start, limit);
+            return Json(noteList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult LoveNoteList(int start, int limit)
+        {
+            Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
+            {
+                NoteId = o.NoteId,
+                CreateAt = o.CreateAt,
+                UpdateAt = o.UpdateAt,
+                Title = o.Title,
+                Content = o.Content,
+                LoveOrNot = o.LoveOrNot,
+                UserId = o.UserId,
+                UserName = o.User.UserName,
+                BookId = o.BookId,
+                BookName = o.Book.BookName,
+                IsDeleted = o.IsDeleted,
+                LoveCount = o.LoveCount,
+                WithAttach = o.WithAttach,
+                KeyWords = o.KeyWords
+            };
+
+            var noteList = JsonDataList.CreateResult(notebookservice.GetLoveList2(), transfrom, start, limit);
+
+            return Json(noteList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult RecyleNoteList(int start, int limit)
+        {
+            Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
+            {
+                NoteId = o.NoteId,
+                CreateAt = o.CreateAt,
+                UpdateAt = o.UpdateAt,
+                Title = o.Title,
+                Content = o.Content,
+                LoveOrNot = o.LoveOrNot,
+                UserId = o.UserId,
+                UserName = o.User.UserName,
+                BookId = o.BookId,
+                BookName = o.Book.BookName,
+                IsDeleted = o.IsDeleted,
+                LoveCount = o.LoveCount,
+                WithAttach = o.WithAttach,
+                KeyWords = o.KeyWords
+            };
+
+            var noteList = JsonDataList.CreateResult(notebookservice.GetRecycleList2(), transfrom, start, limit);
+
             return Json(noteList, JsonRequestBehavior.AllowGet);
         }
 

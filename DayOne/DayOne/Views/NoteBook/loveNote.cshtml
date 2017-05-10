@@ -1,12 +1,13 @@
 ﻿@{
     ViewBag.Title = "爱心笔记";
+    Layout = "~/Views/Shared/NoteBook2.cshtml";
 }
-<link rel="stylesheet" href="~/Content/loveNote.css" />
-<script href="~/Scripts/notebook.js" rel="stylesheet"></script>
-<script>
+
+@section headers{
+    <script src="/Scripts/lovenotes.js"></script>
+    <script type="text/javascript">
         //参数传递值的获取
-        function GetRequest()
-        {
+        function GetRequest() {
             var url = location.search; //获取url中"?"符后的字串
             var theRequest = new Object();
             if (url.indexOf("?") != -1) {
@@ -20,8 +21,7 @@
         }
 
         //页面跳转传递参数，显示删除的笔记信息
-        function show()
-        {
+        function show() {
             var a = GetRequest();
             var index_1 = a['title'];
             var b = GetRequest();
@@ -32,37 +32,56 @@
             document.getElementById("TextBox1").value = index_2;
             document.getElementById("Label1").innerHTML = index_3;
         }
-        function goback()
-        {
+        function goback() {
             history.go(-1);
         }
-</script>
 
-<div class="DIV1" style="width:100%;height:50px">
-    <nav class="navbar navbar-tabs navbar-static" role="navigation" style="background-color:white;width:100%;">
-        <div class="container-fluid">
-            <div class="col-md-6">
-                <ul class="nav nav-pills">
-                    <li role="presentation">@Html.ActionLink("添加笔记", "NoteEdit", "NoteBook")</li>
-                    <li role="presentation">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
-                    <li role="presentation">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li>
-                    <li role="presentation">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
-                </ul>
-            </div>
-            <div class="col-md-6" style="padding-left:25%">
-                <div class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="笔记搜索" id="input" />
+    </script>
+}
+
+
+@*<div class="DIV1" style="width:100%;height:50px">
+        <nav class="navbar navbar-tabs navbar-static" role="navigation" style="background-color:white;width:100%;">
+            <div class="container-fluid">
+                <div class="col-md-6">
+                    <ul class="nav nav-pills">
+                        <li role="presentation">@Html.ActionLink("添加笔记", "NoteEdit", "NoteBook")</li>
+                        <li role="presentation">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
+                        <li role="presentation">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li>
+                        <li role="presentation">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" style="padding-left:25%">
+                    <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="笔记搜索" id="input" />
+                        </div>
+                        <button type="button" class="btn btn-default" id="btn-go" onclick="myfunction6()">GO!</button>
                     </div>
-                    <button type="button" class="btn btn-default" id="btn-go" onclick="myfunction6()">GO!</button>
                 </div>
             </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>*@
 
 <!--内容-->
-<div class="DIV2">
+<div class="loveNotePanel row" ng-controller="LoveNoteCtrl">
+    <!-- <div class="col-sm-1"><span class="glyphicon glyphicon-backward" style="color:white;"></span></div> -->
+    <div class="col-sm-10 col-sm-offset-1 panel panel-note">
+        <div ng-repeat="note in notes" class="onenote">
+            <p class="title" >
+                <span class="glyphicon glyphicon-heart-empty" ></span>
+                <span style="vertical-align:super;">{{note.Title}}</span>
+            </p>
+            <p class="remark">
+                <span>更新时间: {{note.UpdateAt|longdate}}</span>&nbsp;&nbsp;
+                <span>笔记本名称: {{note.BookName}}</span>
+            </p>
+            <p class="content">{{note.Content}}</p>
+        </div>
+    </div>
+    <!-- <div class="col-sm-1"><span class="glyphicon glyphicon-forward" style="color:white;"></span></div> -->
+
+    <!--
     <div class="DIV3">
         <div class="context">
             <div class="DIV4">
@@ -70,19 +89,17 @@
                     <span class="glyphicon glyphicon-heart-empty" style="color:#722b72;font-size:xx-large"></span>
                 </div>
                 <div class="col-md-10">
-                    <input id="input1" style="margin-left:20%;background-color:transparent;border-style:none;font-size:x-large;" />
+                    <input id="input1" style="margin-left:20%;background-color:transparent;border-style:none;font-size:x-large;" ng-model="current.Content" />
                 </div>
             </div>
             <div>
-                <textarea id="TextBox1" rows="10" style="width:90%;background-color:transparent;border-style:none;font-size:medium;"></textarea>
+                <textarea id="TextBox1" rows="10" style="width:90%;background-color:transparent;border-style:none;font-size:medium;" ng-model="current.Content"></textarea>
             </div>
         </div>
         <div class="Time">
             <label id="Label1"></label>
         </div>
         <button class="btn btn-warning" onclick="goback()">返回</button>
-
     </div>
-    <br /><br />
-
+    -->
 </div>

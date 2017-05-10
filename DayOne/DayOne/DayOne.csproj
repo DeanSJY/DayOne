@@ -167,6 +167,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\JsonDataResult.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\TransactionLifecycle.cs" />
@@ -239,6 +240,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\basic.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -996,6 +998,7 @@
     <Content Include="Scripts\dayplan.js" />
     <Content Include="Scripts\note.js" />
     <Content Include="Scripts\notebook2.js" />
+    <Content Include="Scripts\recyclenotes.js" />
     <Content Include="Scripts\weekplan.js" />
     <Content Include="Scripts\monthplan.js" />
     <Content Include="Scripts\yearplan.js" />
@@ -1014,6 +1017,7 @@
     <Content Include="Scripts\userInfo.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\DayPlan\addplanhtml.cshtml" />
     <None Include="Views\DayPlan\dayplan.cshtml" />
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
@@ -1027,6 +1031,7 @@
     <Content Include="Views\DayPlan\weekplan.cshtml" />
     <Content Include="Views\DayPlan\monthplan.cshtml" />
     <Content Include="Views\DayPlan\yearplan.cshtml" />
+    <Content Include="Views\Shared\NoteBook2.cshtml" />
     <None Include="Views\Share\share.cshtml" />
     <None Include="Views\NoteBook\noteEdit.cshtml" />
     <None Include="Views\Home\UserInfo.cshtml" />

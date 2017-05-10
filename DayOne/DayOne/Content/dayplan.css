@@ -41,12 +41,67 @@
     font-size: 20px;
     margin-left: 15px;
 }
-span{
+/*span{
 	color:#330033 ;
 	font-size: 25px;
 	margin-left: 80px;
-}
+}*/
 .timeAt{
 	margin-left: 0px;
 	font-size: 20px;
+}
+
+.plans {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.plans > .planList {
+	/*background-color: #ccc;*/
+	min-height: 300px;
+	padding: 5px;
+}
+
+.plans > .planList > .panel {
+	background-color: #eeeeee;
+	min-height: 300px;
+}
+
+.plans > .planList > .panel > .title{
+	font-weight: bold;
+	padding-left: 15px;
+	padding-top: 10px;
+}
+
+.plans > .planList > .panel > .plan{
+	background-color: white;
+	margin: 10px 7px 10px 7px;
+	padding: 10px;
+}
+
+.plans > .planList > .panel  .toolbar{
+	background-color: white;
+	margin: 10px 7px 10px 7px;
+	/*padding: 10px;*/
+	font-size: 14px;
+}
+
+.plans > .planList > .panel .toolbar a{
+	color: #286090;
+}
+
+.plans > .planList > .panel > .plan:hover{
+	border-left: 3px #722b72 solid;
+	padding-left: 7px;
+}
+
+.plans > .planList > .panel > .plan > .marker{
+	color:#eee;
+	cursor: pointer;
+}
+
+.plans > .planList > .panel > .plan > .marker:hover,
+.plans > .planList > .panel > .plan > .marker.shareOrNot
+{
+	color: #722b72 !important;
 }

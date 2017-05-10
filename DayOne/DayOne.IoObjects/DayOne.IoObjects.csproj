@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,6 +49,7 @@
     <Compile Include="NewNote.cs" />
     <Compile Include="NoteBookView.cs" />
     <Compile Include="NoteUpdating.cs" />
+    <Compile Include="OneNoteView.cs" />
     <Compile Include="ShareableContent.cs" />
     <Compile Include="UserDayPlan.cs" />
     <Compile Include="UserNoteBook.cs" />
@@ -57,6 +62,9 @@
       <Project>{141d19b2-f76b-4d69-8716-dc4208eba0f3}</Project>
       <Name>DayOne.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

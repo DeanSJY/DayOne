@@ -1,12 +1,57 @@
 ﻿@{
     ViewBag.Title = "日计划";
 }
-<link rel="stylesheet"  href="~/Content/dayplan.css" />
-<script src="~/Scripts/dayplan.js"></script>
+@section headers{
+    <link rel="stylesheet"  href="~/Content/dayplan.css" />
+    <script src="/Scripts/angular.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var app = angular.module('ngApp', []);
+    </script>
+    <script src="~/Scripts/dayplan.js"></script>
+}
 
 
 
-<div class="left-side">
+<div class="plans row" ng-controller="DayPlanController">
+    <div class="col-sm-3 planList" ng-controller="OnePlanController">
+        <div class="panel panel-default">
+            <div class="title">日计划 * {{plans.length}}</div>
+            <div class="plan checkbox" ng-repeat="plan in plans">
+                <label class="checkbox-inline">
+                  <input type="checkbox">{{plan}}
+                </label>
+                <span class="glyphicon glyphicon-star-empty pull-right marker"></span>
+            </div>
+            <ng-include src="'/dayplan/addplanhtml'" />   
+        </div>
+    </div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController">
+        <div class="panel panel-default">
+            <div class="title">日计划</div>
+            <div class="plan" ng-repeat="plan in plans">
+                {{plan}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController">
+        <div class="panel panel-default">
+            <div class="title">日计划</div>
+            <div class="plan" ng-repeat="plan in plans">
+                {{plan}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController">
+        <div class="panel panel-default">
+            <div class="title">日计划</div>
+            <div class="plan" ng-repeat="plan in plans">
+                {{plan}}
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="left-side">
     <div id="left-top"></div>
     <button class="plan-btn" onclick="">日计划</button>
     <button class="plan-btn" onclick="week()">周计划</button>
@@ -36,5 +81,5 @@
     </div>
 
 
-</div>
+</div>*@
 

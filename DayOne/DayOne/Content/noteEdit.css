@@ -146,6 +146,7 @@ div.notepanel > .notelist > .summary > .title {
     font-weight:bold;
     margin-top:2px;
     font-size:x-large;
+    overflow: hidden;
 }
 
 div.notepanel > .notelist > .summary > .text {

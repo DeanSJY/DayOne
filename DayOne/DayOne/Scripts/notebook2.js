@@ -1,11 +1,16 @@
-var app = angular.module('ngApp', []);
+app.controller("NoteBookViewCTRL", function($scope, ) {
+
+    $scope.reload = function() {
+        $scope.$broadcast("reload");
+    };
+});
 
 app.controller("noteCtrl", function($scope, $http) {
     $scope.nav = 1;
     $scope.current = null;
 
-    $scope.select = function(note){
-        $scope.current = note; 
+    $scope.select = function(note) {
+        $scope.current = note;
     };
 
     $scope.refresh_notebook_list = function() {
@@ -31,9 +36,9 @@ app.controller("noteCtrl", function($scope, $http) {
             .then($scope.refresh_notebook_list);
     };
 
-    $scope.addnote = function(onenote){
-        onenote =  angular.extend({
-            BookId : 0,
+    $scope.addnote = function(onenote) {
+        onenote = angular.extend({
+            BookId: 0,
             Title: "empty",
             Content: ""
         }, onenote);

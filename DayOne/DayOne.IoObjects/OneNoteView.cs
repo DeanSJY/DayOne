@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+using DayOne.Entities;
 
-namespace DayOne.Entities
+namespace DayOne.IoObjects
 {
-    public class OneNote
+    public class OneNoteView
     {
         [Key]
         public int NoteId { get; set; }
@@ -22,24 +22,23 @@ namespace DayOne.Entities
 
         public string Content { get; set; }
 
-        public Boolean LoveOrNot { get; set; }
+        public bool LoveOrNot { get; set; }
 
         public int UserId { get; set; }
 
-        [ForeignKey("UserId"), ScriptIgnore]
-        public virtual UserInfo User { get; set; }
+        public string UserName { get; set; }
 
         public int BookId { get; set; }
 
-        [ForeignKey("BookId"), ScriptIgnore]
-        public virtual NoteBook Book { get; set; }
+        public string BookName { get; set; }
 
-        public Boolean IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public int LoveCount { get; set; }
 
         public bool WithAttach { get; set; }
 
         public string KeyWords { get; set; }
+
     }
 }

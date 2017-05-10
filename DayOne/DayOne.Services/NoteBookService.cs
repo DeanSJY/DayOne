@@ -211,6 +211,14 @@ namespace DayOne.Services
             return notes;
         }
 
+        public IQueryable<OneNote> GetRecycleList2()
+        {
+            var notes = CreateNoteQuery(true).Where(o =>  o.IsDeleted)
+                .Include(o=>o.User).Include(o=>o.Book)
+                .OrderByDescending(o=>o.NoteId);
+            return notes;
+        }
+
         /// <summary>
         /// 附件笔记罗列的页面
         /// </summary>
@@ -226,9 +234,40 @@ namespace DayOne.Services
         /// 爱心笔记罗列的页面
         /// </summary>
         /// <returns></returns>
-        public List<OneNote> GetLoveList(int BookId)
+        public IQueryable<OneNote> GetLoveList2()
         {
-            var loveNotes = CreateNoteQuery().Where(o => o.BookId == BookId && o.LoveOrNot).ToList();
+            var loveNotes = CreateNoteQuery().Where(o => o.LoveOrNot)
+                .Include(o=>o.Book)
+                .Include(o=>o.User)
+                .OrderByDescending(o => o.NoteId);
+            return loveNotes;
+        }
+
+        /// <summary>
+        /// 爱心笔记罗列的页面
+        /// </summary>
+        /// <returns></returns>
+        public List<OneNoteView> GetLoveList(int start = 0, int limit = 5)
+        {
+            var loveNotes = CreateNoteQuery().Where(o => o.LoveOrNot)
+                .OrderByDescending(o => o.NoteId).Skip(0).Take(limit)
+                .Select(o => new OneNoteView()
+                {
+                    NoteId = o.NoteId,
+                    CreateAt = o.CreateAt,
+                    UpdateAt = o.UpdateAt,
+                    Title = o.Title,
+                    Content = o.Content,
+                    LoveOrNot = o.LoveOrNot,
+                    UserId = o.UserId,
+                    UserName = o.User.UserName,
+                    BookId = o.BookId,
+                    BookName = o.Book.BookName,
+                    IsDeleted = o.IsDeleted,
+                    LoveCount = o.LoveCount,
+                    WithAttach = o.WithAttach,
+                    KeyWords = o.KeyWords
+                }).ToList();
             return loveNotes;
         }
 
