@@ -36,12 +36,27 @@ namespace DayOne.Controllers
         #region API
         public JsonResult AddPlan(PlanInput planInput)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return Json(ModelState.GetEnumerator());
+                return Json(ModelState.toJson());
             }
 
             return Json(planServices.CreatePlan(planInput));
+        }
+
+        public JsonResult Update(PlanUpdateInput updateInput)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState.toJson());
+            }
+            return Json(planServices.UpdatePlan(updateInput), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpDelete]
+        public JsonResult Delete(int planId)
+        {
+            return Json(planServices.DeletePlan(planId), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult List(int start, int limit, PlanType type)
@@ -51,6 +66,20 @@ namespace DayOne.Controllers
             return Json(JsonDataList.CreateResult(statement, start, limit), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ToggleCompleted(int planId)
+        {
+            return Json(planServices.ToggleCompleted(planId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ToggleLoveOrNot(int planId)
+        {
+            return Json(planServices.ToggleLoveOrNot(planId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ToggleShareOrNot(int planId)
+        {
+            return Json(planServices.ToggleShareOrNot(planId), JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

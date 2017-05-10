@@ -50,6 +50,7 @@
     <Compile Include="NoteBookView.cs" />
     <Compile Include="NoteUpdating.cs" />
     <Compile Include="OneNoteView.cs" />
+    <Compile Include="PlanUpdateInput.cs" />
     <Compile Include="ShareableContent.cs" />
     <Compile Include="PlanInput.cs" />
     <Compile Include="UserNoteBook.cs" />

@@ -13,7 +13,7 @@ namespace DayOne.IoObjects
 
         public string Content { get; set; }
 
-        public DateTime ExpectEndAt { get; set; }
+        public DateTime? ExpectEndAt { get; set; }
 
         public bool LoveOrNot { get; set; }
 
@@ -22,9 +22,9 @@ namespace DayOne.IoObjects
             var plan = new DayPlan()
             {
                 CreateAt =  DateTime.Now,
-                ExpectEndAt = DateTime.Now,
+                ExpectEndAt = p.ExpectEndAt,
                 LoveOrNot = p.LoveOrNot,
-                Type = p.PlanType,
+                PlanType = p.PlanType,
                 Content = p.Content
             };
 

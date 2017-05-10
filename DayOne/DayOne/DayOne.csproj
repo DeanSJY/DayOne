@@ -176,6 +176,7 @@
     <Compile Include="Controllers\DayPlanController.cs" />
     <Compile Include="Controllers\ForgetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModelStateHelper.cs" />
     <Compile Include="Controllers\NoteBookController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
@@ -197,6 +198,16 @@
     <Content Include="Content\DayOne.css" />
     <Content Include="Content\dayplan.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\myth\ngDialog-theme-default.css" />
+    <Content Include="Content\myth\ngDialog-theme-plain.css" />
+    <Content Include="Content\myth\ngDialog.css" />
+    <Content Include="Content\ngDialog-custom-width.css" />
+    <Content Include="Content\ngDialog-theme-default.css" />
+    <Content Include="Content\ngDialog-theme-default.min.css" />
+    <Content Include="Content\ngDialog-theme-plain.css" />
+    <Content Include="Content\ngDialog-theme-plain.min.css" />
+    <Content Include="Content\ngDialog.css" />
+    <Content Include="Content\ngDialog.min.css" />
     <Content Include="Content\notebook.css" />
     <Content Include="Content\noteEdit.css" />
     <Content Include="Content\register.css" />
@@ -996,6 +1007,9 @@
     <Content Include="fonts\英章行书.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dayplan.js" />
+    <Content Include="Scripts\lovenotes.js" />
+    <Content Include="Scripts\ngDialog.js" />
+    <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Scripts\note.js" />
     <Content Include="Scripts\notebook2.js" />
     <Content Include="Scripts\recyclenotes.js" />

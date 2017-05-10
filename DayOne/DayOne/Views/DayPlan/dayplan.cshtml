@@ -3,13 +3,32 @@
 }
 @section headers{
     <link rel="stylesheet"  href="~/Content/dayplan.css" />
+    <link rel="stylesheet"  href="~/Content/ngDialog.min.css" />
+    <link rel="stylesheet" href="~/Content/ngDialog-theme-default.min.css">
     <script src="/Scripts/angular.js" type="text/javascript"></script>
+    <script src="/Scripts/ngDialog.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var app = angular.module('ngApp', []);
+        var app = angular.module('ngApp', ['ngDialog']);
     </script>
     <script src="~/Scripts/basic.js"></script>
     <script src="~/Scripts/dayplan.js"></script>
 }
+
+<!-- 编辑任务 -->
+<script type="text/ng-template" id="/dayplan/plan/edit.html">
+    <textarea class="form-control" ng-model="creating.Content"
+        style="height: 160px;" placeholder="任务内容" ></textarea>
+    <div class="input-group" style="margin-top:5px;">
+        <span class="input-group-addon">完成时间</span>
+        <input type="text" class="form-control" ng-model="creating.ExpectEndAt" 
+            placeholder="2017/01/01 20:04">
+    </div>
+    <div class="btn-toolbar" role="toolbar" style="margin-top:5px;">
+        <button class="btn btn-primary pull-right" type="button" ng-click="closeThisDialog(creating)">更新</button>
+        <button class="btn btn-default pull-right" type="button" ng-click="closeThisDialog()">取消</button>
+    </div>
+</script>
+
 
 <!-- 创建任务 -->
 <script type="text/ng-template" id="/dayplan/plan/create.html">
@@ -23,7 +42,7 @@
             <textarea class="form-control" placeholder="任务内容" ng-model="creating.Content"></textarea>
             <div class="input-group" style="margin-top:5px;">
                 <span class="input-group-addon">完成时间</span>
-                <input type="text" class="form-control" aria-label="" ng-model="creating.ExpectEntAt" placeholder="2017/01/01 20:04" ng-blur="cancel_adding()">
+                <input type="text" class="form-control" aria-label="" ng-model="creating.ExpectEndAt" placeholder="2017/01/01 20:04" ng-blur="cancel_adding()">
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="button" ng-click="post_create()">创建任务</button>
                     <button class="btn btn-default" type="button" ng-click="cancel_adding(true)">取消</button>
@@ -33,32 +52,82 @@
     </div>
 </script>
 
+<!-- 删除任务 -->
+<script type="text/ng-template" id="/dayplan/plan/delete.html">
+    <h3>确认删除?</h3>
+    <p style="text-overflow: ellipsis;width: 300px;overflow-x: hidden;">{{deleting.Content}}</textarea>
+    <div class="btn-toolbar" role="toolbar" style="margin-top:5px;">
+        <button class="btn btn-primary pull-right" type="button" ng-click="closeThisDialog(true)">删除</button>
+        <button class="btn btn-default pull-right" type="button" ng-click="closeThisDialog()">取消</button>
+    </div>
+</script>
+
+<!-- 分享任务 -->
+<script type="text/ng-template" id="/dayplan/plan/sharing.html">
+    <h3>{{sharing.ShareOrNot ? "取消分享":"确认分享"}}?</h3>
+    <p style="text-overflow: ellipsis;width: 300px;overflow-x: hidden;">{{sharing.Content}}</textarea>
+    <div class="btn-toolbar" role="toolbar" style="margin-top:5px;">
+        <button class="btn btn-primary pull-right" type="button" ng-click="closeThisDialog(true)">分享</button>
+        <button class="btn btn-default pull-right" type="button" ng-click="closeThisDialog()">取消</button>
+    </div>
+</script>
+
+
 <!-- 单个计划列表 -->
 <script type="text/ng-template" id="/dayplan/plan.html">
     <div class="panel panel-default">
         <div class="title">{{title}} * {{plans.length}}</div>
-        <div class="plan checkbox" ng-repeat="plan in plans">
-            <label class="checkbox-inline">
-              <input type="checkbox">{{plan}}
-            </label>
-            <span class="glyphicon glyphicon-star-empty pull-right marker"></span>
+        <!-- 进行中列表 -->
+        <div class="plan clearfix" ng-repeat="plan in workingList()">
+            <a href="#" class="checkbox pull-left" ng-click="toggleCompleted(plan);">
+                <span class="icon-tick">&nbsp;</span></a>
+            <div class="plan-content-set pull-left" ng-click="editing(plan)">
+                <p>{{plan.Content}}</p>
+                <p>{{plan.ExpectEndAt|longdate}}</p>
+            </div>
+            <div class="pull-right text-right">
+                <span class="glyphicon glyphicon-star-empty marker" 
+                    ng-class="{'shareOrNot': plan.LoveOrNot}" ng-click="toggleLove(plan, $index)"></span>
+                <span class="glyphicon glyphicon-share-alt marker" 
+                    ng-class="{'shareOrNot': plan.ShareOrNot}" ng-click="sharing(plan, $index)"></span>
+                <span class="glyphicon glyphicon-remove marker" ng-click="deleting(plan, $index)"></span>
+            </div>
         </div>
+
+        <!-- 已完成列表 -->
+        <div class="plan done clearfix" ng-repeat="plan in completeList()">
+            <a href="#" class="checkbox pull-left" ng-click="toggleCompleted(plan);">
+                <span class="icon-tick">&nbsp;</span></a>
+            <div class="plan-content-set pull-left">
+                <p>{{plan.Content}}</p>
+                <p>{{plan.ExpectEndAt|longdate}}</p>
+            </div>
+            <div class="pull-right text-right">
+                <span class="glyphicon glyphicon-star-empty marker" 
+                        ng-class="{'shareOrNot': plan.LoveOrNot}"></span>
+                <span class="glyphicon glyphicon-share-alt marker" 
+                        ng-class="{'shareOrNot': plan.ShareOrNot}" ng-click="sharing(plan, $index)"></span>
+                <span class="glyphicon glyphicon-star-empty marker pull-right"></span>
+            </div>
+        </div>
+
         <ng-include src="'/dayplan/plan/create.html'" />   
     </div>
 </script>
 
 <!-- 计划页面 -->
-<div class="plans row" ng-controller="DayPlanController">
-    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
-        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('day')"></div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
-        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('week')"></div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
-        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('month')"></div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
-        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('year')"></div>
+<div class="container-flud">
+    <div class="plans row" ng-controller="DayPlanController">
+        <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+            ng-include src="'/dayplan/plan.html'" ng-init="setplantype('day')"></div>
+        <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+            ng-include src="'/dayplan/plan.html'" ng-init="setplantype('week')"></div>
+        <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+            ng-include src="'/dayplan/plan.html'" ng-init="setplantype('month')"></div>
+        <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+            ng-include src="'/dayplan/plan.html'" ng-init="setplantype('year')"></div>
+    </div>
 </div>
-
 @*<div class="left-side">
     <div id="left-top"></div>
     <button class="plan-btn" onclick="">日计划</button>

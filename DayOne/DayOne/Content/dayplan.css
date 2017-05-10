@@ -54,17 +54,28 @@
 .plans {
 	margin-left: 5px;
 	margin-right: 5px;
+	position: fixed;
+	top: 60px;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .plans > .planList {
 	/*background-color: #ccc;*/
 	min-height: 300px;
 	padding: 5px;
+	height: 100%;
+	/*position: relative;
+	top: 0;
+	bottom: 0;*/
 }
 
 .plans > .planList > .panel {
 	background-color: #eeeeee;
 	min-height: 300px;
+	height: 100%;
+	overflow-y: scroll;
 }
 
 .plans > .planList > .panel > .title{
@@ -73,11 +84,7 @@
 	padding-top: 10px;
 }
 
-.plans > .planList > .panel > .plan{
-	background-color: white;
-	margin: 10px 7px 10px 7px;
-	padding: 10px;
-}
+
 
 .plans > .planList > .panel  .toolbar{
 	background-color: white;
@@ -90,18 +97,77 @@
 	color: #286090;
 }
 
+.plans > .planList > .panel > .plan{
+	background-color: white;
+	margin: 10px 7px 10px 7px;
+	padding: 10px;
+}
+
+.plans > .planList > .panel > .plan.done{
+	background-color: #F7F7F7;
+	margin: 10px 7px 10px 7px;
+	padding: 10px;
+}
+
+.plans > .planList > .panel > .plan.done > .checkbox{
+	border: solid 2px #ddd;
+}
+
+.plans > .planList > .panel > .plan.done > .checkbox > .icon-tick{
+	visibility:visible;
+}
+
+.plans > .planList > .panel > .plan.done > .checkbox > .icon-tick:before{
+    background-color: #876194 !important;
+}
+
+.plans > .planList > .panel > .plan > .checkbox{
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border: solid 2px #A6A6A6;
+    cursor: pointer;
+    border-radius: 3px;
+
+    /*background-color: white;*/
+}
+
+.plans > .planList > .panel > .plan > .checkbox > .icon-tick{
+	visibility: hidden;
+	/*font-size: 13px;*/
+}
+
+
+.plans > .planList > .panel > .plan > .checkbox > .icon-tick:before{
+    background-color: #4c1d4c;
+    /*border-radius: 20%;*/
+    content: "";
+    display: inline-block;
+    height: 12px;
+    margin: 2px;
+    width: 12px;
+}
+
+.plans > .planList > .panel > .plan > .plan-content-set{
+    margin-left: 3px;
+	word-wrap:break-word;
+	max-width: 85%;
+}
+
 .plans > .planList > .panel > .plan:hover{
 	border-left: 3px #722b72 solid;
 	padding-left: 7px;
 }
 
-.plans > .planList > .panel > .plan > .marker{
+.plans > .planList > .panel > .plan .marker{
 	color:#eee;
 	cursor: pointer;
+	font-size: 18px;
+	/*margin-left: 10px;*/
 }
 
-.plans > .planList > .panel > .plan > .marker:hover,
-.plans > .planList > .panel > .plan > .marker.shareOrNot
+.plans > .planList > .panel > .plan .marker:hover,
+.plans > .planList > .panel > .plan .marker.shareOrNot
 {
 	color: #722b72 !important;
 }
