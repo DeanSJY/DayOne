@@ -46,11 +46,11 @@ namespace DayOne.IoObjects
                     Title = plan.Content.Length < 10 ? plan.Content : plan.Content.Substring(0, 10);
                 }
                 var sb = new StringBuilder();
-                sb.Append("开始时间: ").Append(plan.StartAt).Append("<br />\n");
+                sb.Append("开始时间: ").Append(plan.CreateAt).Append("<br />\n");
 
-                if (plan.EndAt != default(DateTime))
+                if (plan.ExpectEndAt != default(DateTime))
                 {
-                    sb.Append("预计完成: ").Append(plan.EndAt).Append("<br />\n");
+                    sb.Append("预计完成: ").Append(plan.ExpectEndAt).Append("<br />\n");
                 }
                 sb.Append("是否完成: ").Append(plan.IsCompleted ? "是" : "否").Append("<br />\n<br />\n");
                 sb.Append(plan.Content);

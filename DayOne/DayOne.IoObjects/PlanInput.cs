@@ -11,8 +11,24 @@ namespace DayOne.IoObjects
     {
         public PlanType PlanType { get; set; }
 
-        public string Title { get; set; }
+        public string Content { get; set; }
 
         public DateTime ExpectEndAt { get; set; }
+
+        public bool LoveOrNot { get; set; }
+
+        public static implicit operator DayPlan(PlanInput p)
+        {
+            var plan = new DayPlan()
+            {
+                CreateAt =  DateTime.Now,
+                ExpectEndAt = DateTime.Now,
+                LoveOrNot = p.LoveOrNot,
+                Type = p.PlanType,
+                Content = p.Content
+            };
+
+            return plan;
+        }
     }
 }

@@ -1019,6 +1019,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\DayPlan\addplanhtml.cshtml" />
     <None Include="Views\DayPlan\dayplan.cshtml" />
+    <Content Include="Views\DayPlan\plan.cshtml" />
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
     <Content Include="Views\NoteBook\note.cshtml" />

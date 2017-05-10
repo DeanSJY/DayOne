@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace DayOne.Entities
 {
-    public class PlanType
+    public enum PlanType : int
     {
-        public int Year{get;set;}
-        public int Month { get;set; }
-
-        public int Week { get; set; }
-        public int Day { get; set; }
+        Day = 1,
+        Week = 2,
+        Month = 4,
+        Year = 8
     }
 }

@@ -37,7 +37,7 @@ namespace DayOne.Services
         {
             var plan = CurrentDB.DayPlanTable.Find(planId);
             plan.Content = content;
-            plan.StartAt = endAt;
+            plan.CreateAt = endAt;
             CurrentDB.SaveChanges();
             return plan;
         }

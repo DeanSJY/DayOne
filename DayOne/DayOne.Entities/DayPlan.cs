@@ -18,15 +18,17 @@ namespace DayOne.Entities
         [Key]
         public int PlanId { get; set; }
 
-        public DateTime StartAt { get; set; }
+        public DateTime CreateAt { get; set; }
 
-        public DateTime EndAt { get; set; }
+        public DateTime CompletedAt { get; set; }
+
+        public DateTime ExpectEndAt { get; set; }
 
         public bool LoveOrNot { get; set; }
 
         public string Content { get; set; }
 
-        public PlanType type { get; set; }
+        public PlanType Type { get; set; }
 
         public bool IsCompleted { get; set; }
 

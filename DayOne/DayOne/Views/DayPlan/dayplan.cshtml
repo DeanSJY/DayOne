@@ -7,48 +7,56 @@
     <script type="text/javascript">
         var app = angular.module('ngApp', []);
     </script>
+    <script src="~/Scripts/basic.js"></script>
     <script src="~/Scripts/dayplan.js"></script>
 }
 
+<!-- 创建任务 -->
+<script type="text/ng-template" id="/dayplan/plan/create.html">
+    <div class="toolbar panel panel-default" ng-controller="AddPlanController">
+        <div class="panel-footer" ng-show="!show_creating()">
+            <button href="#" ng-click="prepare_adding()">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;添加任务</button>
+        </div>
+        <div class="panel-body" ng-show="show_creating()"
+            ng-mouseleave="_out_of_editing=true" ng-mouseenter="_out_of_editing=false">
+            <textarea class="form-control" placeholder="任务内容" ng-model="creating.Content"></textarea>
+            <div class="input-group" style="margin-top:5px;">
+                <span class="input-group-addon">完成时间</span>
+                <input type="text" class="form-control" aria-label="" ng-model="creating.ExpectEntAt" placeholder="2017/01/01 20:04" ng-blur="cancel_adding()">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="post_create()">创建任务</button>
+                    <button class="btn btn-default" type="button" ng-click="cancel_adding(true)">取消</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</script>
 
+<!-- 单个计划列表 -->
+<script type="text/ng-template" id="/dayplan/plan.html">
+    <div class="panel panel-default">
+        <div class="title">{{title}} * {{plans.length}}</div>
+        <div class="plan checkbox" ng-repeat="plan in plans">
+            <label class="checkbox-inline">
+              <input type="checkbox">{{plan}}
+            </label>
+            <span class="glyphicon glyphicon-star-empty pull-right marker"></span>
+        </div>
+        <ng-include src="'/dayplan/plan/create.html'" />   
+    </div>
+</script>
 
+<!-- 计划页面 -->
 <div class="plans row" ng-controller="DayPlanController">
-    <div class="col-sm-3 planList" ng-controller="OnePlanController">
-        <div class="panel panel-default">
-            <div class="title">日计划 * {{plans.length}}</div>
-            <div class="plan checkbox" ng-repeat="plan in plans">
-                <label class="checkbox-inline">
-                  <input type="checkbox">{{plan}}
-                </label>
-                <span class="glyphicon glyphicon-star-empty pull-right marker"></span>
-            </div>
-            <ng-include src="'/dayplan/addplanhtml'" />   
-        </div>
-    </div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController">
-        <div class="panel panel-default">
-            <div class="title">日计划</div>
-            <div class="plan" ng-repeat="plan in plans">
-                {{plan}}
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController">
-        <div class="panel panel-default">
-            <div class="title">日计划</div>
-            <div class="plan" ng-repeat="plan in plans">
-                {{plan}}
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3 planList" ng-controller="OnePlanController">
-        <div class="panel panel-default">
-            <div class="title">日计划</div>
-            <div class="plan" ng-repeat="plan in plans">
-                {{plan}}
-            </div>
-        </div>
-    </div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('day')"></div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('week')"></div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('month')"></div>
+    <div class="col-sm-3 planList" ng-controller="OnePlanController" 
+        ng-include src="'/dayplan/plan.html'" ng-init="setplantype('year')"></div>
 </div>
 
 @*<div class="left-side">
