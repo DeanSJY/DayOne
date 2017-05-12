@@ -15,11 +15,12 @@ namespace DayOne.Services
     {
         public DayPlan Create(PlanType type, long UserId, DateTime StartAt)
         {
-            DayPlan dayplan = new DayPlan();
+            DayPlan dayplan = new DayPlan()
             {
-                UserId = CurrentPrincipal.UserId;
-                StartAt = DateTime.Now;
-            }
+                UserId = CurrentPrincipal.UserId,
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now
+            };
             
             CurrentDB.DayPlanTable.Add(dayplan);
             CurrentDB.SaveChanges();
@@ -44,7 +45,7 @@ namespace DayOne.Services
 
         public List<DayPlan> Query(PlanType type, Boolean showCompleted, int planId)
         {
-            var plan = CurrentDB.DayPlanTable.Where(o => o.PlanId == planId && o.IsCompleted).ToList();
+            var plan = CurrentDB.DayPlanTable.Where(o => o.Id == planId && o.IsCompleted).ToList();
             return plan;
 
 

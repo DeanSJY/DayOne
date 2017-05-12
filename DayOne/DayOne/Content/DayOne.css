@@ -128,8 +128,20 @@ footer{
     color:white;
 } 
 
-
+/* ngDialog 对话框关闭按钮错误修复 */
 .ngdialog-content .ngdialog-close{
     border: 0;
     padding: 0;
+}
+
+
+/* 通用工具条 */
+.navbar.navbar-dayone {
+	border-bottom : 1px #722b72 solid;
+}
+
+.nav.navbar-dayone > li > a {
+    color: #722b72;
+    font-weight:bold;
+    font-size: 14px;
 }

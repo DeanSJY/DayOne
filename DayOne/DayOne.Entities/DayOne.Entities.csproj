@@ -58,10 +58,12 @@
     <Compile Include="DayOneContext.cs" />
     <Compile Include="DayPlan.cs" />
     <Compile Include="DbUtils.cs" />
+    <Compile Include="PraiseUser.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NoteBook.cs" />
     <Compile Include="OneNote.cs" />
     <Compile Include="PlanType.cs" />
+    <Compile Include="ShareInfo.cs" />
     <Compile Include="ShareList.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

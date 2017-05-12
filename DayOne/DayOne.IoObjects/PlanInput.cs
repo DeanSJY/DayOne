@@ -22,6 +22,7 @@ namespace DayOne.IoObjects
             var plan = new DayPlan()
             {
                 CreateAt =  DateTime.Now,
+                UpdateAt =  DateTime.Now,
                 ExpectEndAt = p.ExpectEndAt,
                 LoveOrNot = p.LoveOrNot,
                 PlanType = p.PlanType,

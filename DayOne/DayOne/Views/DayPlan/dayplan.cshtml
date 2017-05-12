@@ -67,7 +67,7 @@
     <h3>{{sharing.ShareOrNot ? "取消分享":"确认分享"}}?</h3>
     <p style="text-overflow: ellipsis;width: 300px;overflow-x: hidden;">{{sharing.Content}}</textarea>
     <div class="btn-toolbar" role="toolbar" style="margin-top:5px;">
-        <button class="btn btn-primary pull-right" type="button" ng-click="closeThisDialog(true)">分享</button>
+        <button class="btn btn-primary pull-right" type="button" ng-click="closeThisDialog(true)">{{sharing.ShareOrNot ? "取消":""}}分享</button>
         <button class="btn btn-default pull-right" type="button" ng-click="closeThisDialog()">取消</button>
     </div>
 </script>
@@ -116,7 +116,7 @@
 </script>
 
 <!-- 计划页面 -->
-<div class="container-flud">
+<div class="container-flud" ng-cloak>
     <div class="plans row" ng-controller="DayPlanController">
         <div class="col-sm-3 planList" ng-controller="OnePlanController" 
             ng-include src="'/dayplan/plan.html'" ng-init="setplantype('day')"></div>

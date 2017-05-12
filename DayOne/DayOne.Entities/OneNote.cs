@@ -9,25 +9,20 @@ using System.Web.Script.Serialization;
 
 namespace DayOne.Entities
 {
-    public class OneNote
+    [Table("OneNotes")]
+    public class OneNote : ShareInfo
     {
-        [Key]
-        public int NoteId { get; set; }
-
-        public DateTime CreateAt { get; set; }
-
-        public DateTime UpdateAt { get; set; }
+        [NotMapped]
+        public int NoteId
+        {
+            get { return Id; }
+            set { Id = value; }
+        }
 
         public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public Boolean LoveOrNot { get; set; }
-
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId"), ScriptIgnore]
-        public virtual UserInfo User { get; set; }
 
         public int BookId { get; set; }
 
@@ -36,10 +31,12 @@ namespace DayOne.Entities
 
         public Boolean IsDeleted { get; set; }
 
-        public int LoveCount { get; set; }
 
         public bool WithAttach { get; set; }
 
         public string KeyWords { get; set; }
+
+        //[ForeignKey("NoteId"), ScriptIgnore]
+        //public ShareInfo ShareInfo { get; set; }
     }
 }

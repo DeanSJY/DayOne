@@ -9,25 +9,19 @@ using System.Web.Script.Serialization;
 
 namespace DayOne.Entities
 {
-    public class DayPlan
-    {        
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId"),ScriptIgnore]
-        public UserInfo User { get; set; }
-
-        [Key]
-        public int PlanId { get; set; }
-
-        public DateTime CreateAt { get; set; }
+    [Table("DayPlans")]
+    public class DayPlan : ShareInfo
+    {
+        [NotMapped, Obsolete]
+        public int PlanId
+        {
+            get { return Id; }
+            set { Id = value; }
+        }
 
         public DateTime? CompletedAt { get; set; }
         
         public DateTime? ExpectEndAt { get; set; }
-
-        public bool LoveOrNot { get; set; }
-
-        public bool ShareOrNot { get; set; }
 
         public string Content { get; set; }
 
@@ -35,10 +29,38 @@ namespace DayOne.Entities
 
         public bool IsCompleted { get; set; }
 
+        //public int UserId { get; set; }
+
+        //[ForeignKey("UserId"), ScriptIgnore]
+        //public UserInfo User { get; set; }
+
+
+        //[NotMapped]
+        //public bool LoveOrNot
+        //{
+        //    get { return ShareInfo.LoveOrNot; }
+        //    set { ShareInfo.LoveOrNot = value; }
+        //}
+
+        //[NotMapped]
+        //public bool ShareOrNot
+        //{
+        //    get { return ShareInfo.ShareOrNot; }
+        //    set { ShareInfo.ShareOrNot = value; }
+        //}
 
         /// <summary>
         /// 被赞次数
         /// </summary>
-        public int Likes { get; set; }
+        [NotMapped,Obsolete]
+        public int Likes
+        {
+            get { return LoveCount; }
+            set { LoveCount = value; }
+        }
+
+        //[ForeignKey("PlanId"), ScriptIgnore]
+        //public ShareInfo ShareInfo { get; set; }
+
     }
 }

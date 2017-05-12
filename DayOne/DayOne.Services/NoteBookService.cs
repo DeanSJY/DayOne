@@ -98,7 +98,7 @@ namespace DayOne.Services
         {
             var userId = CurrentPrincipal.UserId;
 
-            return CurrentDB.OneNoteTable.FirstOrDefault(o => o.NoteId == noteId && o.UserId == userId);
+            return CurrentDB.OneNoteTable.FirstOrDefault(o => o.Id == noteId && o.UserId == userId);
         }
 
 
@@ -196,7 +196,7 @@ namespace DayOne.Services
             if (limit < 0 || limit > 100) limit = 5;
 
             var notes = CreateNoteQuery().Where(o => o.BookId == bookId)
-                .OrderByDescending(o => o.NoteId).Skip(start).Take(limit).ToList();
+                .OrderByDescending(o => o.Id).Skip(start).Take(limit).ToList();
             return notes;
         }
 
@@ -215,7 +215,7 @@ namespace DayOne.Services
         {
             var notes = CreateNoteQuery(true).Where(o =>  o.IsDeleted)
                 .Include(o=>o.User).Include(o=>o.Book)
-                .OrderByDescending(o=>o.NoteId);
+                .OrderByDescending(o=>o.Id);
             return notes;
         }
 
@@ -239,7 +239,7 @@ namespace DayOne.Services
             var loveNotes = CreateNoteQuery().Where(o => o.LoveOrNot)
                 .Include(o=>o.Book)
                 .Include(o=>o.User)
-                .OrderByDescending(o => o.NoteId);
+                .OrderByDescending(o => o.Id);
             return loveNotes;
         }
 
@@ -250,10 +250,10 @@ namespace DayOne.Services
         public List<OneNoteView> GetLoveList(int start = 0, int limit = 5)
         {
             var loveNotes = CreateNoteQuery().Where(o => o.LoveOrNot)
-                .OrderByDescending(o => o.NoteId).Skip(0).Take(limit)
+                .OrderByDescending(o => o.Id).Skip(0).Take(limit)
                 .Select(o => new OneNoteView()
                 {
-                    NoteId = o.NoteId,
+                    NoteId = o.Id,
                     CreateAt = o.CreateAt,
                     UpdateAt = o.UpdateAt,
                     Title = o.Title,

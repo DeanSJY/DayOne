@@ -16,25 +16,21 @@ namespace DayOne.Entities
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();  //去除“设置表名为复数”这条约定
         }
 
         public DbSet<UserInfo> UserTable { get; set; }
 
-
         public DbSet<NoteBook> NoteBookTable { get; set; }
 
+        public DbSet<ShareInfo> ShareInfos { get; set; }
 
         public DbSet<OneNote> OneNoteTable { get; set; }
 
-
         public DbSet<DayPlan> DayPlanTable { get; set; }
-
 
         public DbSet<ShareList> ShareTable { get; set; }
 
-
-
+        public DbSet<PraiseUser> PraiseUsers { get; set; }
     }
 }

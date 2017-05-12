@@ -124,7 +124,7 @@ namespace DayOne.Controllers
         {
             Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
             {
-                NoteId = o.NoteId,
+                NoteId = o.Id,
                 CreateAt = o.CreateAt,
                 UpdateAt = o.UpdateAt,
                 Title = o.Title,
@@ -149,7 +149,7 @@ namespace DayOne.Controllers
         {
             Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
             {
-                NoteId = o.NoteId,
+                NoteId = o.Id,
                 CreateAt = o.CreateAt,
                 UpdateAt = o.UpdateAt,
                 Title = o.Title,

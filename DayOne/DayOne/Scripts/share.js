@@ -1,83 +1,117 @@
-//爱心点赞+1
-function AddHeart1(){
-	document.getElementById("emheart1").style.visibility="hidden";
-	document.getElementById("heart1").style.visibility="visible";
-	var str=document.getElementById("lab1");
-	var temp=Number(str.innerHTML);
-	temp=temp+1;
-	str.innerHTML=temp.toString();
-}
-function AddHeart2(){
-	document.getElementById("emheart2").style.visibility="hidden";
-	document.getElementById("heart2").style.visibility="visible";
-	var str=document.getElementById("lab2");
-	var temp=Number(str.innerHTML);
-	temp=temp+1;
-	str.innerHTML=temp.toString();
-}
-function AddHeart3(){
-	document.getElementById("emheart3").style.visibility="hidden";
-	document.getElementById("heart3").style.visibility="visible";
-	var str=document.getElementById("lab3");
-	var temp=Number(str.innerHTML);
-	temp=temp+1;
-	str.innerHTML=temp.toString();
-}
-function AddHeart4(){
-	document.getElementById("emheart4").style.visibility="hidden";
-	document.getElementById("heart4").style.visibility="visible";
-	var str=document.getElementById("lab4");
-	var temp=Number(str.innerHTML);
-	temp=temp+1;
-	str.innerHTML=temp.toString();
-}
+(function(angular) {
+	"user strict";
 
+	function ShareFiltersCTRL($scope) {
+		//$scope._all = true;
+		$scope._note_only = true;
+		$scope._plan_only = true;
+		$scope._my_only = false;
 
-//爱心点赞-1
-function SubHeart1(){
-	document.getElementById("emheart1").style.visibility="visible";
-	document.getElementById("heart1").style.visibility="hidden";
-	var str=document.getElementById("lab1");
-	var temp=Number(str.innerHTML);
-	if(temp>=1){
-		temp=temp-1;
-	    str.innerHTML=temp.toString();
-	}
-}
-function SubHeart2(){
-	document.getElementById("emheart2").style.visibility="visible";
-	document.getElementById("heart2").style.visibility="hidden";
-	var str=document.getElementById("lab2");
-	var temp=Number(str.innerHTML);
-	if(temp>=1){
-		temp=temp-1;
-	    str.innerHTML=temp.toString();
-	}	
-}
-function SubHeart3(){
-	document.getElementById("emheart3").style.visibility="visible";
-	document.getElementById("heart3").style.visibility="hidden";
-	var str=document.getElementById("lab3");
-	var temp=Number(str.innerHTML);
-	if(temp>=1){
-		temp=temp-1;
-	    str.innerHTML=temp.toString();
-	}
-}
-function SubHeart4(){
-	document.getElementById("emheart4").style.visibility="visible";
-	document.getElementById("heart4").style.visibility="hidden";
-	var str=document.getElementById("lab4");
-	var temp=Number(str.innerHTML);
-	if(temp>=1){
-		temp=temp-1;
-	    str.innerHTML=temp.toString();
-	}
-}
+		$scope.showAll = function() {
+			return $scope._note_only && $scope._plan_only && !$scope._my_only;
+		};
 
-function context(){
-	document.getElementById("textarea1").readOnly="readonly";
-	document.getElementById("textarea2").readOnly="readonly"
-	document.getElementById("textarea3").readOnly="readonly"
-	document.getElementById("textarea4").readOnly="readonly"
-}
+		$scope.toggleNote = function() {
+			$scope._show_note = !!!$scope._show_note;
+		};
+
+		$scope.toggleAll = function() {
+			$scope._note_only = true;
+			$scope._plan_only = true;
+			$scope._my_only = false;
+		};
+
+		$scope.toggleNote = function() {
+			$scope._note_only = !!!$scope._note_only;
+		};
+
+		$scope.togglePlan = function() {
+			$scope._plan_only = !!!$scope._plan_only;
+		};
+
+		$scope.toggleMy = function() {
+			$scope._my_only = !!!$scope._my_only;
+		};
+
+		$scope.reload = function() {
+			var reload_args = {
+				OnlyMyself: $scope._my_only,
+				IncludeNote: $scope._note_only,
+				IncludePlan: $scope._plan_only,
+				Text: $scope._searchText
+			};
+
+			$scope.$emit('__reload', reload_args);
+		};
+	}
+
+	function ShareCTRL($scope, $http, paging) {
+		$scope.shareList = [];
+		paging.limit(4);
+		$scope.paging = paging;
+
+		$scope._queryArgs = {};
+
+		function query_share_list(args) {
+			$scope._queryArgs = args || $scope._queryArgs;
+
+			$http.post('/share/query', paging.create_post_args($scope._queryArgs))
+				.then(paging.on_request_completed)
+				.then(function(response) {
+					$scope.shareList = response.data.DataList;
+				});
+		}
+
+		$scope.$on('__reload', function($event, $args) {
+			$event.stopPropagation();
+			$event.preventDefault();
+
+			query_share_list($args);
+		});
+
+		$scope.get = function(index) {
+			return $scope.shareList[index];
+		};
+
+		$scope.prev = function(){
+			$scope.paging.next();
+			query_share_list();
+		};
+
+		$scope.next = function(){
+			$scope.paging.prev();
+			query_share_list();
+		};
+	}
+
+	function ShareViewCTRL($scope, $http) {
+		$scope.item = null;
+
+		$scope.$watch(function(){
+			return $scope.get($scope.index);
+		}, function(newval) {
+			$scope.item = newval;
+		});
+
+		$scope.togglePraised = function() {
+			$http.get("/share/ToggleLoveIt?shareId=" + $scope.item.Id)
+				.then(function(response) {
+					if ($scope.item.IsMyPraised) {
+						$scope.item.IsMyPraised = response.data;
+						if (!$scope.item.IsMyPraised) {
+							$scope.item.LoveCount -= 1;
+						}
+					} else {
+						$scope.item.IsMyPraised = response.data;
+						if ($scope.item.IsMyPraised) {
+							$scope.item.LoveCount += 1;
+						}
+					}
+				});
+		};
+	}
+
+	app.controller('ShareCTRL', ['$scope', '$http', 'paging', ShareCTRL])
+		.controller('ShareFiltersCTRL', ['$scope', ShareFiltersCTRL])
+		.controller('ShareViewCTRL', ['$scope', '$http', ShareViewCTRL]);
+})(angular);

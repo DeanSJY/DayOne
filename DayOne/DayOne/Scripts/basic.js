@@ -62,9 +62,23 @@
 			}
 		}
 
+		function create_post_args(postdata) {
+			return angular.extend(postdata, {
+				Offset : start,
+				Limit: limit
+			});
+		}
+
 		function on_request_completed(response) {
 			totalCount = response.data.Total;
 			return response;
+		}
+
+		function setLimit(newlimit){
+			if (newlimit){
+				return limit = newlimit;	
+			}
+			return limit;
 		}
 
 		return {
@@ -73,6 +87,8 @@
 			hasNext: hasNext,
 			hasPrev: hasPrevious,
 			total: total,
+			limit: setLimit,
+			create_post_args: create_post_args,
 			create_query_url: create_query_url,
 			on_request_completed: on_request_completed
 		};

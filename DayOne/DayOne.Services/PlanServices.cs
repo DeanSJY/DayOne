@@ -31,12 +31,12 @@ namespace DayOne.Services
             {
                 return
                     CurrentDB.DayPlanTable.Where(o => o.UserId == userId && o.PlanType == planType)
-                        .OrderBy(o => o.PlanId);
+                        .OrderBy(o => o.Id);
             }
 
             return
                 CurrentDB.DayPlanTable.Where(o => o.UserId == userId && o.PlanType == planType && o.IsCompleted == false)
-                    .OrderBy(o => o.PlanId);
+                    .OrderBy(o => o.Id);
         }
 
         private IQueryable<DayPlan> CreateMyQuery()
@@ -69,7 +69,7 @@ namespace DayOne.Services
 
         public bool ToggleCompleted(int planId)
         {
-            var plan = CreateMyQuery().FirstOrDefault(o => o.PlanId == planId);
+            var plan = CreateMyQuery().FirstOrDefault(o => o.Id == planId);
             if (plan != null)
             {
                 plan.IsCompleted = !plan.IsCompleted;
@@ -82,7 +82,7 @@ namespace DayOne.Services
 
         public bool ToggleLoveOrNot(int planId)
         {
-            var plan = CreateMyQuery().FirstOrDefault(o => o.PlanId == planId);
+            var plan = CreateMyQuery().FirstOrDefault(o => o.Id == planId);
             if (plan != null)
             {
                 plan.LoveOrNot = !plan.LoveOrNot;
@@ -94,7 +94,7 @@ namespace DayOne.Services
 
         public bool ToggleShareOrNot(int planId)
         {
-            var plan = CreateMyQuery().FirstOrDefault(o => o.PlanId == planId);
+            var plan = CreateMyQuery().FirstOrDefault(o => o.Id == planId);
             if (plan != null)
             {
                 plan.ShareOrNot = !plan.ShareOrNot;
@@ -106,7 +106,7 @@ namespace DayOne.Services
 
         public DayPlan UpdatePlan(PlanUpdateInput updating)
         {
-            var plan = CreateMyQuery().FirstOrDefault(o => o.PlanId == updating.PlanId);
+            var plan = CreateMyQuery().FirstOrDefault(o => o.Id == updating.PlanId);
             if (plan == null)
                 return null;
 
@@ -117,7 +117,7 @@ namespace DayOne.Services
 
         public bool DeletePlan(int planId)
         {
-            var plan = CreateMyQuery().FirstOrDefault(o => o.PlanId == planId);
+            var plan = CreateMyQuery().FirstOrDefault(o => o.Id == planId);
             if (plan == null)
             {
                 return false;

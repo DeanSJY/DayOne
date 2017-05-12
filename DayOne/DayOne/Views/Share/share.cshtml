@@ -1,125 +1,96 @@
-@{
-    ViewBag.Title = "·ÖÏí";
+ï»¿@{
+    ViewBag.Title = "åˆ†äº«";
 }
 
-<link rel="stylesheet" href="~/Content/share.css" />
-<script src="~/Scripts/share.js"></script>
+@section headers{
+    <link rel="stylesheet" href="~/Content/share.css" />
 
-<div class="div1">
+    <script src="/Scripts/angular.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var app = angular.module('ngApp', []);
+    </script>
+    <script src="/Scripts/basic.js"></script>
+    <script src="~/Scripts/share.js"></script>
+}
 
-    <!--µÚÒ»ÐÐ ¿ò1¡¢2-->
-    <div id="div2">
-        <!--¿ò1-->
-        <div class="col-md-6" id="co1">
-            <!--±êÌâ-->
-            <div class="title">
-                <span class="glyphicon glyphicon-leaf" style="color: #722B72"></span>
-                <b id="tit1">123</b>
-            </div>
-            <!--ÄÚÈÝ-->
-            <div class="context">
-                <textarea id="textarea1" rows="8" cols="68">123</textarea>
-            </div>
-            <!--Ê±¼ä¡¢µãÔÞ-->
-            <div class="time">
-                <!--Ê±¼ä-->
-                <div class="col-md-6">
-                    <label id="time1">time</label>
-                </div>
-                <!--µãÔÞÊý-->
-                <div class="col-md-6" id="T1">
-                    <span class="glyphicon glyphicon-heart" id="heart1" onclick="SubHeart1()"></span>
-                    <span class="glyphicon glyphicon-heart-empty" id="emheart1" onclick="AddHeart1()"></span>
-                    <label class="lab" id="lab1">0</label>
-                </div>
-            </div>
+<script type="text/ng-template" id="/share/item.html">
+    <div class="share-content">
+        <!--æ ‡é¢˜-->
+        <div class="title">
+            <span class="glyphicon glyphicon-leaf">{{item.Title}}</span>
+            <span class="pull-right author" style="">by {{item.UserName}}</span>
         </div>
-
-        <!--¿ò2-->
-        <div class="col-md-6" id="co2">
-            <!--±êÌâ-->
-            <div class="title">
-                <span class="glyphicon glyphicon-leaf" style="color: #722B72"></span>
-                <b id="tit2">123</b>
-            </div>
-            <!--ÄÚÈÝ-->
-            <div class="context">
-                <textarea id="textarea2" rows="8" cols="68">sjy</textarea>
-            </div>
-            <!--Ê±¼ä¡¢µãÔÞ-->
-            <div class="time">
-                <!--Ê±¼ä-->
-                <div class="col-md-6">
-                    <label id="time2">time</label>
-                </div>
-                <!--µãÔÞÊý-->
-                <div class="col-md-6" id="T2">
-                    <span class="glyphicon glyphicon-heart" id="heart2" onclick="SubHeart2()"></span>
-                    <span class="glyphicon glyphicon-heart-empty" id="emheart2" onclick="AddHeart2()"></span>
-                    <label class="lab" id="lab2">1</label>
-                </div>
-            </div>
+        <!--å†…å®¹-->
+        <div class="context">
+            {{item.Content}}
+            <!-- <textarea id="textarea1" rows="8" cols="68">123</textarea> -->
         </div>
+        <!--æ—¶é—´ã€ç‚¹èµž-->
+        <div class="toolbar row">
+            <label id="time1">{{item.UpdateAt|longdate}}</label>
+            <span class="glyphicon glyphicon-heart-empty pull-right" ng-click="togglePraised()"> {{item.LoveCount}}</span>
+            <!-- æ—¶é—´
+            <div class="col-md-6"> 
+                
+            </div> -->
+            <!--ç‚¹èµžæ•°
+            <div class="col-md-6" id="T1">
+                <span class="glyphicon glyphicon-heart" id="heart1" ></span>
+                <span class="glyphicon glyphicon-heart-empty" id="emheart1" ></span>
+                <label class="lab" id="lab1">0</label>
+            </div>-->
+        </div>
+    </div>
+</script>
+
+<div class="container share" ng-controller="ShareCTRL" style="background-color: #f3f3f3;">
+    <!-- å¯¼èˆªæ  -->
+    <nav class="navbar navbar-dayone" ng-controller="ShareFiltersCTRL">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="_searchText" placeholder="æœç´¢">
+                </div>
+                <button type="submit" class="btn btn-default">GO!</button>
+                <button type="submit" class="btn btn-default" ng-click="reload()"><span class="glyphicon glyphicon-repeat" /></button>
+            </form>
+
+            <ul class="nav nav-pills navbar-dayone" style="margin-top: 5px;">
+                <li role="presentation" class="a-txt"><a href="#" ng-click="toggleAll()">
+                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : showAll()}" ></span>&nbsp;å…¨éƒ¨</a></li>
+                <li role="presentation" class="a-txt"><a href="#" ng-click="toggleNote()">
+                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : _note_only}"></span>&nbsp;ç¬”è®°</a></li>
+                <li role="presentation" class="a-txt"><a href="#" ng-click="togglePlan()">
+                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : _plan_only}"></span>&nbsp;è®¡åˆ’</a></li>
+                <li role="presentation" class="a-txt"><a href="#" ng-click="toggleMy()">
+                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : _my_only}"></span>&nbsp;æˆ‘çš„åˆ†äº«</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--ç¬¬ä¸€è¡Œ æ¡†1ã€2-->
+    <div class="row share">
+        <div class="col-sm-6" ng-include src="'/share/item.html'" 
+            ng-controller="ShareViewCTRL" ng-init="index=0"></div>
+
+        <!--æ¡†2-->
+        <div class="col-sm-6" ng-include src="'/share/item.html'" 
+            ng-controller="ShareViewCTRL" ng-init="index=1"></div>
 
     </div>
 
-    <!--µÚ¶þÐÐ ¿ò3¡¢4-->
-    <div id="div3">
+    <!--ç¬¬äºŒè¡Œ æ¡†3ã€4-->
+    <div class="row share">
 
-        <!--¿ò3-->
-        <div class="col-md-6" id="co3">
-            <!--±êÌâ-->
-            <div class="title">
-                <span class="glyphicon glyphicon-leaf" style="color: #722B72"></span>
-                <b id="tit3">123</b>
-            </div>
-            <!--ÄÚÈÝ-->
-            <div class="context">
-                <textarea id="textarea3" rows="8" cols="68">sjy</textarea>
-            </div>
-            <!--Ê±¼ä¡¢µãÔÞ-->
-            <div class="time">
-                <!--Ê±¼ä-->
-                <div class="col-md-6">
-                    <label id="time3">time</label>
-                </div>
-                <!--µãÔÞÊý-->
-                <div class="col-md-6" id="T3">
-                    <span class="glyphicon glyphicon-heart" id="heart3" onclick="SubHeart3()"></span>
-                    <span class="glyphicon glyphicon-heart-empty" id="emheart3" onclick="AddHeart3()"></span>
-                    <label class="lab" id="lab3">2</label>
-                </div>
-            </div>
-        </div>
+        <!--æ¡†3-->
+        <div class="col-md-6" ng-include src="'/share/item.html'" 
+            ng-controller="ShareViewCTRL" ng-init="index=2"></div>
 
-        <!--¿ò4-->
-        <div class="col-md-6" id="co4">
-            <!--±êÌâ-->
-            <div class="title">
-                <span class="glyphicon glyphicon-leaf" style="color: #722B72"></span>
-                <b id="tit4">123</b>
-            </div>
-            <!--ÄÚÈÝ-->
-            <div class="context">
-                <textarea id="textarea4" rows="8" cols="68">sjy</textarea>
-            </div>
-            <!--Ê±¼ä¡¢µãÔÞ-->
-            <div class="time">
-                <!--Ê±¼ä-->
-                <div class="col-md-6">
-                    <label id="time4">time</label>
-                </div>
-                <!--µãÔÞÊý-->
-                <div class="col-md-6" id="T4">
-                    <span class="glyphicon glyphicon-heart" id="heart4" onclick="SubHeart4()"></span>
-                    <span class="glyphicon glyphicon-heart-empty" id="emheart4" onclick="AddHeart4()"></span>
-                    <label class="lab" id="lab4">3</label>
-                </div>
-            </div>
-        </div>
-
+        <!--æ¡†4-->
+        <div class="col-md-6"  ng-include src="'/share/item.html'"
+            ng-controller="ShareViewCTRL" ng-init="index=3"></div>
     </div>
-
-
+    <span class="glyphicon glyphicon-menu-left" ng-show="paging.hasPrev()" ng-click="prev()"></span>
+    <span class="glyphicon glyphicon-menu-right" ng-show="paging.hasNext()" ng-click="next()"></span>
 </div>
 
