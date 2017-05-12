@@ -54,7 +54,7 @@
                                     if (Request.IsAuthenticated)
                                     {
                                         <li class="">
-                                            <a href="~/Views/Home/UserInfo.cshtml"><span class="glyphicon glyphicon-user" id="userlogo" color="white"></span>&nbsp;@HttpContext.Current.User.Identity.Name</a>
+                                            <a href="~/Home/UserInfo.cshtml"><span class="glyphicon glyphicon-user" id="userlogo" color="white"></span>&nbsp;@HttpContext.Current.User.Identity.Name</a>
                                         </li>
                                         <li class="">@Html.ActionLink("注销", "Logout", "Home")</li>
                                     }

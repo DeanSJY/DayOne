@@ -94,11 +94,15 @@ namespace DayOne.Services
 
         #region  笔记
 
-        private OneNote GetMyNote(int noteId)
+        private OneNote GetMyNote(int noteId, bool includeDeleted = false)
         {
             var userId = CurrentPrincipal.UserId;
-
-            return CurrentDB.OneNoteTable.FirstOrDefault(o => o.Id == noteId && o.UserId == userId);
+            if (includeDeleted)
+            {
+                return CurrentDB.OneNoteTable.FirstOrDefault(o => o.Id == noteId && o.UserId == userId);
+            }
+            return
+                CurrentDB.OneNoteTable.FirstOrDefault(o => o.Id == noteId && o.UserId == userId && o.IsDeleted == false);
         }
 
 
@@ -139,11 +143,38 @@ namespace DayOne.Services
         /// 逻辑删除 放到回收站
         /// </summary>
         /// <param name="noteId"></param>
-        public void RemoveNote2(int noteId)
+        public void RemoveNote2(int noteId, bool destroy = false)
         {
-            var onenote = GetMyNote(noteId);
-            onenote.IsDeleted = true;
+            var onenote = GetMyNote(noteId, true);
+            if (onenote == null)
+                return;
+
+            if (destroy)
+            {
+                CurrentDB.OneNoteTable.Remove(onenote);
+            }
+            else
+            {
+                onenote.IsDeleted = true;
+            }
             CurrentDB.SaveChanges();
+        }
+
+        /// <summary>
+        /// 撤销删除的笔记
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
+
+        public bool RecoveryNote(int noteId)
+        {
+            var onenote = GetMyNote(noteId, true);
+            if (onenote == null)
+                return false;
+
+            onenote.IsDeleted = false;
+            CurrentDB.SaveChanges();
+            return !onenote.IsDeleted;
         }
 
         /// <summary>
@@ -157,16 +188,16 @@ namespace DayOne.Services
             CurrentDB.SaveChanges();
         }
 
-        /// <summary>
-        /// 撤销删除的笔记
-        /// </summary>
-        /// <param name="noteId"></param>
-        public void RecoveryNote(int noteId)
-        {
-            var onenote = GetMyNote(noteId);
-            onenote.IsDeleted = false;
-            CurrentDB.SaveChanges();
-        }
+        ///// <summary>
+        ///// 撤销删除的笔记
+        ///// </summary>
+        ///// <param name="noteId"></param>
+        //public void RecoveryNote(int noteId)
+        //{
+        //    var onenote = GetMyNote(noteId);
+        //    onenote.IsDeleted = false;
+        //    CurrentDB.SaveChanges();
+        //}
 
 
         /// <summary>

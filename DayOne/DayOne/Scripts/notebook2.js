@@ -1,4 +1,4 @@
-app.controller("NoteBookViewCTRL", function($scope, ) {
+app.controller("NoteBookViewCTRL", function($scope) {
 
     $scope.reload = function() {
         $scope.$broadcast("reload");

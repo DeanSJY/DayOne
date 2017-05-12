@@ -23,15 +23,19 @@ app.controller("LoveNoteCtrl", function($scope, $http, paging) {
 			});
 	};
 
-	$scope.has_next = function() {
-		return $scope.start > 0;
+	$scope.next = function(){
+		paging.prev();
+		$scope.load_love_notes();
 	};
 
-	$scope.has_previous = function() {
-
+	$scope.perv = function(){
+		paging.next();
+		$scope.load_love_notes();
 	};
 
 	$scope.$on("reload", function() {
 		$scope.load_love_notes();
 	});
+
+	$scope.load_love_notes();
 });

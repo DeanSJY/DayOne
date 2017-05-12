@@ -231,10 +231,18 @@ namespace DayOne.Controllers
         /// <param name="noteId"></param>
         /// <returns></returns>
         [HttpDelete]
-        public JsonResult DeleteNote(int noteId)
+        public JsonResult DeleteNote(int noteId, bool destroy = false)
         {
-            notebookservice.RemoveNote2(noteId);
+            notebookservice.RemoveNote2(noteId, destroy);
             return Json(true);
+        }
+
+        [HttpGet]
+
+        public JsonResult RecoveryNote(int noteId)
+        {
+            var result = notebookservice.RecoveryNote(noteId);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

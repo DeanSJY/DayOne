@@ -127,7 +127,7 @@ div.notepanel {
     height:100%;
     width:100%;
     position:fixed;
-    background-color:#FFFFCC;
+    /*background-color:#FFFFCC;*/
 }
 
 div.notepanel > .notelist {

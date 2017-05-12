@@ -1,4 +1,8 @@
-﻿#navi{
+﻿html, body{
+    height: 100%;
+}
+
+#navi{
             background-color:#722b72;
             margin-bottom:0;
             width:100%;
@@ -15,13 +19,18 @@
         #a-txt1{
             color:white;
         }
+
         .loveNotePanel {
             background-color:#515151;
             min-height: 500px;
             /*height:100%;
             width:100%;*/
-            /*position:fixed;*/
-            margin-top:0;
+            position: absolute;
+            top: 107px;
+            bottom: 0px;
+            left: 0;
+            right:0px;
+            margin: 0;
             padding-top: 10px;
             overflow-y:auto;
         }
@@ -32,11 +41,12 @@
         .loveNotePanel .panel.panel-note  .title {
             color:#722b72;
             font-size:xx-large;
+            border-bottom: 1px black solid;
         }
 
         .loveNotePanel .panel.panel-note .onenote {
             /*padding-bottom: 30px;*/
-            border-bottom: 1px black solid;
+            /*border-bottom: 1px black solid;*/
             margin-bottom: 30px;
         }
 

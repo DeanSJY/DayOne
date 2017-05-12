@@ -145,3 +145,41 @@ footer{
     font-weight:bold;
     font-size: 14px;
 }
+
+.paging_navigation_button{
+    position: fixed;
+    left: 40%;
+    bottom: 30px;
+    background-color: #EDEDED;
+    font-size: 24px;
+    padding: 8px 16px 8px 16px;
+    width: 300px;
+}
+
+.page-nav-prev{
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    font-weight: bold;
+    font-size: 23px;
+    display: inline-block;
+    height: 23px;
+    vertical-align: middle;
+    color: white;
+}
+
+.page-nav-next{
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    font-weight: bold;
+    font-size: 23px;
+    color: white;
+    height: 23px;
+}
+
+.page-nav-prev:hover, 
+.page-nav-next:hover{
+    background-color: #722B72;
+    color: white;
+}
