@@ -19,6 +19,11 @@ namespace DayOne.IoObjects
         [Range(0, Int32.MaxValue)]
         public int BookId { get; set; }
 
+        public bool LoveOrNot { get; set; }
+
+        public bool ShareOrNot { get; set; }
+
+
         public static implicit operator OneNote(NewNote newNote)
         {
             return new OneNote()
@@ -27,7 +32,8 @@ namespace DayOne.IoObjects
                 UpdateAt = DateTime.Now,
                 IsDeleted = false,
                 LoveCount = 0,
-                LoveOrNot = false,
+                LoveOrNot = newNote.LoveOrNot,
+                ShareOrNot =  newNote.ShareOrNot,
                 Content =  newNote.Content,
                 Title =  newNote.Title,
                 BookId =  newNote.BookId
