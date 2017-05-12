@@ -77,6 +77,11 @@ namespace DayOne.Services
                     noteSQL =
                         noteSQL.Where(o => o.Content.Contains(shareQuery.Text) || o.Title.Contains(shareQuery.Text));
                 }
+
+                if (shareQuery.IncludePlan == false)
+                {
+                    return noteSQL.OrderByDescending(o => o.UpdateAt);
+                }
             }
 
             if (shareQuery.IncludePlan)
@@ -92,6 +97,11 @@ namespace DayOne.Services
                 {
                     planSQL =
                         planSQL.Where(o => o.Content.Contains(shareQuery.Text));
+                }
+
+                if (shareQuery.IncludeNote == false)
+                {
+                    return planSQL.OrderByDescending(o => o.UpdateAt);
                 }
             }
 

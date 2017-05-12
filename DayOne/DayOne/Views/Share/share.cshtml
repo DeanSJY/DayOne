@@ -17,7 +17,8 @@
     <div class="share-content">
         <!--标题-->
         <div class="title">
-            <span class="glyphicon glyphicon-leaf">{{item.Title}}</span>
+            <span class="glyphicon glyphicon-leaf small"></span>
+            <span class="text">{{item.Title}}</span>
             <span class="pull-right author" style="">by {{item.UserName}}</span>
         </div>
         <!--内容-->
@@ -26,19 +27,11 @@
             <!-- <textarea id="textarea1" rows="8" cols="68">123</textarea> -->
         </div>
         <!--时间、点赞-->
-        <div class="toolbar row">
-            <label id="time1">{{item.UpdateAt|longdate}}</label>
-            <span class="glyphicon glyphicon-heart-empty pull-right" ng-click="togglePraised()"> {{item.LoveCount}}</span>
-            <!-- 时间
-            <div class="col-md-6"> 
-                
-            </div> -->
-            <!--点赞数
-            <div class="col-md-6" id="T1">
-                <span class="glyphicon glyphicon-heart" id="heart1" ></span>
-                <span class="glyphicon glyphicon-heart-empty" id="emheart1" ></span>
-                <label class="lab" id="lab1">0</label>
-            </div>-->
+        <div class="toolbar clearfix">
+            <span >{{item.UpdateAt|longdate}}</span>
+            <span class="pull-right" ng-click="togglePraised()">{{item.LoveCount}}</span>
+            <span class="glyphicon pull-right small" style="margin-top: 2px;" 
+                ng-class="{'glyphicon-heart':item.IsMyPraised,'glyphicon-heart-empty':!item.IsMyPraised}" ng-click="togglePraised()"></span>
         </div>
     </div>
 </script>
@@ -51,13 +44,13 @@
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="_searchText" placeholder="搜索">
                 </div>
-                <button type="submit" class="btn btn-default">GO!</button>
+                <button type="submit" class="btn btn-default" ng-click="reload()">GO!</button>
                 <button type="submit" class="btn btn-default" ng-click="reload()"><span class="glyphicon glyphicon-repeat" /></button>
             </form>
 
             <ul class="nav nav-pills navbar-dayone" style="margin-top: 5px;">
                 <li role="presentation" class="a-txt"><a href="#" ng-click="toggleAll()">
-                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : showAll()}" ></span>&nbsp;全部</a></li>
+                    <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : showAll()}"></span>&nbsp;全部</a></li>
                 <li role="presentation" class="a-txt"><a href="#" ng-click="toggleNote()">
                     <span class="glyphicon glyphicon-eye-open" ng-class="{'enable' : _note_only}"></span>&nbsp;笔记</a></li>
                 <li role="presentation" class="a-txt"><a href="#" ng-click="togglePlan()">
@@ -68,29 +61,18 @@
         </div>
     </nav>
 
-    <!--第一行 框1、2-->
-    <div class="row share">
-        <div class="col-sm-6" ng-include src="'/share/item.html'" 
-            ng-controller="ShareViewCTRL" ng-init="index=0"></div>
-
-        <!--框2-->
-        <div class="col-sm-6" ng-include src="'/share/item.html'" 
-            ng-controller="ShareViewCTRL" ng-init="index=1"></div>
-
-    </div>
-
-    <!--第二行 框3、4-->
-    <div class="row share">
-
-        <!--框3-->
-        <div class="col-md-6" ng-include src="'/share/item.html'" 
-            ng-controller="ShareViewCTRL" ng-init="index=2"></div>
-
-        <!--框4-->
-        <div class="col-md-6"  ng-include src="'/share/item.html'"
-            ng-controller="ShareViewCTRL" ng-init="index=3"></div>
-    </div>
-    <span class="glyphicon glyphicon-menu-left" ng-show="paging.hasPrev()" ng-click="prev()"></span>
-    <span class="glyphicon glyphicon-menu-right" ng-show="paging.hasNext()" ng-click="next()"></span>
+    
+    <table class="share" cellspacing="30px">
+        <tr>
+            <td ng-include src="'/share/item.html'" ng-controller="ShareViewCTRL" ng-init="index=0" ng-show='shareList[0]'></td>
+            <td ng-include src="'/share/item.html'" ng-controller="ShareViewCTRL" ng-init="index=1" ng-show='shareList[1]'></td>
+        </tr>
+        <tr>
+            <td ng-include src="'/share/item.html'" ng-controller="ShareViewCTRL" ng-init="index=2" ng-show='shareList[2]'></td>
+            <td ng-include src="'/share/item.html'" ng-controller="ShareViewCTRL" ng-init="index=3" ng-show='shareList[3]'></td>
+        </tr>
+    </table>
+    <span class="glyphicon glyphicon-menu-left share-page-prev" ng-show="paging.hasPrev()" ng-click="prev()"></span>
+    <span class="glyphicon glyphicon-menu-right share-page-next" ng-show="paging.hasNext()" ng-click="next()"></span>
 </div>
 

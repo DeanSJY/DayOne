@@ -19,18 +19,28 @@
 			$scope._note_only = true;
 			$scope._plan_only = true;
 			$scope._my_only = false;
+			$scope.reload();
 		};
 
 		$scope.toggleNote = function() {
 			$scope._note_only = !!!$scope._note_only;
+			if (!$scope._note_only && !$scope._plan_only) {
+				$scope._plan_only = true;
+			}
+			$scope.reload();
 		};
 
 		$scope.togglePlan = function() {
 			$scope._plan_only = !!!$scope._plan_only;
+			if (!$scope._note_only && !$scope._plan_only) {
+				$scope._note_only = true;
+			}
+			$scope.reload();
 		};
 
 		$scope.toggleMy = function() {
 			$scope._my_only = !!!$scope._my_only;
+			$scope.reload();
 		};
 
 		$scope.reload = function() {
@@ -65,7 +75,8 @@
 		$scope.$on('__reload', function($event, $args) {
 			$event.stopPropagation();
 			$event.preventDefault();
-
+			
+			$scope.paging.reset();
 			query_share_list($args);
 		});
 
@@ -73,21 +84,23 @@
 			return $scope.shareList[index];
 		};
 
-		$scope.prev = function(){
+		$scope.prev = function() {
 			$scope.paging.next();
 			query_share_list();
 		};
 
-		$scope.next = function(){
+		$scope.next = function() {
 			$scope.paging.prev();
 			query_share_list();
 		};
+
+		query_share_list();
 	}
 
 	function ShareViewCTRL($scope, $http) {
 		$scope.item = null;
 
-		$scope.$watch(function(){
+		$scope.$watch(function() {
 			return $scope.get($scope.index);
 		}, function(newval) {
 			$scope.item = newval;

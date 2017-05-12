@@ -140,6 +140,18 @@
 	color: #722B72 !important;
 }
 
+table.share {
+	width: 100%;
+	height: 90%;
+	table-layout: fixed;
+}
+
+table.share td{
+	padding: 30px;
+	width: 50%;
+	height: 50%;
+}
+
 .container.share {
 	position: fixed;
 	top: 60px;
@@ -168,19 +180,24 @@
 
 .share-content{
 	background-color: white;
+	padding: 10px 30px 10px 30px;
+	height: 100%;
+	position: relative;
 }
 
 .share-content .title{
 	font-size: x-large;
 	font-weight: bold;
-	padding-left: 15px;
-	margin-left: 15px;
-    margin-right: 15px;
-	/*width: 30%;*/
 	text-align: left;
 	border-bottom: thin #fafafa groove;
 	color: #722B72;
-
+}
+.share-content .title .text{
+	max-width:70%; 
+	display:inline-block;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
 }
 
 .share-content .author{
@@ -197,12 +214,49 @@
 	/*vertical-align: bottom;*/
 	margin-top: 10px;
 	font-style: italic;
+	position: absolute;
+	bottom: 20px;
+	right: 30px;
+	left: 30px;
+}
+
+.share-content .glyphicon-heart{
+	color: #722B72;
 }
 
 .share-content .content-body{
 	/*width: 100%;
 	height: 72%;
 	margin-top: 1%;*/
+	text-indent: initial;
+}
+
+.share-page-prev{
+	position: fixed;
+	top: 50%;
+	left: 10px;
+	font-weight: bold;
+	font-size: 23px;
+	display: inline-block;
+	height: 23px;
+	vertical-align: middle;
+	color: #722B72;
+}
+
+.share-page-next{
+	position: fixed;
+	top: 50%;
+	right: 10px;
+	font-weight: bold;
+	font-size: 23px;
+	color: #722B72;
+	height: 23px;
+}
+
+.share-page-prev:hover, 
+.share-page-next:hover{
+	background-color: #722B72;
+	color: white;
 }
 
 html,body{

@@ -34,7 +34,7 @@
 		}
 
 		function hasPrevious() {
-			return start + limit <= totalCount;
+			return start + limit < totalCount;
 		}
 
 		function next() {
@@ -46,6 +46,10 @@
 			if (start <= 0) {
 				start = 0;
 			}
+		}
+
+		function reset(){
+			start = 0;
 		}
 
 		function total() {
@@ -88,6 +92,7 @@
 			hasPrev: hasPrevious,
 			total: total,
 			limit: setLimit,
+			reset: reset,
 			create_post_args: create_post_args,
 			create_query_url: create_query_url,
 			on_request_completed: on_request_completed
