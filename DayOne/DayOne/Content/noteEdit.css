@@ -51,7 +51,7 @@
 
         }
             .a-txt:hover {
-               color:black;
+               color:#722b72;
                opacity:0.8;
             }
 		.context{
@@ -137,7 +137,7 @@ div.notepanel > .notelist {
     padding-top: 45px;*/
 }
 
-div.notepanel > .notelist > .title{
+div.notepanel > .notelist > .bookname{
     height:41px;
     padding-top: 10px;
     border-bottom: thin #722b72 solid;
@@ -150,7 +150,8 @@ div.notepanel > .notelist > .title{
 
 div.notepanel > .notelist > .summary {
     min-height:10%;
-    margin-left:-10px
+    margin-left:-10px;
+    height: 150px;
 }
 
 div.notepanel > .notelist > .summary > .title {
@@ -158,12 +159,21 @@ div.notepanel > .notelist > .summary > .title {
     margin-top:2px;
     font-size:x-large;
     overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+div.notepanel > .notelist > .summary > .title .lovenote {
+    font-size:18px;
+    margin-top: 8px;
+    color:#722b72;
+    margin-left: 5px;
 }
 
 div.notepanel > .notelist > .summary > .text {
-    max-height: 200px;
+    max-height: 80px;
     overflow: hidden;
     text-indent: initial;
+    text-overflow: ellipsis;
 }
 
 div.notepanel > .notelist > .summary > .updateAt{

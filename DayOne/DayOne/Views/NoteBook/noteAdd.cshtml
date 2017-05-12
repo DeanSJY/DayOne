@@ -10,9 +10,13 @@
         
         <a href="#" class="a-txt" ng-click="return_to_view()" ><span class="glyphicon glyphicon-off"></span>&nbsp;返回</a>
         <a href="#" class="a-txt" ng-disabled="notefrm.$invalid" ng-click="post_create_note(current, notefrm)">保存笔记</a>
-        <a href="#" class="a-txt" data-toggle="modal" data-target="#myModal3" ng-click="mark_love_it()" >
-			<span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart"></span>
-        	<span ng-if="!current.LoveOrNot" class="glyphicon glyphicon-heart-empty"></span> &nbsp;爱心笔记
+        <a href="#" class="a-txt" ng-click="mark_love_it()" >
+			<span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart-empty"></span>
+        	<span ng-if="!current.LoveOrNot" class="glyphicon glyphicon-heart-empty" style="color:#ccc;"></span> &nbsp;爱心笔记
+        </a>
+        <a href="#" class="a-txt" ng-click="mark_share_it()">
+            <span ng-if="current.ShareOrNot" class="glyphicon glyphicon-share-alt"></span>
+            <span ng-if="!current.ShareOrNot" class="glyphicon glyphicon-share-alt" style="color:#ccc;"></span> &nbsp;分享笔记
         </a>
      </div>
 	<!-- <div style="text-align:left;font-size:15px;margin-top:16px;font-weight:bold"></div> -->

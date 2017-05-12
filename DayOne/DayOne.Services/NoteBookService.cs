@@ -289,6 +289,18 @@ namespace DayOne.Services
             return false;
         }
 
+        public bool ToggleShareIt(int noteId)
+        {
+            var note = GetMyNote(noteId);
+            if (note != null)
+            {
+                note.ShareOrNot = !note.ShareOrNot;
+                CurrentDB.SaveChanges();
+                return note.ShareOrNot;
+            }
+            return false;
+        }
+
         /// <summary>
         /// 是否将上传了附件笔记
         /// </summary>

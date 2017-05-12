@@ -43,15 +43,18 @@
 
     <!--按钮栏-->
     <div class="toolbar row">
-        <div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt|longdate}}</div>
-        <div class="col-md-5" @* style="margin-top: 10px; margin-bottom:10px;" *@>
-
+        <div class="pull-left small"style="font-weight:normal;">更新于： {{current.UpdateAt|longdate}}</div>
+        <div class="pull-right">
             <a href="#" class="a-txt" ng-click="return_to_view()" ><span class="glyphicon glyphicon-off"></span>&nbsp;返回</a>
             <a href="#" class="a-txt" data-toggle="modal" data-target="#note_deleting_dialog">删除笔记</a>
             <a href="#" class="a-txt" @* data-toggle="modal" data-target="#myModal1" *@ ng-click="post_edit_note(current)">保存笔记</a>
             <a href="#" class="a-txt" data-toggle="modal" data-target="#mark_love_dialog" >
-                <span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart"></span>
-                <span ng-if="!current.LoveOrNot" class="glyphicon glyphicon glyphicon-heart-empty"></span> &nbsp;爱心笔记
+                <span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart-empty"></span>
+                <span ng-if="!current.LoveOrNot" class="glyphicon glyphicon-heart-empty" style="color:#ccc;"></span> &nbsp;爱心笔记
+            </a>
+            <a href="#" class="a-txt" data-toggle="modal" data-target="#mark_share_dialog">
+                <span ng-if="current.ShareOrNot" class="glyphicon glyphicon-share-alt"></span>
+                <span ng-if="!current.ShareOrNot" class="glyphicon glyphicon-share-alt" style="color:#ccc;"></span> &nbsp;分享笔记
             </a>
         </div>
     </div>

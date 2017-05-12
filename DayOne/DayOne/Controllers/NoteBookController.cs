@@ -210,6 +210,11 @@ namespace DayOne.Controllers
             return Json(result);
         }
 
+        public JsonResult ToggleShareIt(int noteId)
+        {
+            var result = notebookservice.ToggleShareIt(noteId);
+            return Json(result);
+        }
 
         //提交笔记内容
         //[HttpPost]

@@ -131,4 +131,16 @@ app.controller("NoteListControl", function($scope, $http) {
                 $scope.current.LoveOrNot = response.data || false;
             });
     };
+
+    $scope.mark_share_it = function(){
+        $scope.current.ShareOrNot = !!!$scope.current.ShareOrNot;
+    };
+
+    $scope.mark_share_it_and_post = function() {
+        $http.post("/NoteBook/ToggleShareIt?noteId=" + $scope.current.NoteId,{})
+            .then(function(response) {
+                $scope.current.ShareOrNot = response.data || false;
+            });
+    };
+
 });

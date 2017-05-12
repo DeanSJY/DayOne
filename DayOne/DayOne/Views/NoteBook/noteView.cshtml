@@ -3,16 +3,20 @@
 }
 <!--按钮栏-->
 <div class="toolbar row">
-	<div class="col-md-5 small"style="font-weight:normal;">更新于： {{current.UpdateAt|longdate}} </div>
-	<div class="col-md-5" @* style="margin-top: 10px; margin-bottom:10px;" *@>
+	<div class="pull-left small" style="font-weight:normal;"> 更新于： {{current.UpdateAt|longdate}} </div>
+	<div class="pull-right">
         <!--上传附件，我用的自带的控件，你自己改 -->       
         <a href="#" class="a-txt" data-toggle="modal" data-target="#note_deleting_dialog">删除笔记</a>
         <a href="#" class="a-txt" ng-click="prepare_edit_note()">编辑笔记</a>
         <a href="#" class="a-txt" ng-click="prepare_create_note()">添加新笔记</a>
         <a href="#" class="a-txt" data-toggle="modal" data-target="#mark_love_dialog">
-       		<span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart"></span>
-        	<span ng-if="!current.LoveOrNot" class="glyphicon glyphicon glyphicon-heart-empty"></span> &nbsp;爱心笔记
+       		<span ng-if="current.LoveOrNot" class="glyphicon glyphicon-heart-empty"></span>
+        	<span ng-if="!current.LoveOrNot" class="glyphicon glyphicon-heart-empty" style="color:#ccc;"></span> &nbsp;爱心笔记
        	</a>
+        <a href="#" class="a-txt" data-toggle="modal" data-target="#mark_share_dialog">
+            <span ng-if="current.ShareOrNot" class="glyphicon glyphicon-share-alt"></span>
+            <span ng-if="!current.ShareOrNot" class="glyphicon glyphicon-share-alt" style="color:#ccc;"></span> &nbsp;分享笔记
+        </a>
     </div>
 </div>
 

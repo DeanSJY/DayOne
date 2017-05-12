@@ -69,15 +69,37 @@
         </div><!-- /.modal -->
     </div>
 
+    <!-- 分享笔记模态框 -->
+    <div class="modal fade" id="mark_share_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H">Day One</h4>
+                </div>
+                <div class="modal-body">
+                    <span ng-if="!current.ShareOrNot">要分享该笔记吗？</span>
+                    <span ng-if="current.ShareOrNot">要取消分享笔记吗？</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" 
+                        ng-click="mark_share_it_and_post()">{{current.ShareOrNot?'取消分享':'分享'}}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
     <!--内容-->
     <div class="notepanel">
         <!-- 左侧摘要 -->
         <div class="col-md-2 notelist">
-            <div class="title">&nbsp;&nbsp;<a class="a-txt" style="margin-right:3px;" href="/NoteBook/NoteBook">笔记本</a><span class="a-txt"> >> {{book.BookName}}</span></div>
+            <div class="bookname">&nbsp;&nbsp;<a class="a-txt" style="margin-right:3px;" href="/NoteBook/NoteBook">笔记本</a><span class="a-txt"> >> {{book.BookName}}</span></div>
             <div class="summary" ng-click="select(note)" ng-repeat="note in notes">
                     <div class="title" id="b1">
                         {{note.Title}}
-                        <span ng-if="note.LoveOrNot" class="glyphicon glyphicon-heart-empty pull-right"></span>
+                        <span ng-if="note.LoveOrNot" class="glyphicon glyphicon-heart-empty lovenote pull-right"></span>
+                        <span ng-if="note.ShareOrNot" class="glyphicon glyphicon-share-alt lovenote pull-right"></span>
                     </div>
                     <div class="text" @*class="b2txt"*@  id="b2">&nbsp;&nbsp;&nbsp;&nbsp; {{note.Content}}</div>
                     <div class="updateAt text-right">{{note.UpdateAt|longdate}}</div>
