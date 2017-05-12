@@ -54,8 +54,8 @@ namespace DayOne.Services
         {
             //IQueryable<ShareInfo> statement = CurrentDB.ShareInfos.AsNoTracking();
 
-            IQueryable<OneNote> noteSQL = CurrentDB.ShareInfos.OfType<OneNote>();
-            IQueryable<DayPlan> planSQL = CurrentDB.ShareInfos.OfType<DayPlan>();
+            IQueryable<OneNote> noteSQL = CurrentDB.ShareInfos.OfType<OneNote>().Where(o => o.ShareOrNot == true);
+            IQueryable<DayPlan> planSQL = CurrentDB.ShareInfos.OfType<DayPlan>().Where(o => o.ShareOrNot == true);
 
             //if (shareQuery.OnlyMyself)
             //{
