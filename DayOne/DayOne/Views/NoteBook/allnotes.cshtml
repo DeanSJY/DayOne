@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "全部笔记";
+    Layout = "~/Views/Shared/NoteBook2.cshtml";
+}
+
+@section headers{
+    <script src="/Scripts/allnotes.js"></script>
+}
+
+<div class="loveNotePanel row" ng-controller="AllNoteCTRL" ng-include="'/note/list.html'"></div>

@@ -52,3 +52,77 @@ app.controller("noteCtrl", function($scope, $http) {
 
     $scope.refresh_notebook_list();
 });
+
+/* 笔记列表控制器 */
+function create_note_list_control(fQuery) {
+    return function($scope, $http, paging) {
+        $scope.paging = paging;
+        $scope.offset = 0;
+
+        $scope.notes = [];
+        $scope.current = null;
+        $scope.args = {};
+
+        paging.limit(5);
+
+        // $scope.load_love_notes = function(filters) {
+        //     $http.get(paging.create_query_url("/NoteBook/LoveNoteList"))
+        //         .then(paging.on_request_completed)
+        //         .then(function(response) {
+        //             $scope.notes = response.data.DataList;
+        //             $scope.current = $scope.notes[0] || {};
+        //         });
+        // };
+
+        $scope.next = function() {
+            $scope.paging.prev();
+            fQuery($scope.args, $scope, $http, paging);
+        };
+
+        $scope.prev = function() {
+            $scope.paging.next();
+            fQuery($scope.args, $scope, $http, paging);
+        };
+
+        $scope.$on("reload", function(event, args) {
+            $scope.args = args || $scope.args;
+            $scope.paging.reset();
+            fQuery($scope.args, $scope, $http, paging);
+        });
+
+        fQuery($scope.args, $scope, $http, paging);
+    }
+}
+
+function query_love_notes(filters, $scope, $http, paging) {
+    var url = "/NoteBook/LoveNoteList";
+    if (filters.searchText) {
+        url = url + "?searchText=" + filters.searchText + "&";
+    }
+
+    $http.get(paging.create_query_url(url))
+        .then(paging.on_request_completed)
+        .then(function(response) {
+            $scope.notes = response.data.DataList;
+            $scope.current = $scope.notes[0] || {};
+        });
+}
+
+function query_all_notes(filters, $scope, $http, paging) {
+    var url = "/NoteBook/AllNoteList";
+    if (filters.searchText) {
+        url = url + "?searchText=" + filters.searchText + "&";
+    }
+
+    $http.get(paging.create_query_url(url))
+        .then(paging.on_request_completed)
+        .then(function(response) {
+            $scope.notes = response.data.DataList;
+            $scope.current = $scope.notes[0] || {};
+        });
+
+    //query_love_notes(filters, $scope, $http, paging);
+}
+
+app.controller("LoveNoteCtrl", ['$scope', '$http', 'paging', create_note_list_control(query_love_notes)])
+    .controller("AllNoteCTRL", ['$scope', '$http', 'paging', create_note_list_control(query_all_notes)]);

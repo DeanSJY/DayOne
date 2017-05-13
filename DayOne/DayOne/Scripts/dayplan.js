@@ -2,13 +2,28 @@
     "use strict";
 
     function DayPlanController($scope) {
+        var i = 0;
 
+        $scope.genDomId = function() {
+            return "datetimepicker" + i++;
+        };
+
+        $scope.datetimepicker = function(id) {
+            setTimeout(function() {
+                var inputGroup = $('#' + id).datetimepicker({
+                    format: 'YY/MM/DD HH:mm',
+                    minDate: "2017-01-01T00:00:00.000Z",
+                    locale: 'zh-cn',
+                    showClose: true
+                }).on('dp.change', function() {
+                    $(this).children('input').trigger('change');
+                });
+            }, 300);
+        };
     }
 
-    function OnePlanController($scope, $http, paging, ngDialog) {
-        $scope.plans = ["aaaaaaaaaaaa", "dddddd", "sssssss",
-            "sdfsdfdsfsdfsdf"
-        ];
+    function OnePlanController($scope, $http, paging, ngDialog, $filter) {
+        $scope.plans = [];
         $scope.paging = paging;
         $scope.title = "日计划";
         $scope.plantype = $scope.plantype || "day";
@@ -22,7 +37,7 @@
                     $scope.title = "周计划";
                     break;
                 case "month":
-                    $scope.title = "周计划";
+                    $scope.title = "月计划";
                     break;
                 case "year":
                     $scope.title = "年计划";
@@ -70,24 +85,25 @@
         $scope.editing = function(plan) {
             var scope = $scope.$new();
             scope.creating = angular.copy(plan);
-
+            scope.domId = $scope.genDomId();
+            scope.creating.ExpectEndAt = $filter('longdate')(scope.creating.ExpectEndAt);
+            
             ngDialog.open({
                 template: '/dayplan/plan/edit.html',
                 className: 'ngdialog-theme-default',
                 showClose: false,
                 scope: scope
             }).closePromise.then(function(result) {
-                $http.post('/dayplan/update', result.value)
-                    .then(function(newval) {
-                        for (var i in $scope.plans) {
-                            if ($scope.plans[i].PlanId == newval.data.PlanId) {
-                                return $scope.plans[i] = newval.data;
-                            } else {
-                                console.log($scope.plans[i].PlanId);
+                if (result.value.PlanId > 0) {
+                    $http.post('/dayplan/update', result.value)
+                        .then(function(newval) {
+                            for (var i in $scope.plans) {
+                                if ($scope.plans[i].PlanId == newval.data.PlanId) {
+                                    return $scope.plans[i] = newval.data;
+                                }
                             }
-                        }
-                        //angular.extend(plan, newval);
-                    });
+                        });
+                }
             });
         };
 
@@ -142,12 +158,14 @@
         $scope._out_of_editing = true;
         $scope._on_focus = false;
 
-        $scope.creating = {
-            PlanType: $scope.$parent.plantype,
-            Content: '',
-            ExpectEndAt: '',
-            LoveOrNot: false
-        };
+        function create_empty_object() {
+            $scope.creating = {
+                PlanType: $scope.$parent.plantype,
+                Content: '',
+                ExpectEndAt: '',
+                LoveOrNot: false
+            };
+        }
 
         $scope.prepare_adding = function() {
             $scope.is_adding = true;
@@ -166,21 +184,23 @@
         };
 
         $scope.post_create = function() {
-            console.log($scope.creating);
+            //console.log($scope.creating);
             $http.post("/dayplan/AddPlan", $scope.creating)
                 .then(function() {
                     $scope.$emit('reload');
-                    console.log(arguments);
+                    create_empty_object();
                 });
         };
 
         $scope.show_creating = function() {
             return $scope.is_adding;
         };
+
+        create_empty_object();
     }
 
     app.controller("DayPlanController", DayPlanController)
-        .controller("OnePlanController", ['$scope', '$http', 'paging', 'ngDialog', OnePlanController])
+        .controller("OnePlanController", ['$scope', '$http', 'paging', 'ngDialog', '$filter', OnePlanController])
         .controller("AddPlanController", ['$scope', '$http', AddPlanController]);
 
 })(angular);

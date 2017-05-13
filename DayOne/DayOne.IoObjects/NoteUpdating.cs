@@ -16,7 +16,8 @@ namespace DayOne.IoObjects
 
         public string Content { get; set; }
 
-        public bool LoveOrNote { get; set; }
+        public bool LoveOrNot { get; set; }
+
 
         [Range(0, Int32.MaxValue)]
         public int NoteId { get; set; }
@@ -25,7 +26,7 @@ namespace DayOne.IoObjects
         {
             oneNote.Title = Title;
             oneNote.Content = Content;
-            oneNote.LoveOrNot = LoveOrNote;
+            oneNote.LoveOrNot = LoveOrNot;
 
             return oneNote;
         }

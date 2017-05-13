@@ -14,7 +14,7 @@
 
             <div class="user-info-item">
                 <div class="item-title">USERNAME</div>
-                <div>SJY_DEAN</div>
+                <div>@Context.User.Identity.Name</div>
             </div>
 
             <div class="user-info-item">
@@ -25,7 +25,7 @@
             <div class="other-item">
                 <div class="user-info-item">
                     <div class="item-title">LIKES<span class="pull-right">RANK</span></div>
-                    <div>17<span class="pull-right">2</span></div>
+                    <div>@ViewBag.Likes<span class="pull-right">2</span></div>
                 </div>
 
                 <div class="user-info-item">
@@ -41,20 +41,20 @@
                 <div class="user-info-item">
                     <div class="item-title">NEW PASSWORD</div>
                     <div>
-                        <input type="password" class="form-control" placeholder="输入新密码" />
+                        <input type="password" id="passwd0" class="form-control" placeholder="输入新密码" />
                     </div>
                 </div>
 
                 <div class="user-info-item">
                     <div class="item-title">CONFIRM NEW PASSWORD</div>
                     <div>
-                        <input type="password" class="form-control" placeholder="确认新密码" />
+                        <input type="password" id="passwd1" class="form-control" placeholder="确认新密码" />
                     </div>
                 </div>
             </div>
 
             <div class="user-info-button">
-                <button class="btn btn-block">CONFIRM EDIT</button>
+                <button class="btn btn-block" id="post-edit-btn" click="update_password();">CONFIRM EDIT</button>
             </div>
         </div>
     </div>

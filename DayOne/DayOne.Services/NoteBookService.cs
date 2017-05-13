@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DayOne.Entities;
@@ -236,18 +237,37 @@ namespace DayOne.Services
         /// </summary>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        public List<OneNote> GetRecycleList(int bookId)
+        public IQueryable<OneNote> GetRecycleList2(string searchText = null)
         {
-            var notes = CreateNoteQuery(true).Where(o => o.BookId == bookId && o.IsDeleted).ToList();
-            return notes;
+            Expression<Func<OneNote, bool>> filters;
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                filters = o => o.IsDeleted;
+            }
+            else
+            {
+                filters = o => o.IsDeleted && (o.Title.Contains(searchText) || o.Content.Contains(searchText));
+            }
+
+            return CreateNoteQuery(true).Where(filters)
+                .Include(o => o.User).Include(o => o.Book)
+                .OrderByDescending(o => o.Id);
         }
 
-        public IQueryable<OneNote> GetRecycleList2()
+        public IQueryable<OneNote> GetAllNoteList(string searchText = null)
         {
-            var notes = CreateNoteQuery(true).Where(o =>  o.IsDeleted)
-                .Include(o=>o.User).Include(o=>o.Book)
-                .OrderByDescending(o=>o.Id);
-            return notes;
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return CreateNoteQuery()
+                    .Include(o => o.User).Include(o => o.Book)
+                    .OrderByDescending(o => o.Id);
+            }
+
+            return CreateNoteQuery()
+                .Where(o => o.Title.Contains(searchText) || o.Content.Contains(searchText))
+                .Include(o => o.User).Include(o => o.Book)
+                .OrderByDescending(o => o.Id);
         }
 
         /// <summary>
@@ -265,9 +285,20 @@ namespace DayOne.Services
         /// 爱心笔记罗列的页面
         /// </summary>
         /// <returns></returns>
-        public IQueryable<OneNote> GetLoveList2()
+        public IQueryable<OneNote> GetLoveList2(string searchText = null)
         {
-            var loveNotes = CreateNoteQuery().Where(o => o.LoveOrNot)
+            Expression<Func<OneNote, bool>> filters;
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                filters = o => o.LoveOrNot;
+            }
+            else
+            {
+                filters = o => o.LoveOrNot && (o.Title.Contains(searchText) || o.Content.Contains(searchText));
+            }
+
+            var loveNotes = CreateNoteQuery().Where(filters)
                 .Include(o=>o.Book)
                 .Include(o=>o.User)
                 .OrderByDescending(o => o.Id);

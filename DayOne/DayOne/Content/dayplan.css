@@ -153,6 +153,7 @@
     margin-left: 3px;
 	word-wrap:break-word;
 	max-width: 85%;
+	min-width: 30px;
 }
 
 .plans > .planList > .panel > .plan:hover{

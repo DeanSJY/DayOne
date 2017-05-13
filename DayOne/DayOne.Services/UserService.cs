@@ -32,6 +32,13 @@ namespace DayOne.Services
             return null;
         }
 
+        public int CountLikes()
+        {
+            var userId = CurrentPrincipal.UserId;
+
+            return CurrentDB.ShareInfos.Where(o => o.UserId == userId).Sum(o => o.LoveCount);
+        }
+
         public UserInfo RegisterV1(RegisterRequest userRegister)
         {
             if (!string.Equals(userRegister.PassWord, userRegister.PassWord2))
@@ -62,6 +69,22 @@ namespace DayOne.Services
         {
             user = CurrentDB.UserTable.Add(user);
             return user;
+        }
+
+        public UserInfo ChangePassword(string newpw)
+        {
+            if (string.IsNullOrWhiteSpace(newpw))
+            {
+                return null;
+            }
+
+            var userInfo = CurrentDB.UserTable.Find(CurrentPrincipal.UserId);
+            if (userInfo == null)
+                return null;
+
+            userInfo.PassWord = newpw;
+            CurrentDB.SaveChanges();
+            return null;
         }
     }
 }

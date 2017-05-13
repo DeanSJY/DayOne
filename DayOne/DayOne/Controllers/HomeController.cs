@@ -20,7 +20,11 @@ namespace DayOne.Controllers
         {
             return View("login");
         }
-        public ActionResult UserInfo() {
+        public ActionResult UserInfo()
+        {
+            var loveCount = new UserService().CountLikes();
+            ViewBag.Likes = loveCount;
+
             return View("UserInfo");
         }
 
@@ -50,6 +54,12 @@ namespace DayOne.Controllers
             DayOne.Services.AuthorizationContext.Logout();
 
             return Redirect("/");
+        }
+
+        [HttpPost]
+        public void ChangePassword(string newpw)
+        {
+            new UserService().ChangePassword(newpw);
         }
     }
 }

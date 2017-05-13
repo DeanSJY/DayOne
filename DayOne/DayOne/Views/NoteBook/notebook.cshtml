@@ -22,19 +22,18 @@
             </div> -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-right">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <input type="text" class="form-control" placeholder="笔记搜索">
                     </div>
-                    <button type="submit" class="btn btn-default">GO!</button>
+                    <button type="submit" class="btn btn-default">GO!</button> -->
                     <button type="submit" class="btn btn-default" ng-click="refresh_notebook_list()"><span class="glyphicon glyphicon-repeat" /></button>
                 </form>
 
                 <ul class="nav nav-pills nav-notebook" style="margin-top:5px;">
                     <li role="presentation" class="a-txt" data-toggle="modal" data-target="#notebook_creating_diaglog"><a href="#">添加笔记本</a></li>
+                    <li role="presentation" class="a-txt">@Html.ActionLink("全部笔记", "AllNoteHTML", "NoteBook")</li>
                     <li role="presentation" class="a-txt">@Html.ActionLink("爱心笔记", "LoveNote", "NoteBook")</li>
-                    @* <li role="presentation" class="a-txt">@Html.ActionLink("附件笔记", "AttachNote", "NoteBook")</li> *@
                     <li role="presentation" class="a-txt">@Html.ActionLink("笔记回收站", "RecycleNote", "NoteBook")</li>
-                    <!-- <li role="presentation"><span class="glyphicon glyphicon-repeat" /><small>刷新</small> </li> -->
                 </ul>
             </div>
         <!-- </div> -->

@@ -19,10 +19,40 @@ function confirm(){
 }
 
 //document.getElementById("input2").type="password";
-$(function () {
-    $(".password-edit").click(function () {
-        $(".other-item").slideToggle(function () {
+$(function() {
+    $(".password-edit").click(function() {
+        $(".other-item").slideToggle(function() {
             $(".password-item").slideToggle();
-        })
-    })
-})
+        });
+    });
+});
+
+
+function update_password() {
+    var p0 = $("#passwd0").val();
+    var p1 = $("#passwd1").val();
+
+    if (!!!p0)
+        return;
+
+    if (p0 !== p1 ) {
+        alert("password not match");
+    }
+
+    $.post("/home/ChangePassword",
+        "newpw=" + p0,
+        function() {
+
+            $(".other-item").slideToggle(function() {
+                $(".password-item").slideToggle();
+            });
+        });
+}
+
+$(function() {
+    $("#post-edit-btn").click(function() {
+        if (!$(".password-item").is(":hidden")) {
+            update_password();
+        }
+    });
+});

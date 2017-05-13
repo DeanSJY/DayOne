@@ -6,66 +6,6 @@
 @section headers{
     <link rel="stylesheet" href="~/Content/recycle.css" />
     <script src="/Scripts/recyclenotes.js"></script>
-<script type="text/javascript">
-    function myfunction(on) {
-        on.style.backgroundColor = "#1E90FF";
-        on.style.color = "white";
-    }
-    function myfunction1(out) {
-        out.style.backgroundColor = "#F8F8FF";
-        out.style.color = "#1E90FF";
-    }
-    function myfunction2(on) {
-        on.style.backgroundColor = "#D1D1D1";
-    }
-    function myfunction3(out) {
-        out.style.backgroundColor = "#722b72";
-    }
-    function myfunction4() {
-        window.location.href = "http://localhost:2693/LoveNote.aspx";
-    }
-    function myfunction5() {
-        window.location.href = "http://localhost:2693/AttchmentNote.aspx#";
-    }
-
-    //参数传递值的获取
-    function GetRequest() {
-        var url = location.search; //获取url中"?"符后的字串
-        var theRequest = new Object();
-        if (url.indexOf("?") != -1) {
-            var str = url.substr(1);
-            strs = str.split("&");
-            for (var i = 0; i < strs.length; i++) {
-                theRequest[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
-            }
-        }
-        return theRequest;
-    }
-
-    //页面跳转传递参数，显示删除的笔记信息
-    function show() {
-        var a = GetRequest();
-        var index_1 = a['title'];
-        var b = GetRequest();
-        var index_2 = b['content'];
-        var c = GetRequest();
-        var index_3 = c['time'];
-        document.getElementById("input1").value = index_1;
-        document.getElementById("TextBox1").value = index_2;
-        document.getElementById("Label1").innerHTML = index_3;
-    }
-
-    //删除回收站
-    function deleteinformation() {
-        document.getElementById("input1").value = "";
-        document.getElementById("TextBox1").value = "";
-        document.getElementById("Label1").innerHTML = "";
-    }
-
-    function goback() {
-        history.go(-1);
-    }
-</script>
 }
 
 <div ng-controller="RecyleNoteCTRL">
@@ -104,35 +44,7 @@
     </div>
 
     <!--内容-->
-    <div class="loveNotePanel row" >
-        <!-- <div class="col-sm-1"><span class="glyphicon glyphicon-backward" style="color:white;"></span></div> -->
-        <div class="col-sm-10 col-sm-offset-1 panel panel-note" ng-repeat="note in notes">
-            <div class="onenote">
-                <p class="title">
-                    <span class="glyphicon glyphicon-heart-empty"></span>
-                    <span style="vertical-align:super;">{{note.Title}}</span>
-                </p>
-                <p class="remark">
-                    <span>更新时间: {{note.UpdateAt|longdate}}</span>&nbsp;&nbsp;
-                    <span>笔记本名称: {{note.BookName}}</span>
-                </p>
-                <p class="content">{{note.Content}}</p>
-                <p class="toolbar">
-                    <a href="#" data-toggle="modal" data-target="#recovery_note_dialog" ng-click="setCurrent(note)">
-                        <span class="glyphicon glyphicon-share-alt"></span>恢复到笔记本</a>&nbsp;&nbsp;
-                    <a href="#" data-toggle="modal" data-target="#remove_note_dialog" ng-click="setCurrent(note)">
-                        <span class="glyphicon glyphicon-remove"></span>彻底删除</a></p>
-            </div>
-        </div>
-        <!-- <div class="col-sm-1"><span class="glyphicon glyphicon-forward" style="color:white;"></span></div> -->
-    </div>
+    <div class="loveNotePanel row" ng-include src="'/note/list.html'" ></div>
 
-    <span class="glyphicon glyphicon-menu-left page-nav-prev" ng-show="paging.hasPrev()" ng-click="prev()"></span>
-    <span class="glyphicon glyphicon-menu-right page-nav-next" ng-show="paging.hasNext()" ng-click="next()"></span>
-
-    <!-- <div class="paging_navigation_button clearfix">
-        <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-        <span class="glyphicon glyphicon-chevron-right pull-right"></span>
-    </div> -->
 </div>
 

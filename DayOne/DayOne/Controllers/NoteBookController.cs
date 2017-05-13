@@ -103,10 +103,11 @@ namespace DayOne.Controllers
             return View("noteAdd");
         }
 
-        public ActionResult SearchNoteHTML()
+        public ActionResult AllNoteHTML()
         {
-            return View("search");
+            return View("allnotes");
         }
+
         #endregion
 
         public ActionResult Note(int bookId)
@@ -124,7 +125,7 @@ namespace DayOne.Controllers
             return Json(noteList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LoveNoteList(int start, int limit)
+        private Func<OneNote, OneNoteView> GetTransformOneNote()
         {
             Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
             {
@@ -143,33 +144,28 @@ namespace DayOne.Controllers
                 WithAttach = o.WithAttach,
                 KeyWords = o.KeyWords
             };
+            return transfrom;
+        }
 
-            var noteList = JsonDataList.CreateResult(notebookservice.GetLoveList2(), transfrom, start, limit);
+        public JsonResult LoveNoteList(int start, int limit, string searchText = null)
+        {
+            var noteList = JsonDataList.CreateResult(notebookservice.GetLoveList2(searchText), GetTransformOneNote(), start, limit);
 
             return Json(noteList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult RecyleNoteList(int start, int limit)
+        public JsonResult RecyleNoteList(int start, int limit, string searchText = null)
         {
-            Func<OneNote, OneNoteView> transfrom = o => new OneNoteView()
-            {
-                NoteId = o.Id,
-                CreateAt = o.CreateAt,
-                UpdateAt = o.UpdateAt,
-                Title = o.Title,
-                Content = o.Content,
-                LoveOrNot = o.LoveOrNot,
-                UserId = o.UserId,
-                UserName = o.User.UserName,
-                BookId = o.BookId,
-                BookName = o.Book.BookName,
-                IsDeleted = o.IsDeleted,
-                LoveCount = o.LoveCount,
-                WithAttach = o.WithAttach,
-                KeyWords = o.KeyWords
-            };
+            var noteList = JsonDataList.CreateResult(notebookservice.GetRecycleList2(searchText), GetTransformOneNote(), start,
+                limit);
 
-            var noteList = JsonDataList.CreateResult(notebookservice.GetRecycleList2(), transfrom, start, limit);
+            return Json(noteList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AllNoteList(int start, int limit, string searchText = null)
+        {
+            var noteList = JsonDataList.CreateResult(notebookservice.GetAllNoteList(searchText),
+                GetTransformOneNote(), start, limit);
 
             return Json(noteList, JsonRequestBehavior.AllowGet);
         }
