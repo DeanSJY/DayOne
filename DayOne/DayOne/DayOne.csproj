@@ -1037,6 +1037,7 @@
     <None Include="Views\Forget\forget.cshtml" />
     <None Include="Views\Home\login.cshtml" />
     <Content Include="Views\NoteBook\note.cshtml" />
+    <Content Include="Views\NoteBook\search.cshtml" />
     <None Include="Views\NoteBook\notebook.cshtml" />
     <Content Include="Views\NoteBook\noteList.cshtml" />
     <Content Include="Views\NoteBook\noteView.cshtml" />

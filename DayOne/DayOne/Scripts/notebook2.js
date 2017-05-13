@@ -1,7 +1,10 @@
 app.controller("NoteBookViewCTRL", function($scope) {
+    $scope._searchText = "";
 
     $scope.reload = function() {
-        $scope.$broadcast("reload");
+        $scope.$broadcast("reload", {
+            searchText: $scope._searchText
+        });
     };
 });
 

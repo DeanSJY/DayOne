@@ -157,6 +157,7 @@ table.share td{
 	top: 60px;
 	bottom: 0px;
 	width: 100%;
+	overflow-y: auto;
 }
 
 .row.share{
@@ -229,6 +230,7 @@ table.share td{
 	height: 72%;
 	margin-top: 1%;*/
 	text-indent: initial;
+	margin-bottom: 30px;
 }
 
 .share-page-prev{

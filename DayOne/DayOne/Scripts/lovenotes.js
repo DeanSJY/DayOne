@@ -4,6 +4,8 @@ app.controller("LoveNoteCtrl", function($scope, $http, paging) {
 
 	$scope.notes = [];
 	$scope.currrent = null;
+	
+	paging.limit(5);
 
 	$scope.load_love_notes = function() {
 		$http.get(paging.create_query_url("/NoteBook/LoveNoteList"))
@@ -24,12 +26,12 @@ app.controller("LoveNoteCtrl", function($scope, $http, paging) {
 	};
 
 	$scope.next = function(){
-		paging.prev();
+		$scope.paging.prev();
 		$scope.load_love_notes();
 	};
 
-	$scope.perv = function(){
-		paging.next();
+	$scope.prev = function(){
+		$scope.paging.next();
 		$scope.load_love_notes();
 	};
 

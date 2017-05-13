@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="~/Content/share.css" />
 
     <script src="/Scripts/angular.js" type="text/javascript"></script>
+    <script src="/Scripts/angular-sanitize.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var app = angular.module('ngApp', []);
+        var app = angular.module('ngApp', ['ngSanitize']);
     </script>
     <script src="/Scripts/basic.js"></script>
     <script src="~/Scripts/share.js"></script>
@@ -22,9 +23,8 @@
             <span class="pull-right author" style="">by {{item.UserName}}</span>
         </div>
         <!--内容-->
-        <div class="context">
-            {{item.Content}}
-            <!-- <textarea id="textarea1" rows="8" cols="68">123</textarea> -->
+        <div class="content-body" >
+            <pre style="height:80%;width:100%;background-color:transparent;white-space:pre-wrap;border: 0;margin-top:10px;" ng-bind-html="item.Content" >123</pre>
         </div>
         <!--时间、点赞-->
         <div class="toolbar clearfix">

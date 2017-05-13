@@ -103,6 +103,10 @@ namespace DayOne.Controllers
             return View("noteAdd");
         }
 
+        public ActionResult SearchNoteHTML()
+        {
+            return View("search");
+        }
         #endregion
 
         public ActionResult Note(int bookId)

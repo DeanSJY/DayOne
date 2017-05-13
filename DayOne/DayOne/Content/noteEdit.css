@@ -135,6 +135,7 @@ div.notepanel > .notelist {
     background-color:#f5f5f5;
     /*background-color: #222
     padding-top: 45px;*/
+    overflow-y: auto;
 }
 
 div.notepanel > .notelist > .bookname{
@@ -149,9 +150,10 @@ div.notepanel > .notelist > .bookname{
 }
 
 div.notepanel > .notelist > .summary {
-    min-height:10%;
+    /*min-height:10%;*/
     margin-left:-10px;
-    height: 150px;
+    min-height: 150px;
+    margin-bottom: 15px;
 }
 
 div.notepanel > .notelist > .summary > .title {
@@ -227,6 +229,15 @@ div.notepanel .noteview .content {
     margin-left: 30px;
     margin-right: 60px;
     text-indent:2em;
+    height: 80%;
+}
+
+.noteview .content pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
 div.notepanel .noteview .toolbar {
